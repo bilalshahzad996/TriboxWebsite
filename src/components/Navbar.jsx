@@ -124,7 +124,14 @@ export default function Navbar() {
               <a href="/#contact" className="btn btn-primary" onClick={close}>
                 Let's talk <Icon name="arrow" size={18} />
               </a>
-              <a href={`mailto:${company.email}`} className="nav-menu-mail">{company.email}</a>
+              <div className="nav-menu-chips">
+                <a href={`mailto:${company.email}`}>
+                  <Icon name="mail" size={16} /> {company.email}
+                </a>
+                {company.social.map((s) => (
+                  <a key={s.label} href={s.url} target="_blank" rel="noreferrer">{s.label} ↗</a>
+                ))}
+              </div>
               <p className="nav-menu-offices">{company.offices.map((o) => o.city.split(',')[0]).join(' · ')}</p>
             </div>
           </nav>
