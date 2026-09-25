@@ -84,13 +84,31 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  const close = () => setOpen(false)
+
+  // From the open menu, jump straight to the section while the menu still covers the page,
+  // then let the menu fade away (smooth-scrolling behind a closing menu looks glitchy on phones).
+  const goTo = (e) => {
+    if (open) {
+      const url = new URL(e.currentTarget.href)
+      const target = url.pathname === window.location.pathname && document.getElementById(url.hash.slice(1))
+      if (target) {
+        e.preventDefault()
+        target.scrollIntoView({ behavior: 'instant' })
+      }
+    }
+    setOpen(false)
+  }
+
+  // Tapping the dimmed page around the menu closes it
+  const onBackdrop = (e) => {
+    if (open && (e.target === e.currentTarget || e.target.classList.contains('container'))) setOpen(false)
+  }
 
   return (
-    <header className={`nav ${scrolled ? 'nav-scrolled' : ''} ${open ? 'nav-open' : ''}`}>
+    <header className={`nav ${scrolled ? 'nav-scrolled' : ''} ${open ? 'nav-open' : ''}`} onClick={onBackdrop}>
       <div className="container">
         <div className="nav-bar">
-          <a href="/#main" className="logo" onClick={close}>
+          <a href="/#main" className="logo" onClick={goTo}>
             <Logo />
           </a>
 
@@ -107,21 +125,20 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                onClick={close}
+                onClick={goTo}
                 onPointerEnter={() => setHovered(l.href)}
                 className={active === l.href ? 'is-active' : undefined}
                 aria-current={active === l.href ? 'true' : undefined}
                 style={{ '--i': i }}
               >
-                <span className="nav-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 <span className="nav-link-text" data-text={l.label}>{l.label}</span>
-                <Icon name="arrow" size={22} className="nav-arrow" />
+                <span className="nav-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
               </a>
             ))}
 
             {/* Only shown in the mobile menu */}
             <div className="nav-menu-foot" style={{ '--i': links.length }}>
-              <a href="/#contact" className="btn btn-primary" onClick={close}>
+              <a href="/#contact" className="btn btn-primary" onClick={goTo}>
                 Let's talk <Icon name="arrow" size={18} />
               </a>
               <div className="nav-menu-chips">
