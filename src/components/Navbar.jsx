@@ -18,7 +18,6 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [hidden, setHidden] = useState(false)
   const [mobile, setMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
   const [active, setActive] = useState(null)
   const [hovered, setHovered] = useState(null)
@@ -35,16 +34,8 @@ export default function Navbar() {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
-  // Frosted pill once scrolled; slides away while scrolling down, returns on scroll up
   useEffect(() => {
-    let lastY = window.scrollY
-    const onScroll = () => {
-      const y = window.scrollY
-      setScrolled(y > 40)
-      if (Math.abs(y - lastY) < 8) return
-      setHidden(y > lastY && y > 400)
-      lastY = y
-    }
+    const onScroll = () => setScrolled(window.scrollY > 40)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -96,7 +87,7 @@ export default function Navbar() {
   const close = () => setOpen(false)
 
   return (
-    <header className={`nav ${scrolled ? 'nav-scrolled' : ''} ${hidden && !open ? 'nav-hidden' : ''} ${open ? 'nav-open' : ''}`}>
+    <header className={`nav ${scrolled ? 'nav-scrolled' : ''} ${open ? 'nav-open' : ''}`}>
       <div className="container">
         <div className="nav-bar">
           <a href="/#main" className="logo" onClick={close}>

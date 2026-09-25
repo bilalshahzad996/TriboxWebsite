@@ -48,7 +48,7 @@ export default function ThemeToggle() {
 
   return (
     <button className="theme-toggle" onClick={toggle} aria-label={`Switch to ${next} theme`} title={`Switch to ${next} theme`}>
-      <Icon key={theme} name={theme === 'dark' ? 'sun' : 'moon'} size={20} className="theme-icon" />
+      <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={20} />
     </button>
   )
 }
