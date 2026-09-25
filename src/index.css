@@ -204,14 +204,20 @@ body.has-cursor select { cursor: none; }
   background: var(--bg);
   animation: preloaderOut 0.9s var(--ease) 1.05s forwards;
 }
-.preloader-inner { display: flex; align-items: center; gap: 18px; font-size: 3rem; }
-.preloader .bars { width: 0.9em; }
+/* Same logo as the header (.brand), shown large */
+.preloader-inner { font-size: clamp(2.6rem, 7vw, 3.8rem); }
 .preloader-word {
-  font-family: var(--display);
-  font-weight: 700;
-  letter-spacing: -0.04em;
   clip-path: inset(0 100% 0 0);
-  animation: wipeIn 0.7s var(--ease) 0.35s forwards;
+  animation: wipeIn 0.7s var(--ease) 0.05s forwards;
+}
+.preloader .bars { width: auto; height: 100%; }
+.preloader .bars rect { animation: barInRight 0.7s var(--ease) both; }
+.preloader .bars rect:nth-child(1) { animation-delay: 0.3s; }
+.preloader .bars rect:nth-child(2) { animation-delay: 0.38s; }
+.preloader .bars rect:nth-child(3) { animation-delay: 0.46s; }
+@keyframes barInRight {
+  from { transform: translateX(140%); opacity: 0; }
+  to { transform: none; opacity: 1; }
 }
 @keyframes wipeIn { to { clip-path: inset(0 0 0 0); } }
 @keyframes preloaderOut { to { clip-path: inset(0 0 100% 0); } }

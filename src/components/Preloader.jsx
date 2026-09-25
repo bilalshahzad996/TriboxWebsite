@@ -14,7 +14,7 @@ const showIntro = (() => {
   return true
 })()
 
-// Short intro screen: the Tribox bars slide in, then the panel lifts away.
+// Short intro screen: the Tribox logo wipes in, its bars slide into place, then the panel lifts away.
 export default function Preloader() {
   const [done, setDone] = useState(!showIntro)
 
@@ -32,9 +32,9 @@ export default function Preloader() {
   if (done) return null
   return (
     <div className="preloader" aria-hidden="true">
-      <div className="preloader-inner">
+      <div className="preloader-inner brand">
+        <span className="brand-word preloader-word" />
         <BrandBars className="bars" />
-        <span className="preloader-word">Tribox</span>
       </div>
     </div>
   )
