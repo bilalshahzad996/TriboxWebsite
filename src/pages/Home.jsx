@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { company, marquee, highlights, services, technologies, clients, process } from '../data/site'
+import { company, mapsUrl, marquee, highlights, services, technologies, clients, process } from '../data/site'
 import Icon from '../components/Icon'
 import BrandLogo from '../components/BrandLogo'
 import TechLogo from '../components/TechLogo'
@@ -506,10 +506,17 @@ function Contact() {
               <div>
                 <span className="label">Offices</span>
                 {company.offices.map((o) => (
-                  <div key={o.city} className="office">
-                    <strong>{o.city}</strong>
+                  <a
+                    key={o.city}
+                    className="office"
+                    href={mapsUrl(o.address)}
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Open in Google Maps"
+                  >
+                    <strong>{o.city} <span aria-hidden="true">↗</span></strong>
                     <small>{o.address}</small>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>

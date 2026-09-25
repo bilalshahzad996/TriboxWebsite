@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { company } from '../data/site'
+import { company, mapsUrl } from '../data/site'
 
 const LAST_UPDATED = '25 September 2026'
 
@@ -139,7 +139,7 @@ export default function PrivacyPolicy() {
         <p>
           {company.legalName}
           <br />
-          {company.address}
+          <a href={mapsUrl(company.address)} target="_blank" rel="noreferrer">{company.address}</a>
           <br />
           <a href={`mailto:${company.email}`}>{company.email}</a>
         </p>

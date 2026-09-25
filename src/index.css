@@ -1259,7 +1259,11 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
 }
 .info-card .label { margin: 0 0 2px; font-size: 0.7rem; }
 .info-card strong { display: block; font-weight: 500; }
+.office { display: block; transition: color 0.3s; }
 .office + .office { margin-top: 10px; }
+.office strong span { display: inline-block; margin-left: 2px; color: var(--muted); font-size: 0.85em; transition: transform 0.3s var(--ease), color 0.3s; }
+.office:hover strong { color: var(--accent); }
+.office:hover strong span { color: var(--accent); transform: translate(2px, -2px); }
 .office small { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
 
 /* ---------- Footer ---------- */

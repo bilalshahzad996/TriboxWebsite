@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { company, services } from '../data/site'
+import { company, mapsUrl, services } from '../data/site'
 import Logo from './Logo'
 
 export default function Footer() {
@@ -27,7 +27,9 @@ export default function Footer() {
             <ul>
               <li><a href={`mailto:${company.email}`}>{company.email}</a></li>
               {company.offices.map((o) => (
-                <li key={o.city}>{o.address}</li>
+                <li key={o.city}>
+                  <a href={mapsUrl(o.address)} target="_blank" rel="noreferrer" title="Open in Google Maps">{o.address}</a>
+                </li>
               ))}
               <li>{company.hours}</li>
               {company.social.map((s) => (

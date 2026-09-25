@@ -23,6 +23,9 @@ export const company = {
   social: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/company/tribox-private-limited/' }],
 }
 
+// Google Maps link for an address (opens the map app on phones).
+export const mapsUrl = (address) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+
 // Words that scroll along the moving strip under the hero.
 export const marquee = [
   'Dynamics 365',
