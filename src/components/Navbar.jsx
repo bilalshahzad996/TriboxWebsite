@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { company } from '../data/site'
 import Icon from './Icon'
 import Logo from './Logo'
 import Magnetic from './Magnetic'
@@ -112,9 +113,20 @@ export default function Navbar() {
                 aria-current={active === l.href ? 'true' : undefined}
                 style={{ '--i': i }}
               >
+                <span className="nav-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                 <span className="nav-link-text" data-text={l.label}>{l.label}</span>
+                <Icon name="arrow" size={22} className="nav-arrow" />
               </a>
             ))}
+
+            {/* Only shown in the mobile menu */}
+            <div className="nav-menu-foot" style={{ '--i': links.length }}>
+              <a href="/#contact" className="btn btn-primary" onClick={close}>
+                Let's talk <Icon name="arrow" size={18} />
+              </a>
+              <a href={`mailto:${company.email}`} className="nav-menu-mail">{company.email}</a>
+              <p className="nav-menu-offices">{company.offices.map((o) => o.city.split(',')[0]).join(' · ')}</p>
+            </div>
           </nav>
 
           <div className="nav-actions">

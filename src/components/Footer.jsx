@@ -43,7 +43,6 @@ export default function Footer() {
           <span>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</span>
           <div className="footer-links">
             <Link to="/privacy-policy">Privacy Policy</Link>
-            <a href="/#main" className="back-top">Back to top ↑</a>
           </div>
         </div>
       </div>
