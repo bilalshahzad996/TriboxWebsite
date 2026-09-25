@@ -141,6 +141,9 @@ function Hero() {
   )
 }
 
+// The moving word strip under the hero. Hidden for now; set to true to bring it back.
+const SHOW_MARQUEE = false
+
 function Marquee() {
   const items = [...marquee, ...marquee]
   return (
@@ -531,7 +534,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Marquee />
+      {SHOW_MARQUEE && <Marquee />}
       <About />
       <Services />
       <Technologies />

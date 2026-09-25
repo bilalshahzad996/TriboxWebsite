@@ -194,6 +194,20 @@ body.has-cursor a,
 body.has-cursor button,
 body.has-cursor select { cursor: none; }
 
+/* ---------- Startup screen (static markup in index.html, replaced when the app mounts) ---------- */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-size: clamp(2.6rem, 7vw, 3.8rem);
+}
+.boot .brand { animation: bootPulse 1.2s ease-in-out infinite alternate; }
+@keyframes bootPulse { from { opacity: 0.45; } }
+
 /* ---------- Preloader ---------- */
 .preloader {
   position: fixed;
@@ -375,6 +389,7 @@ body.has-cursor select { cursor: none; }
 .nav-link-text { position: relative; display: block; transition: transform 0.45s var(--ease); }
 .nav-link-text::after {
   content: attr(data-text);
+  content: attr(data-text) / ''; /* decorative copy: empty alt text so screen readers don't read the label twice */
   position: absolute;
   left: 0;
   top: calc(100% + var(--pad));

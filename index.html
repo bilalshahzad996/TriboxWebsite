@@ -9,15 +9,8 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f7f9fc" />
     <meta name="color-scheme" content="light dark" />
-    <script>
-      // Apply the saved theme before first paint to avoid a flash of the wrong colours.
-      try {
-        if (localStorage.getItem('theme') === 'dark') {
-          document.documentElement.dataset.theme = 'dark'
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#05060b')
-        }
-      } catch (e) {}
-    </script>
+    <!-- Sets the theme before first paint (kept as a file so the Content Security Policy needs no inline scripts) -->
+    <script src="/theme-init.js"></script>
 
     <!-- Icons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -86,8 +79,21 @@
         Tribox — Your Digital Partner. Please enable JavaScript to view this website, or email us at
         <a href="mailto:sales@tribox365.com" style="color: #0a78a8">sales@tribox365.com</a>.
       </div>
+      <style>.boot { display: none; }</style>
     </noscript>
-    <div id="root"></div>
+    <!-- Startup screen: shown from the first paint until the app replaces it -->
+    <div id="root">
+      <div class="boot" aria-hidden="true">
+        <span class="brand">
+          <span class="brand-word"></span>
+          <svg class="brand-bars" viewBox="558 0 193 153">
+            <rect x="558" y="0" width="134" height="49" fill="#7ddcff" />
+            <rect x="617" y="52" width="134" height="49" fill="#4fafd1" />
+            <rect x="593" y="104" width="134" height="49" fill="#7ddcff" />
+          </svg>
+        </span>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
