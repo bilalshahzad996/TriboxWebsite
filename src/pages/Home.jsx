@@ -44,7 +44,11 @@ function RotatingWord({ words }) {
   )
 }
 
-const orbitInner = services.filter((s) => s.logo).slice(0, 1).concat(services.filter((s) => s.logo === 'odoo'))
+// Inner ring: official full-colour product logos (from components/TechLogo.jsx)
+const orbitInner = [
+  { title: 'Microsoft Dynamics 365', logo: 'dynamics365', className: 'mark', brand: 'Microsoft', name: 'Dynamics 365' },
+  { title: 'Odoo', logo: 'odooWordmark', className: 'mark-wide' },
+]
 const orbitOuter = services.filter((s) => s.icon)
 
 function Orbit() {
@@ -58,7 +62,10 @@ function Orbit() {
       <div className="ring ring-inner" style={{ '--count': orbitInner.length }}>
         {orbitInner.map((s, i) => (
           <span key={s.title} className="orbit-item" style={{ '--i': i }}>
-            <span className="orbit-chip"><ServiceMark service={s} /></span>
+            <span className="orbit-chip is-brand">
+              <TechLogo name={s.logo} className={s.className} />
+              {s.name && <span className="chip-name"><small>{s.brand}</small>{s.name}</span>}
+            </span>
           </span>
         ))}
       </div>
