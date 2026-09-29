@@ -19,7 +19,18 @@ export const company = {
   ],
   hours: 'Mon – Fri, 09:00 – 17:00',
   // Words the hero headline cycles through.
-  rotating: ['Dynamics 365', 'Odoo ERP', 'Business Central', 'CRM', 'Web & Mobile'],
+  rotating: [
+    'Microsoft Dynamics 365 Finance and Operations',
+    'Microsoft Dynamics Business Central',
+    'Odoo',
+    'Customer Relationship Management',
+    'Human Resource Management',
+    'E-Invoicing Connectors',
+    'Point of Sales',
+    'Shop in Shop application',
+    'Transportation Management',
+    'Web & Mobile Applications',
+  ],
   social: [{ label: 'LinkedIn', url: 'https://www.linkedin.com/company/tribox-private-limited/' }],
 }
 
