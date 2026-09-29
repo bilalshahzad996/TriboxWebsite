@@ -52,7 +52,8 @@ const orbitInner = [
 // Outer ring: product icons (TechLogo) mixed with service icons until the rest are supplied
 const orbitOuter = [
   { title: 'Point of Sales', logo: 'pos', name: 'Point of Sales' },
-  ...services.filter((s) => s.icon && s.icon !== 'mobile'),
+  { title: 'Human Resource Management', logo: 'hr', name: 'Human Resource Management' },
+  ...services.filter((s) => s.icon === 'invoice'),
 ]
 
 function Orbit() {

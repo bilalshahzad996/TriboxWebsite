@@ -1,6 +1,11 @@
 // Full-colour technology logos. Sources: Iconify sets "logos" (CC0), "theSVG Color" (MIT) and
 // Simple Icons (CC0). The markup is static and trusted, so it is injected directly.
 const logos = {
+  // Tribox Human Resource Management icon (supplied by Tribox)
+  hr: {
+    viewBox: '0 0 512 512',
+    body: "<defs><linearGradient id=\"hr-bg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#1E40AF\"/><stop offset=\"1\" stop-color=\"#0B1F66\"/></linearGradient></defs><rect width=\"512\" height=\"512\" rx=\"112\" fill=\"url(#hr-bg)\"/><g transform=\"translate(0,-30)\"><g fill=\"#93C5FD\"><circle cx=\"158\" cy=\"214\" r=\"34\"/><path d=\"M96 350C96 306 124 276 158 276C192 276 220 306 220 350Z\"/><circle cx=\"354\" cy=\"214\" r=\"34\"/><path d=\"M292 350C292 306 320 276 354 276C388 276 416 306 416 350Z\"/></g><g fill=\"#FFFFFF\" stroke=\"#152E86\" stroke-width=\"12\" paint-order=\"stroke\" stroke-linejoin=\"round\"><circle cx=\"256\" cy=\"188\" r=\"44\"/><path d=\"M172 356C172 300 210 262 256 262C302 262 340 300 340 356Z\"/></g><path d=\"M112 384Q256 474 400 384\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"22\" stroke-linecap=\"round\"/></g>",
+  },
   // Tribox Point of Sales icon (supplied by Tribox)
   pos: {
     viewBox: '0 0 512 512',
