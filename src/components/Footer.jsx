@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+// Privacy Policy hidden for now; uncomment to bring it back
+// import { Link } from 'react-router-dom'
 import { company, mapsUrl, services } from '../data/site'
 import Logo from './Logo'
 
@@ -43,9 +44,11 @@ export default function Footer() {
 
         <div className="footer-row">
           <span>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</span>
+          {/* Privacy Policy hidden for now; uncomment to bring it back
           <div className="footer-links">
             <Link to="/privacy-policy">Privacy Policy</Link>
           </div>
+          */}
         </div>
       </div>
     </footer>

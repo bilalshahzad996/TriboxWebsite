@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+// Privacy Policy hidden for now; uncomment to bring it back
+// import { Link } from 'react-router-dom'
 import { company, mapsUrl, marquee, highlights, services, technologies, clients, process } from '../data/site'
 import Icon from '../components/Icon'
 import BrandLogo from '../components/BrandLogo'
@@ -505,9 +506,11 @@ function Contact() {
               value={form.botcheck}
               onChange={update}
             />
+            {/* Privacy Policy hidden for now; uncomment to bring it back
             <p className="form-note">
               By sending this form you agree to our <Link to="/privacy-policy">Privacy Policy</Link>.
             </p>
+            */}
             <Magnetic strength={0.2}>
               <button type="submit" className="btn btn-primary" disabled={sending}>
                 {sending ? 'Sending…' : 'Send message'} <Icon name="arrow" size={18} />
