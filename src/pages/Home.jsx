@@ -382,6 +382,9 @@ function Process() {
   )
 }
 
+// Contact form field limits (characters)
+const LIMITS = { name: 60, company: 80, email: 120, phone: 18, message: 1000, messageMin: 10 }
+
 const emptyForm = { name: '', company: '', email: '', phone: '', service: '', message: '', botcheck: '' }
 
 // Where enquiries are sent. Set these in a .env file (see .env.example).
@@ -465,21 +468,32 @@ function Contact() {
             </div>
             <div className="form-row">
               <label className="field">
-                <input name="name" autoComplete="name" maxLength={100} placeholder=" " value={form.name} onChange={update} required />
+                <input name="name" autoComplete="name" maxLength={LIMITS.name} placeholder=" " value={form.name} onChange={update} required />
                 <span>Your name *</span>
               </label>
               <label className="field">
-                <input name="company" autoComplete="organization" maxLength={120} placeholder=" " value={form.company} onChange={update} />
+                <input name="company" autoComplete="organization" maxLength={LIMITS.company} placeholder=" " value={form.company} onChange={update} />
                 <span>Company name</span>
               </label>
             </div>
             <div className="form-row">
               <label className="field">
-                <input type="email" name="email" autoComplete="email" maxLength={150} placeholder=" " value={form.email} onChange={update} required />
+                <input type="email" name="email" autoComplete="email" maxLength={LIMITS.email} placeholder=" " value={form.email} onChange={update} required />
                 <span>Email address *</span>
               </label>
               <label className="field">
-                <input type="tel" name="phone" autoComplete="tel" maxLength={30} placeholder=" " value={form.phone} onChange={update} />
+                <input
+                  type="tel"
+                  name="phone"
+                  autoComplete="tel"
+                  inputMode="tel"
+                  maxLength={LIMITS.phone}
+                  pattern="[0-9 +\(\)\-]{6,18}"
+                  title="Numbers, spaces and + - ( ) only"
+                  placeholder=" "
+                  value={form.phone}
+                  onChange={update}
+                />
                 <span>Phone number</span>
               </label>
             </div>
@@ -491,9 +505,25 @@ function Contact() {
               </select>
               <span>What do you need help with?</span>
             </label>
-            <label className="field">
-              <textarea name="message" rows="4" maxLength={5000} placeholder=" " value={form.message} onChange={update} required />
+            <label className="field field-message">
+              <textarea
+                name="message"
+                rows="4"
+                minLength={LIMITS.messageMin}
+                maxLength={LIMITS.message}
+                placeholder=" "
+                value={form.message}
+                onChange={update}
+                aria-describedby="message-count"
+                required
+              />
               <span>Tell us about your project *</span>
+              <small
+                id="message-count"
+                className={`field-count ${form.message.length > LIMITS.message * 0.9 ? 'is-near' : ''}`}
+              >
+                {form.message.length} / {LIMITS.message}
+              </small>
             </label>
             {/* Honeypot: hidden from people, catches spam bots */}
             <input

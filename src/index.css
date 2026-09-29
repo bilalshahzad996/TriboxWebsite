@@ -35,6 +35,7 @@
   --particle-rgb: 47 127 224;
   --glow: 0.55;
   --odoo: #714b67;
+  --warn: #b45309;
   color-scheme: light;
 }
 
@@ -61,6 +62,7 @@
   --particle-rgb: 79 175 209;
   --glow: 1;
   --odoo: #c499b8;
+  --warn: #fbbf24;
   color-scheme: dark;
 }
 
@@ -1218,6 +1220,46 @@ body.has-cursor select { cursor: none; }
   appearance: none;
 }
 .field select option { background: var(--surface); }
+/* Message box: the border lives on the label, so the text scrolls in its own area
+   between the floating label (top) and the character counter (bottom) and never under either */
+.field-message {
+  padding: 30px 0 30px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--tint);
+  cursor: text;
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.field.field-message textarea,
+.field.field-message textarea:focus {
+  display: block;
+  padding: 2px 16px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+/* Thin scrollbar in the theme's colours instead of the heavy default one */
+.field-message textarea { scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent; }
+.field.field-message > span { top: 22px; }
+.field.field-message textarea:focus + span,
+.field.field-message textarea:not(:placeholder-shown) + span { transform: translateY(-15px) scale(0.78); }
+.field-message:focus-within {
+  border-color: var(--accent);
+  background: rgb(var(--accent-rgb) / 0.04);
+  box-shadow: 0 0 0 4px rgb(var(--accent-rgb) / 0.08);
+}
+.field-count {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  pointer-events: none;
+  transition: color 0.3s;
+}
+.field-count.is-near { color: var(--warn); font-weight: 600; }
 .field > span {
   position: absolute;
   left: 17px;
