@@ -1,6 +1,11 @@
 // Full-colour technology logos. Sources: Iconify sets "logos" (CC0), "theSVG Color" (MIT) and
 // Simple Icons (CC0). The markup is static and trusted, so it is injected directly.
 const logos = {
+  // Tribox Shop in Shop App icon (supplied by Tribox)
+  sis: {
+    viewBox: '0 0 512 512',
+    body: "<rect width=\"512\" height=\"512\" rx=\"112\" fill=\"#A36939\"/><path d=\"M72 206L256 138L440 206M100 196V404M412 196V404M72 404H440\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"20\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M160 404V250H352V404\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"16\" stroke-linejoin=\"round\"/><rect x=\"168\" y=\"258\" width=\"176\" height=\"60\" fill=\"#FFFFFF\"/><path d=\"M168 273H344M168 288H344M168 303H344\" stroke=\"#A36939\" stroke-width=\"5\"/><g fill=\"#EDE1D7\"><rect x=\"190\" y=\"334\" width=\"60\" height=\"60\" rx=\"5\"/><rect x=\"262\" y=\"334\" width=\"60\" height=\"60\" rx=\"5\"/></g><g fill=\"#BE9674\"><rect x=\"212\" y=\"334\" width=\"16\" height=\"20\"/><rect x=\"284\" y=\"334\" width=\"16\" height=\"20\"/></g><path d=\"M384 204C358 175 342 157 342 128A42 42 0 0 1 426 128C426 157 410 175 384 204Z\" fill=\"#FFFFFF\" stroke=\"#A36939\" stroke-width=\"14\" paint-order=\"stroke\" stroke-linejoin=\"round\"/><circle cx=\"384\" cy=\"128\" r=\"16\" fill=\"#A36939\"/>",
+  },
   // Tribox Human Resource Management icon (supplied by Tribox)
   hr: {
     viewBox: '0 0 512 512',

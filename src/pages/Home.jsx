@@ -49,11 +49,11 @@ const orbitInner = [
   { title: 'Microsoft Dynamics 365', logo: 'dynamics365', className: 'mark', brand: 'Microsoft', name: 'Dynamics 365' },
   { title: 'Odoo', logo: 'odooWordmark', className: 'mark-wide' },
 ]
-// Outer ring: product icons (TechLogo) mixed with service icons until the rest are supplied
+// Outer ring: Tribox product icons (from components/TechLogo.jsx)
 const orbitOuter = [
   { title: 'Point of Sales', logo: 'pos', name: 'Point of Sales' },
   { title: 'Human Resource Management', logo: 'hr', name: 'Human Resource Management' },
-  ...services.filter((s) => s.icon === 'invoice'),
+  { title: 'Shop in Shop App', logo: 'sis', name: 'Shop in Shop App' },
 ]
 
 function Orbit() {
