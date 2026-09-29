@@ -703,6 +703,8 @@ body.has-cursor select { cursor: none; }
 .is-brand .mark-wide { width: 64px; }
 .chip-name { display: grid; font-size: 0.68rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; text-align: center; white-space: nowrap; }
 .chip-name small { font-size: 0.6rem; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+/* Outer-ring variant: one-line name, a little smaller so it clears the inner tiles */
+.orbit-chip.is-compact { width: 92px; height: 62px; left: -46px; top: -31px; gap: 4px; border-radius: 16px; }
 
 .float-card {
   position: absolute;
@@ -1536,6 +1538,7 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
   .is-brand .mark-wide { width: 50px; }
   .chip-name { font-size: 0.55rem; }
   .chip-name small { font-size: 0.47rem; }
+  .orbit-chip.is-compact { width: 70px; height: 50px; left: -35px; top: -25px; gap: 2px; border-radius: 13px; }
   .footer-top { grid-template-columns: 1fr; }
   .scroll-hint { display: none; }
   .fc-1 { top: -4%; left: -2%; }

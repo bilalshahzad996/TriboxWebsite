@@ -51,7 +51,7 @@ const orbitInner = [
 ]
 // Outer ring: product icons (TechLogo) mixed with service icons until the rest are supplied
 const orbitOuter = [
-  { title: 'Point of Sales', logo: 'pos' },
+  { title: 'Point of Sales', logo: 'pos', name: 'Point of Sales' },
   ...services.filter((s) => s.icon && s.icon !== 'mobile'),
 ]
 
@@ -76,9 +76,14 @@ function Orbit() {
       <div className="ring ring-outer" style={{ '--count': orbitOuter.length }}>
         {orbitOuter.map((s, i) => (
           <span key={s.title} className="orbit-item" style={{ '--i': i }}>
-            <span className="orbit-chip">
-              {s.logo ? <TechLogo name={s.logo} className="mark" /> : <ServiceMark service={s} size={22} />}
-            </span>
+            {s.logo ? (
+              <span className="orbit-chip is-brand is-compact">
+                <TechLogo name={s.logo} className="mark" />
+                <span className="chip-name">{s.name}</span>
+              </span>
+            ) : (
+              <span className="orbit-chip"><ServiceMark service={s} size={22} /></span>
+            )}
           </span>
         ))}
       </div>
