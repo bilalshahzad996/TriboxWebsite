@@ -27,7 +27,7 @@ export const company = {
     'Human Resource Management',
     'E-Invoicing Connectors',
     'Point of Sales',
-    'Shop in Shop application',
+    'Shop in Shop Application',
     'Transportation Management',
     'Web & Mobile Applications',
   ],
