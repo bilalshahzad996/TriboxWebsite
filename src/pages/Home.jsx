@@ -514,16 +514,9 @@ function Contact() {
                 placeholder=" "
                 value={form.message}
                 onChange={update}
-                aria-describedby="message-count"
                 required
               />
               <span>Tell us about your project *</span>
-              <small
-                id="message-count"
-                className={`field-count ${form.message.length > LIMITS.message * 0.9 ? 'is-near' : ''}`}
-              >
-                {form.message.length} / {LIMITS.message}
-              </small>
             </label>
             {/* Honeypot: hidden from people, catches spam bots */}
             <input
