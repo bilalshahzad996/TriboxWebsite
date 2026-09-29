@@ -49,7 +49,11 @@ const orbitInner = [
   { title: 'Microsoft Dynamics 365', logo: 'dynamics365', className: 'mark', brand: 'Microsoft', name: 'Dynamics 365' },
   { title: 'Odoo', logo: 'odooWordmark', className: 'mark-wide' },
 ]
-const orbitOuter = services.filter((s) => s.icon)
+// Outer ring: product icons (TechLogo) mixed with service icons until the rest are supplied
+const orbitOuter = [
+  { title: 'Point of Sales', logo: 'pos' },
+  ...services.filter((s) => s.icon && s.icon !== 'mobile'),
+]
 
 function Orbit() {
   return (
@@ -72,7 +76,9 @@ function Orbit() {
       <div className="ring ring-outer" style={{ '--count': orbitOuter.length }}>
         {orbitOuter.map((s, i) => (
           <span key={s.title} className="orbit-item" style={{ '--i': i }}>
-            <span className="orbit-chip"><ServiceMark service={s} size={22} /></span>
+            <span className="orbit-chip">
+              {s.logo ? <TechLogo name={s.logo} className="mark" /> : <ServiceMark service={s} size={22} />}
+            </span>
           </span>
         ))}
       </div>

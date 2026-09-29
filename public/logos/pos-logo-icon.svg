@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2F7BF5"/>
+      <stop offset="1" stop-color="#0B3FA8"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g transform="translate(0,36)">
+    <!-- receipt emerging from the box -->
+    <path d="M186 150V28l10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8V150Z" fill="#FFFFFF"/>
+    <g stroke="#2F7BF5" stroke-width="9" stroke-linecap="round">
+      <line x1="208" y1="46" x2="304" y2="46"/>
+      <line x1="208" y1="65" x2="272" y2="65"/>
+      <line x1="208" y1="84" x2="304" y2="84"/>
+    </g>
+    <!-- the box (isometric cube) -->
+    <path d="M256 106 L386 181 L256 256 L126 181 Z" fill="#BFD5FB"/>
+    <path d="M126 181 L256 256 L256 406 L126 331 Z" fill="#FFFFFF"/>
+    <path d="M256 256 L386 181 L386 331 L256 406 Z" fill="#7EA8F2"/>
+  </g>
+</svg>

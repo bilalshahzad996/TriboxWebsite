@@ -1,6 +1,11 @@
 // Full-colour technology logos. Sources: Iconify sets "logos" (CC0), "theSVG Color" (MIT) and
 // Simple Icons (CC0). The markup is static and trusted, so it is injected directly.
 const logos = {
+  // Tribox Point of Sales icon (supplied by Tribox)
+  pos: {
+    viewBox: '0 0 512 512',
+    body: "<defs><linearGradient id=\"pos-bg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#2F7BF5\"/><stop offset=\"1\" stop-color=\"#0B3FA8\"/></linearGradient></defs><rect width=\"512\" height=\"512\" rx=\"112\" fill=\"url(#pos-bg)\"/><g transform=\"translate(0,36)\"><path d=\"M186 150V28l10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8 10-8 10 8V150Z\" fill=\"#FFFFFF\"/><g stroke=\"#2F7BF5\" stroke-width=\"9\" stroke-linecap=\"round\"><line x1=\"208\" y1=\"46\" x2=\"304\" y2=\"46\"/><line x1=\"208\" y1=\"65\" x2=\"272\" y2=\"65\"/><line x1=\"208\" y1=\"84\" x2=\"304\" y2=\"84\"/></g><path d=\"M256 106 L386 181 L256 256 L126 181 Z\" fill=\"#BFD5FB\"/><path d=\"M126 181 L256 256 L256 406 L126 331 Z\" fill=\"#FFFFFF\"/><path d=\"M256 256 L386 181 L386 331 L256 406 Z\" fill=\"#7EA8F2\"/></g>",
+  },
   // Official Microsoft Dynamics 365 mark (theSVG Color, MIT); gradient ids prefixed to stay unique
   dynamics365: {
     viewBox: "0 0 96 96",
