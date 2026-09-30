@@ -878,25 +878,29 @@ body.has-cursor select { cursor: none; }
 .bento > .span-2 { grid-column: span 2; }
 
 .svc {
+  --svc-bg: linear-gradient(160deg, var(--surface) 0%, var(--bg-soft) 100%);
   display: flex;
   flex-direction: column;
   min-height: 300px;
   padding: 30px;
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  background: linear-gradient(160deg, var(--surface) 0%, var(--bg-soft) 100%);
+  background: var(--svc-bg);
 }
-/* Rotating gradient border on hover */
+/* Rotating gradient border on hover. Drawn as a layer behind the content: the gradient fills
+   its 1px border and a copy of the card background fills the inside. (A CSS mask would be
+   simpler, but some Chromium browsers, e.g. Opera, skip masks inside 3D-tilted cards and
+   fill the whole card with the gradient.) */
 .svc::after {
   content: '';
   position: absolute;
   inset: -1px;
+  z-index: -1;
   border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(from var(--angle), transparent 55%, var(--accent), var(--primary), var(--violet), transparent 95%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  border: 1px solid transparent;
+  background:
+    var(--svc-bg) padding-box,
+    conic-gradient(from var(--angle), transparent 55%, var(--accent), var(--primary), var(--violet), transparent 95%) border-box;
   opacity: 0;
   transition: opacity 0.4s;
   animation: angle 3.5s linear infinite;
@@ -907,10 +911,12 @@ body.has-cursor select { cursor: none; }
 @keyframes angle { to { --angle: 360deg; } }
 
 .svc-featured {
-  background:
+  --svc-bg:
     radial-gradient(circle at 100% 0%, rgb(139 108 255 / calc(0.22 * var(--glow))), transparent 55%),
     linear-gradient(160deg, var(--surface) 0%, var(--bg-soft) 100%);
 }
+/* Both card background layers stay inside the gradient border */
+.svc-featured::after { background-clip: padding-box, padding-box, border-box; }
 .svc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; }
 .svc-logo {
   display: grid;
