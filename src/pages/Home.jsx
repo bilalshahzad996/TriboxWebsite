@@ -455,7 +455,7 @@ function Contact() {
     <section id="contact" className="section contact">
       <div className="container">
         <Reveal as="span" className="label"><b>06</b> Contact</Reveal>
-        <Reveal as="h2" variant="mask" className="cta-title">
+        <Reveal as="h2" variant="mask" className="section-title cta-title">
           Tell us about <span className="gradient-text animated">your project</span>
         </Reveal>
 

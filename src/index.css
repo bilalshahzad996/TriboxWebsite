@@ -287,10 +287,18 @@ body.has-cursor select { cursor: none; }
 .btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 10px 40px -10px rgb(47 127 224 / calc(0.7 * var(--glow))); }
 .btn-primary::before { background: var(--text); }
 .btn-primary:hover { color: var(--bg); box-shadow: 0 14px 50px -10px rgb(var(--accent-rgb) / 0.7); }
+/* Light theme: hover brightens the gradient instead of filling it with the dark text colour */
+:root:not([data-theme='dark']) .btn-primary::before {
+  background: linear-gradient(rgb(255 255 255 / 0.2), rgb(255 255 255 / 0.2)), var(--gradient);
+}
+:root:not([data-theme='dark']) .btn-primary:hover { color: #fff; box-shadow: 0 16px 50px -8px rgb(47 127 224 / 0.75); }
 
 .btn-ghost { border-color: var(--line-strong); color: var(--text); background: var(--tint); }
 .btn-ghost::before { background: var(--text); }
 .btn-ghost:hover { color: var(--bg); border-color: var(--text); }
+/* Light theme: hover fills with a soft accent tint instead of the dark text colour */
+:root:not([data-theme='dark']) .btn-ghost::before { background: rgb(var(--accent-rgb) / 0.1); }
+:root:not([data-theme='dark']) .btn-ghost:hover { color: var(--accent); border-color: rgb(var(--accent-rgb) / 0.45); }
 
 .btn-pill { padding: 0.62rem 1.25rem; font-size: 0.88rem; border-color: var(--line-strong); color: var(--text); }
 .btn-pill::before { background: var(--gradient); }
@@ -1097,15 +1105,12 @@ body.has-cursor select { cursor: none; }
   border: 1px solid var(--line);
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
 }
+/* Logos always in full colour */
 .client img {
   max-height: 72px;
   object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.7;
-  transition: filter 0.4s, opacity 0.4s;
 }
 .client:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 24px 50px -20px rgb(var(--accent-rgb) / 0.55); }
-.client:hover img { filter: none; opacity: 1; }
 
 /* ---------- Process ---------- */
 .process {
@@ -1174,22 +1179,18 @@ body.has-cursor select { cursor: none; }
   background: radial-gradient(ellipse 60% 50% at 90% 25%, rgb(47 127 224 / calc(0.16 * var(--glow))), transparent 70%);
 }
 .contact .container { position: relative; }
-.cta-title {
-  font-size: clamp(2.5rem, 6.4vw, 5.8rem);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  max-width: 1000px;
-  margin-bottom: 70px;
-}
+/* Same size as the other section headings (.section-title); only the spacing below differs */
+.cta-title { margin-bottom: 60px; }
 .contact-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 40px;
-  align-items: start;
+  /* Form and info column end at the same height */
+  align-items: stretch;
 }
 .contact-form {
   display: grid;
+  align-content: start;
   gap: 22px;
   padding: 36px;
   border-radius: var(--radius);
@@ -1286,6 +1287,7 @@ body.has-cursor select { cursor: none; }
 .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .btn:disabled { opacity: 0.7; cursor: progress; }
 
+/* The cards share out any extra height so the column lines up with the form */
 .contact-info { display: grid; gap: 14px; }
 .info-card {
   display: flex;
