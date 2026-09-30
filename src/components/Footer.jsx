@@ -1,9 +1,17 @@
 // Privacy Policy hidden for now; uncomment to bring it back
 // import { Link } from 'react-router-dom'
 import { company, mapsUrl, services } from '../data/site'
+import { useSyncExternalStore } from 'react'
 import Logo from './Logo'
 
+const noSubscribe = () => () => {}
+const thisYear = () => new Date().getFullYear()
+// The prerendered page shows the build year (set in vite.config.js); the app then uses today's
+const buildYear = () => import.meta.env.BUILD_YEAR
+
 export default function Footer() {
+  const year = useSyncExternalStore(noSubscribe, thisYear, buildYear)
+
   return (
     <footer className="footer">
       <div className="footer-glow" />
@@ -43,7 +51,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-row">
-          <span>© {new Date().getFullYear()} {company.legalName}. All rights reserved.</span>
+          <span>© {year} {company.legalName}. All rights reserved.</span>
           {/* Privacy Policy hidden for now; uncomment to bring it back
           <div className="footer-links">
             <Link to="/privacy-policy">Privacy Policy</Link>

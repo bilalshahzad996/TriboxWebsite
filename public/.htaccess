@@ -8,12 +8,10 @@ Options -Indexes
   RewriteCond %{HTTP_HOST} !^www\. [NC]
   RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
   RewriteRule ^ https://www.%1%{REQUEST_URI} [L,R=301]
-
-  # Single-page app: send unknown paths to index.html
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [L]
 </IfModule>
+
+# Unknown addresses get the prerendered "Page not found" page with a real 404 status
+ErrorDocument 404 /404.html
 
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"

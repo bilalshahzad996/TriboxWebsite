@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { company } from '../data/site'
 import Icon from './Icon'
 import Logo from './Logo'
@@ -6,6 +6,15 @@ import Magnetic from './Magnetic'
 import ThemeToggle from './ThemeToggle'
 
 const MOBILE_QUERY = '(max-width: 900px)'
+
+function subscribeMobile(onChange) {
+  const mq = window.matchMedia(MOBILE_QUERY)
+  mq.addEventListener('change', onChange)
+  return () => mq.removeEventListener('change', onChange)
+}
+const isMobile = () => window.matchMedia(MOBILE_QUERY).matches
+// The prerendered page doesn't know the screen size; the app reads it once loaded
+const notMobile = () => false
 
 const links = [
   { href: '/#about', label: 'About' },
@@ -18,7 +27,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [mobile, setMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches)
+  const mobile = useSyncExternalStore(subscribeMobile, isMobile, notMobile)
   const [active, setActive] = useState(null)
   const [hovered, setHovered] = useState(null)
   const listRef = useRef(null)
@@ -27,7 +36,6 @@ export default function Navbar() {
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY)
     const onChange = (e) => {
-      setMobile(e.matches)
       if (!e.matches) setOpen(false)
     }
     mq.addEventListener('change', onChange)

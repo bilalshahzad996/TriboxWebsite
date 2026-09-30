@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { company } from '../data/site'
 
 export default function NotFound() {
-  // Every address is served by the app with HTTP 200, so tell search engines not to index this page.
+  // The built 404.html already has this title and noindex; this covers pages reached inside the app.
   useEffect(() => {
     const previous = document.title
     const robots = document.querySelector('meta[name="robots"]')

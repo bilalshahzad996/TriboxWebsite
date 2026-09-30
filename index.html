@@ -9,8 +9,19 @@
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#f7f9fc" />
     <meta name="color-scheme" content="light dark" />
-    <!-- Sets the theme before first paint (kept as a file so the Content Security Policy needs no inline scripts) -->
+    <!-- Sets the theme and intro before first paint (kept as a file so the Content Security Policy needs no inline scripts) -->
     <script src="/theme-init.js"></script>
+    <!-- Startup screen (development only: the build replaces it with the rendered page). Styled here
+         because in development the main stylesheet only arrives once the JavaScript has loaded. -->
+    <style>
+      .boot { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; background: #f7f9fc; color: #0b1220; }
+      :root[data-theme="dark"] .boot { background: #05060b; color: #f3f5fa; }
+      .boot .brand { display: inline-flex; align-items: center; gap: 0.08em; height: clamp(2.9rem, 7.7vw, 4.2rem); animation: bootPulse 1.2s ease-in-out infinite alternate; }
+      .boot .brand-word { height: 100%; aspect-ratio: 553 / 153; background: currentColor; -webkit-mask: url('/logos/tribox-wordmark.png') center / contain no-repeat; mask: url('/logos/tribox-wordmark.png') center / contain no-repeat; }
+      .boot .brand-bars { height: 100%; width: auto; }
+      @keyframes bootPulse { from { opacity: 0.45; } }
+      @media (prefers-reduced-motion: reduce) { .boot .brand { animation: none; } }
+    </style>
 
     <!-- Icons -->
     <link rel="icon" href="/favicon.ico?v=2" sizes="32x32" />
@@ -74,15 +85,15 @@
     </script>
   </head>
   <body>
+    <!-- The built page already contains the content: without JavaScript, just skip the animations -->
     <noscript>
-      <div style="padding: 24px; font-family: system-ui, sans-serif; color: #0b1220; background: #f7f9fc">
-        Tribox — Your Digital Partner. Please enable JavaScript to view this website, or email us at
-        <a href="mailto:sales@tribox365.com" style="color: #0a78a8">sales@tribox365.com</a>.
-      </div>
-      <style>.boot { display: none; }</style>
+      <style>
+        .boot, .preloader { display: none; }
+        .reveal, .reveal .mask-inner { opacity: 1; transform: none; }
+      </style>
     </noscript>
-    <!-- Startup screen: shown from the first paint until the app replaces it -->
-    <div id="root">
+    <!-- Startup screen for development; the build replaces everything between the app markers with the rendered page -->
+    <div id="root"><!--app-->
       <div class="boot" aria-hidden="true">
         <span class="brand">
           <span class="brand-word"></span>
@@ -93,7 +104,7 @@
           </svg>
         </span>
       </div>
-    </div>
+    <!--/app--></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

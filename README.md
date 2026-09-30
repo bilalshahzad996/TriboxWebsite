@@ -39,11 +39,14 @@ npm run build     # production files go to dist/
 npm run preview   # check the production build locally
 ```
 
-Upload the **contents** of `dist/` to your host:
+The build prerenders each page to static HTML (`scripts/prerender.js`), so search engines and link previews see the full content without running JavaScript. It writes `dist/index.html` for the home page and `dist/404.html` for unknown addresses. A new page needs a `<Route>` in `src/App.jsx` and a line in `scripts/prerender.js`. Components must not read `window` or `document` while rendering, only inside effects, because the prerender runs in Node.
 
-- **cPanel / Apache** (for example `public_html`): `dist/.htaccess` adds HTTPS and `www` redirects, security headers, caching and compression. If the site does not use `www.`, edit the redirect in `public/.htaccess` before building.
+Upload the **contents** of `dist/` to your host. Each host serves `404.html` with a real 404 status for unknown addresses:
+
+- **cPanel / Apache** (for example `public_html`): `dist/.htaccess` adds HTTPS and `www` redirects, security headers, caching, compression and the 404 page. If the site does not use `www.`, edit the redirect in `public/.htaccess` before building.
 - **Netlify**: `dist/_redirects` is picked up automatically.
 - **Vercel**: `vercel.json` is picked up automatically.
+- **Azure Static Web Apps**: `staticwebapp.config.json` is picked up automatically.
 
 If the domain changes, update the URLs in `index.html`, `public/robots.txt` and `public/sitemap.xml`.
 
