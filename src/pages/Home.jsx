@@ -1,25 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
-// Privacy Policy hidden for now; uncomment to bring it back
-// import { Link } from 'react-router-dom'
-import { company, mapsUrl, marquee, highlights, services, technologies, clients, process } from '../data/site'
+import { company, marquee, highlights, services, technologies, clients, process } from '../data/site'
+import Contact from '../components/Contact'
 import Icon from '../components/Icon'
-import BrandLogo from '../components/BrandLogo'
 import TechLogo from '../components/TechLogo'
 import { BrandBars } from '../components/Logo'
 import Reveal from '../components/Reveal'
 import Magnetic from '../components/Magnetic'
 import TiltCard from '../components/TiltCard'
 import ParticleField from '../components/ParticleField'
+import SectionHead from '../components/SectionHead'
+import ServiceMark from '../components/ServiceMark'
 
 // The three offset bars from the Tribox logo.
 function Bars({ className = '' }) {
   return <BrandBars className={`bars ${className}`} />
-}
-
-function ServiceMark({ service, size = 26 }) {
-  return service.logo
-    ? <BrandLogo name={service.logo} className={service.logo === 'odoo' ? 'mark-wide' : 'mark'} />
-    : <Icon name={service.icon} size={size} />
 }
 
 // Headline word that cycles through the company's specialities.
@@ -182,20 +176,6 @@ function Marquee() {
   )
 }
 
-function SectionHead({ num, label, title, accent, intro }) {
-  return (
-    <div className="section-head">
-      <div>
-        <Reveal as="span" className="label"><b>{num}</b> {label}</Reveal>
-        <Reveal as="h2" variant="mask" className="section-title">
-          {title} <span className="gradient-text">{accent}</span>
-        </Reveal>
-      </div>
-      {intro && <Reveal as="p" delay={150} className="section-intro">{intro}</Reveal>}
-    </div>
-  )
-}
-
 // Renders text where *asterisk-wrapped* phrases are highlighted.
 function Highlighted({ text }) {
   return text.split('*').map((part, i) => (i % 2 ? <strong key={i}>{part}</strong> : part))
@@ -253,18 +233,23 @@ function Services() {
         <div className="bento">
           {services.map((s, i) => (
             <Reveal key={s.title} delay={(i % 3) * 110} className={s.wide ? 'span-2' : ''}>
-              <TiltCard className={`svc ${s.badge ? 'svc-featured' : ''}`}>
+              <TiltCard className={`svc ${s.badge ? 'svc-featured' : ''} ${s.page ? 'svc-has-page' : ''}`}>
                 <div className="svc-top">
                   <span className="svc-logo"><ServiceMark service={s} /></span>
                   <span className="svc-num">{String(i + 1).padStart(2, '0')}</span>
                 </div>
                 {s.badge && <span className="svc-badge">{s.badge}</span>}
-                <h3>{s.title}</h3>
+                {/* With its own page, the title link covers the whole card so any click opens it */}
+                <h3>{s.page ? <a href={s.page} className="svc-card-link">{s.title}</a> : s.title}</h3>
                 <p>{s.text}</p>
                 <div className="tags">
                   {s.tags.map((t) => <span key={t}>{t}</span>)}
                 </div>
-                <a href="#contact" className="svc-link" aria-label={`Enquire about ${s.title}`}>
+                <a
+                  href={s.page ?? '#contact'}
+                  className="svc-link"
+                  aria-label={s.page ? `Learn more about ${s.title}` : `Enquire about ${s.title}`}
+                >
                   <Icon name="arrow" size={20} />
                 </a>
               </TiltCard>
@@ -377,206 +362,6 @@ function Process() {
             </div>
           ))}
         </Reveal>
-      </div>
-    </section>
-  )
-}
-
-// Contact form field limits (characters)
-const LIMITS = { name: 60, company: 80, email: 120, phone: 18, message: 1000, messageMin: 10 }
-
-const emptyForm = { name: '', company: '', email: '', phone: '', service: '', message: '', botcheck: '' }
-
-// Where enquiries are sent. Set these in a .env file (see .env.example).
-// Without an endpoint the form falls back to opening the visitor's email app.
-const FORM_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT
-const FORM_ACCESS_KEY = import.meta.env.VITE_CONTACT_ACCESS_KEY
-
-const statusMessages = {
-  success: 'Thank you! Your message has been sent — our team will get back to you shortly.',
-  mailto: 'Thanks! Your email app should open with your message ready to send.',
-  error: `Sorry, something went wrong. Please try again or email us at ${company.email}.`,
-}
-
-function Contact() {
-  const [form, setForm] = useState(emptyForm)
-  const [status, setStatus] = useState('idle')
-  const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    if (form.botcheck) return // honeypot field: only bots fill it in
-
-    const subject = `Website enquiry${form.service ? `: ${form.service}` : ''} from ${form.name}`
-
-    if (!FORM_ENDPOINT) {
-      const body = [
-        `Name: ${form.name}`,
-        `Company: ${form.company || '-'}`,
-        `Email: ${form.email}`,
-        `Phone: ${form.phone || '-'}`,
-        `Service: ${form.service || '-'}`,
-        '',
-        form.message,
-      ].join('\n')
-      window.location.href = `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-      setStatus('mailto')
-      return
-    }
-
-    setStatus('sending')
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          ...(FORM_ACCESS_KEY && { access_key: FORM_ACCESS_KEY }),
-          subject,
-          from_name: `${company.name} website`,
-          name: form.name,
-          email: form.email,
-          company: form.company,
-          phone: form.phone,
-          service: form.service,
-          message: form.message,
-        }),
-      })
-      if (!res.ok) throw new Error(`Request failed: ${res.status}`)
-      setStatus('success')
-      setForm(emptyForm)
-    } catch {
-      setStatus('error')
-    }
-  }
-
-  const sending = status === 'sending'
-
-  return (
-    <section id="contact" className="section contact">
-      <div className="container">
-        <Reveal as="span" className="label"><b>06</b> Contact</Reveal>
-        <Reveal as="h2" variant="mask" className="section-title cta-title">
-          Tell us about <span className="gradient-text animated">your project</span>
-        </Reveal>
-
-        <div className="contact-grid">
-          <Reveal as="form" variant="left" className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-status" role="status" aria-live="polite">
-              {statusMessages[status] && (
-                <p className={`form-message ${status === 'error' ? 'is-error' : ''}`}>{statusMessages[status]}</p>
-              )}
-            </div>
-            <div className="form-row">
-              <label className="field">
-                <input name="name" autoComplete="name" maxLength={LIMITS.name} placeholder=" " value={form.name} onChange={update} required />
-                <span>Your name *</span>
-              </label>
-              <label className="field">
-                <input name="company" autoComplete="organization" maxLength={LIMITS.company} placeholder=" " value={form.company} onChange={update} />
-                <span>Company name</span>
-              </label>
-            </div>
-            <div className="form-row">
-              <label className="field">
-                <input type="email" name="email" autoComplete="email" maxLength={LIMITS.email} placeholder=" " value={form.email} onChange={update} required />
-                <span>Email address *</span>
-              </label>
-              <label className="field">
-                <input
-                  type="tel"
-                  name="phone"
-                  autoComplete="tel"
-                  inputMode="tel"
-                  maxLength={LIMITS.phone}
-                  pattern="[0-9 +\(\)\-]{6,18}"
-                  title="Numbers, spaces and + - ( ) only"
-                  placeholder=" "
-                  value={form.phone}
-                  onChange={update}
-                />
-                <span>Phone number</span>
-              </label>
-            </div>
-            <label className="field">
-              <select name="service" value={form.service} onChange={update} className={form.service ? 'filled' : ''}>
-                <option value="" />
-                {services.map((s) => <option key={s.title} value={s.title}>{s.title}</option>)}
-                <option value="Other">Something else</option>
-              </select>
-              <span>What do you need help with?</span>
-            </label>
-            <label className="field field-message">
-              <textarea
-                name="message"
-                rows="4"
-                minLength={LIMITS.messageMin}
-                maxLength={LIMITS.message}
-                placeholder=" "
-                value={form.message}
-                onChange={update}
-                required
-              />
-              <span>Tell us about your project *</span>
-            </label>
-            {/* Honeypot: hidden from people, catches spam bots */}
-            <input
-              type="text"
-              name="botcheck"
-              className="honeypot"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              value={form.botcheck}
-              onChange={update}
-            />
-            {/* Privacy Policy hidden for now; uncomment to bring it back
-            <p className="form-note">
-              By sending this form you agree to our <Link to="/privacy-policy">Privacy Policy</Link>.
-            </p>
-            */}
-            <Magnetic strength={0.2}>
-              <button type="submit" className="btn btn-primary" disabled={sending}>
-                {sending ? 'Sending…' : 'Send message'} <Icon name="arrow" size={18} />
-              </button>
-            </Magnetic>
-          </Reveal>
-
-          <Reveal variant="right" delay={150} className="contact-info">
-            <a href={`mailto:${company.email}`} className="info-card">
-              <span className="info-icon"><Icon name="mail" size={22} /></span>
-              <div><span className="label">Email</span><strong>{company.email}</strong></div>
-            </a>
-            <div className="info-card">
-              <span className="info-icon"><Icon name="pin" size={22} /></span>
-              <div>
-                <span className="label">Offices</span>
-                {company.offices.map((o) => (
-                  <a
-                    key={o.city}
-                    className="office"
-                    href={mapsUrl(o.address)}
-                    target="_blank"
-                    rel="noreferrer"
-                    title="Open in Google Maps"
-                  >
-                    <strong>{o.city} <span aria-hidden="true">↗</span></strong>
-                    <small>{o.address}</small>
-                  </a>
-                ))}
-              </div>
-            </div>
-            <div className="info-card">
-              <span className="info-icon"><Icon name="clock" size={22} /></span>
-              <div><span className="label">Office hours</span><strong>{company.hours}</strong></div>
-            </div>
-            {company.social.map((s) => (
-              <a key={s.label} href={s.url} target="_blank" rel="noreferrer" className="info-card">
-                <span className="info-icon"><Icon name="users" size={22} /></span>
-                <div><span className="label">Follow us</span><strong>{s.label} ↗</strong></div>
-              </a>
-            ))}
-          </Reveal>
-        </div>
       </div>
     </section>
   )

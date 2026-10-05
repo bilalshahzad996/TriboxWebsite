@@ -56,9 +56,13 @@ export const highlights = [
 ]
 
 // `logo` is a product logo from components/BrandLogo.jsx, otherwise an icon from components/Icon.jsx.
+// `page` links the service to its own page (otherwise its card links to the contact form).
+// `short` is the name used in the header's Services menu.
 export const services = [
   {
     title: 'Microsoft Dynamics 365 Finance & Operations',
+    short: 'Dynamics 365 Finance & Operations',
+    page: '/services/finance-operations/',
     logo: 'dynamics365',
     wide: true,
     text: 'End-to-end implementation and support of Dynamics 365 Finance & Operations — finance, supply chain and operations on one enterprise ERP platform.',
@@ -66,18 +70,24 @@ export const services = [
   },
   {
     title: 'Microsoft Dynamics 365 Business Central',
+    short: 'Dynamics 365 Business Central',
     logo: 'dynamics365',
+    page: '/services/business-central/',
     text: 'A complete business management solution for growing companies — financials, sales, purchasing and inventory, implemented and supported by our team.',
     tags: ['Implementation', 'Customisation', 'Support'],
   },
   {
     title: 'Microsoft Dynamics 365 Customer Experience / CRM',
+    short: 'Dynamics 365 CRM',
+    page: '/services/crm/',
     logo: 'dynamics365',
     text: 'Customer relationship management tailored to how you win, serve and keep customers — sales, customer service and marketing in one place.',
     tags: ['Sales', 'Customer service', 'Marketing'],
   },
   {
     title: 'Odoo Implementation',
+    short: 'Odoo',
+    page: '/services/odoo/',
     logo: 'odoo',
     wide: true,
     text: 'Fast, modular Odoo ERP rollouts — from accounting, inventory and HR to CRM and e-commerce — configured and customised for your business.',
@@ -85,18 +95,24 @@ export const services = [
   },
   {
     title: 'Mobile Application Development',
+    short: 'Mobile apps',
+    page: '/services/mobile-apps/',
     icon: 'mobile',
     text: 'Native and cross-platform mobile applications for iOS and Android, designed around your users.',
     tags: ['iOS', 'Android', 'Cross-platform'],
   },
   {
     title: 'Web Application Development',
+    short: 'Web apps',
+    page: '/services/web-apps/',
     icon: 'globe',
     text: 'Websites, web applications and e-commerce platforms built for performance and growth.',
     tags: ['Websites', 'Web apps', 'E-commerce'],
   },
   {
     title: 'E-Invoicing',
+    short: 'E-Invoicing',
+    page: '/services/e-invoicing/',
     icon: 'invoice',
     text: 'Get ready for e-invoicing mandates — we connect your ERP to an Accredited Service Provider (ASP) and keep every invoice compliant.',
     tags: ['ASP onboarding', 'ERP integration', 'Compliance'],

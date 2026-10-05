@@ -1,8 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
-import { company } from '../data/site'
+import { useLocation } from 'react-router-dom'
+import { company, services } from '../data/site'
 import Icon from './Icon'
 import Logo from './Logo'
 import Magnetic from './Magnetic'
+import ServiceMark from './ServiceMark'
+import TechLogo from './TechLogo'
 import ThemeToggle from './ThemeToggle'
 
 const MOBILE_QUERY = '(max-width: 900px)'
@@ -16,16 +19,47 @@ const isMobile = () => window.matchMedia(MOBILE_QUERY).matches
 // The prerendered page doesn't know the screen size; the app reads it once loaded
 const notMobile = () => false
 
+// `sub`: items shown in a dropdown (on hover or keyboard focus; listed inline on mobile).
+// Links without a # are pages of their own, highlighted while you're on them.
 const links = [
-  { href: '/#about', label: 'About' },
-  { href: '/#services', label: 'Services' },
+  {
+    href: '/#services',
+    label: 'Services',
+    sub: services.map((s) => ({ href: s.page ?? '/#services', label: s.short, mark: <ServiceMark service={s} size={18} /> })),
+  },
+  {
+    // No page or section of its own yet, so no href: it just opens the dropdown.
+    // The products link to the contact form until they have pages.
+    label: 'Products',
+    sub: [
+      { href: '/#contact', label: 'POS for Business Central', text: 'Point of sale for Dynamics 365 Business Central', mark: <TechLogo name="pos" className="mark" /> },
+      { href: '/#contact', label: 'POS for Finance & Operations', text: 'Point of sale for Dynamics 365 Finance & Operations', mark: <TechLogo name="pos" className="mark" /> },
+      { href: '/#contact', label: 'SIS App', text: 'Shop in Shop application', mark: <TechLogo name="sis" className="mark" /> },
+      { href: '/#contact', label: 'HRMS App', text: 'Human resource management', mark: <TechLogo name="hr" className="mark" /> },
+    ],
+  },
   { href: '/#clients', label: 'Clients' },
   { href: '/#process', label: 'Process' },
-  { href: '/#contact', label: 'Contact' },
+  {
+    href: '/#about',
+    label: 'Company',
+    sub: [
+      { href: '/#about', label: 'About us', text: 'Who we are and how we work', mark: <Icon name="globe" size={18} /> },
+      { href: '/careers/', label: 'Careers', text: 'Join our team', mark: <Icon name="users" size={18} /> },
+    ],
+  },
+  // No "Contact" link: the "Let's talk" button goes there
 ]
+
+// The menu link for the page you're on (e.g. Company on /careers/), or null
+const isPage = (href, path) => Boolean(href) && !href.includes('#') && `${path.replace(/\/$/, '')}/` === href
+const linkForPage = (path) =>
+  links.find((l) => isPage(l.href, path) || l.sub?.some((item) => isPage(item.href, path)))?.href ?? null
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const { pathname } = useLocation()
+  const pageLink = linkForPage(pathname)
   const [scrolled, setScrolled] = useState(false)
   const mobile = useSyncExternalStore(subscribeMobile, isMobile, notMobile)
   const [active, setActive] = useState(null)
@@ -51,7 +85,7 @@ export default function Navbar() {
 
   // Track which section sits in the middle of the viewport
   useEffect(() => {
-    const sections = links.map((l) => document.getElementById(l.href.slice(2))).filter(Boolean)
+    const sections = links.map((l) => l.href && document.getElementById(l.href.slice(2))).filter(Boolean)
     if (!sections.length) return
     const observer = new IntersectionObserver(
       (entries) => {
@@ -67,16 +101,18 @@ export default function Navbar() {
   }, [])
 
   // Slide the highlight pill under the hovered link, or the current section's link
-  const target = hovered ?? active
+  const target = hovered ?? active ?? pageLink
   useLayoutEffect(() => {
     const list = listRef.current
     const pill = indicatorRef.current
     const place = () => {
-      const link = target && list.querySelector(`a[href="${target}"]`)
+      const link = target && list.querySelector(`.nav-link[data-key="${target}"]`)
       pill.classList.toggle('is-shown', Boolean(link))
       if (!link) return
-      pill.style.setProperty('--x', `${link.offsetLeft}px`)
-      pill.style.setProperty('--w', `${link.offsetWidth}px`)
+      // Measured on screen: the Services link sits inside its dropdown wrapper
+      const r = link.getBoundingClientRect()
+      pill.style.setProperty('--x', `${r.left - list.getBoundingClientRect().left}px`)
+      pill.style.setProperty('--w', `${r.width}px`)
     }
     place()
     const ro = new ResizeObserver(place)
@@ -129,20 +165,64 @@ export default function Navbar() {
             onPointerLeave={() => setHovered(null)}
           >
             <span ref={indicatorRef} className="nav-indicator" aria-hidden="true" />
-            {links.map((l, i) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={goTo}
-                onPointerEnter={() => setHovered(l.href)}
-                className={active === l.href ? 'is-active' : undefined}
-                aria-current={active === l.href ? 'true' : undefined}
-                style={{ '--i': i }}
-              >
-                <span className="nav-link-text" data-text={l.label}>{l.label}</span>
-                <span className="nav-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
-              </a>
-            ))}
+            {links.map((l, i) => {
+              const key = l.href ?? l.label
+              const label = (
+                <>
+                  <span className="nav-link-text" data-text={l.label}>{l.label}</span>
+                  {l.sub && <span className="nav-caret" aria-hidden="true" />}
+                </>
+              )
+              // Without an href (Products) the item is a button that only opens its dropdown
+              const link = l.href ? (
+                <a
+                  key={key}
+                  href={l.href}
+                  data-key={key}
+                  onClick={goTo}
+                  onPointerEnter={() => setHovered(key)}
+                  className={`nav-link ${active === l.href || pageLink === l.href ? 'is-active' : ''}`}
+                  aria-current={pageLink === l.href ? 'page' : active === l.href ? 'true' : undefined}
+                  style={{ '--i': i }}
+                >
+                  {label}
+                  <span className="nav-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
+                </a>
+              ) : (
+                <button
+                  key={key}
+                  type="button"
+                  data-key={key}
+                  onPointerEnter={() => setHovered(key)}
+                  className="nav-link"
+                  style={{ '--i': i }}
+                >
+                  {label}
+                </button>
+              )
+              if (!l.sub) return link
+              return (
+                <div key={key} className="nav-item">
+                  {link}
+                  <div className="nav-sub" style={{ '--i': i }}>
+                    {/* Long lists (Services) get two columns */}
+                    <ul aria-label={l.label} className={l.sub.length > 4 ? 'is-grid' : undefined}>
+                      {l.sub.map((item) => (
+                        <li key={item.label}>
+                          <a href={item.href} onClick={goTo}>
+                            <span className="nav-sub-icon">{item.mark}</span>
+                            <span className="nav-sub-text">
+                              {item.label}
+                              {item.text && <small>{item.text}</small>}
+                            </span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )
+            })}
 
             {/* Only shown in the mobile menu */}
             <div className="nav-menu-foot" style={{ '--i': links.length }}>

@@ -2,6 +2,11 @@ import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { AppRoutes } from './App.jsx'
+import { careersPage } from './data/careers'
+import { servicePages } from './data/servicePages'
+import { company } from './data/site'
+
+const SITE = 'https://www.tribox365.com'
 
 // Used at build time by scripts/prerender.js to turn each page into static HTML.
 export function render(url) {
@@ -13,3 +18,49 @@ export function render(url) {
     </StrictMode>,
   )
 }
+
+// Title, description, address and structured data (JSON-LD) for a service page
+function serviceHead(p) {
+  const url = SITE + p.path
+  return {
+    title: p.meta.title,
+    description: p.meta.description,
+    url,
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: p.serviceName,
+        serviceType: p.serviceType ?? 'ERP implementation',
+        description: p.meta.description,
+        url,
+        provider: { '@type': 'Organization', name: company.name, url: `${SITE}/` },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: p.faqs.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+    ],
+  }
+}
+
+// Every page the build writes out. `head` overrides the title, description and address
+// from index.html, and adds structured data for search engines.
+// Pages to add when they come back: '/privacy-policy'
+export const pages = [
+  { url: '/', file: 'index.html' },
+  // e.g. /services/odoo/ -> services/odoo/index.html
+  ...servicePages.map((p) => ({ url: p.path, file: `${p.path.slice(1)}index.html`, head: serviceHead(p) })),
+  {
+    url: careersPage.path,
+    file: 'careers/index.html',
+    head: { title: careersPage.meta.title, description: careersPage.meta.description, url: SITE + careersPage.path },
+  },
+  // Hosts serve this for unknown addresses, with a real 404 status
+  { url: '/404', file: '404.html', head: { title: `Page not found — ${company.name}`, noindex: true } },
+]
