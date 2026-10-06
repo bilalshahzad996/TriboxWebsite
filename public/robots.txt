@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.tribox365.com/sitemap.xml
+Sitemap: https://tribox365.com/sitemap.xml

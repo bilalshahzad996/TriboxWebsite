@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
     const canonical = document.querySelector('link[rel="canonical"]')
     const previousCanonical = canonical?.getAttribute('href')
     document.title = `Privacy Policy — ${company.name}`
-    canonical?.setAttribute('href', 'https://www.tribox365.com/privacy-policy')
+    canonical?.setAttribute('href', 'https://tribox365.com/privacy-policy')
     return () => {
       document.title = previous
       if (previousCanonical) canonical.setAttribute('href', previousCanonical)

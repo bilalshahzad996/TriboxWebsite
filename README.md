@@ -1,6 +1,6 @@
 # Tribox website
 
-The one-page website for [Tribox](https://www.tribox365.com/), built with React and Vite.
+The one-page website for [Tribox](https://tribox365.com/), built with React and Vite.
 
 ## Run it locally
 
@@ -43,7 +43,7 @@ The build prerenders each page to static HTML (`scripts/prerender.js`), so searc
 
 Upload the **contents** of `dist/` to your host. Each host serves `404.html` with a real 404 status for unknown addresses:
 
-- **cPanel / Apache** (for example `public_html`): `dist/.htaccess` adds HTTPS and `www` redirects, security headers, caching, compression and the 404 page. If the site does not use `www.`, edit the redirect in `public/.htaccess` before building.
+- **cPanel / Apache** (for example `public_html`): `dist/.htaccess` adds the HTTPS redirect and sends `www.` to the address without www, plus security headers, caching, compression and the 404 page.
 - **Netlify**: `dist/_redirects` is picked up automatically.
 - **Vercel**: `vercel.json` is picked up automatically.
 - **Azure Static Web Apps**: `staticwebapp.config.json` is picked up automatically.

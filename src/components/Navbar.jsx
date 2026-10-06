@@ -64,6 +64,8 @@ export default function Navbar() {
   const mobile = useSyncExternalStore(subscribeMobile, isMobile, notMobile)
   const [active, setActive] = useState(null)
   const [hovered, setHovered] = useState(null)
+  // Mobile menu: the dropdown that's expanded (one at a time), by its menu key
+  const [expanded, setExpanded] = useState(null)
   const listRef = useRef(null)
   const indicatorRef = useRef(null)
 
@@ -167,10 +169,18 @@ export default function Navbar() {
             <span ref={indicatorRef} className="nav-indicator" aria-hidden="true" />
             {links.map((l, i) => {
               const key = l.href ?? l.label
+              const isOpen = mobile && expanded === key
+              // On mobile, a row with a dropdown opens and closes its list instead of navigating
+              const toggle = (e) => {
+                if (!mobile) return
+                e.preventDefault()
+                setExpanded(isOpen ? null : key)
+              }
               const label = (
                 <>
                   <span className="nav-link-text" data-text={l.label}>{l.label}</span>
                   {l.sub && <span className="nav-caret" aria-hidden="true" />}
+                  <span className="nav-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
                 </>
               )
               // Without an href (Products) the item is a button that only opens its dropdown
@@ -179,22 +189,24 @@ export default function Navbar() {
                   key={key}
                   href={l.href}
                   data-key={key}
-                  onClick={goTo}
+                  onClick={l.sub && mobile ? toggle : goTo}
                   onPointerEnter={() => setHovered(key)}
                   className={`nav-link ${active === l.href || pageLink === l.href ? 'is-active' : ''}`}
                   aria-current={pageLink === l.href ? 'page' : active === l.href ? 'true' : undefined}
+                  aria-expanded={l.sub && mobile ? isOpen : undefined}
                   style={{ '--i': i }}
                 >
                   {label}
-                  <span className="nav-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
                 </a>
               ) : (
                 <button
                   key={key}
                   type="button"
                   data-key={key}
+                  onClick={toggle}
                   onPointerEnter={() => setHovered(key)}
                   className="nav-link"
+                  aria-expanded={mobile ? isOpen : undefined}
                   style={{ '--i': i }}
                 >
                   {label}
@@ -202,9 +214,10 @@ export default function Navbar() {
               )
               if (!l.sub) return link
               return (
-                <div key={key} className="nav-item">
+                <div key={key} className={`nav-item ${isOpen ? 'is-expanded' : ''}`}>
                   {link}
-                  <div className="nav-sub" style={{ '--i': i }}>
+                  {/* Collapsed on mobile: hidden links can't be tabbed to */}
+                  <div className="nav-sub" style={{ '--i': i }} inert={mobile && !isOpen ? true : undefined}>
                     {/* Long lists (Services) get two columns */}
                     <ul aria-label={l.label} className={l.sub.length > 4 ? 'is-grid' : undefined}>
                       {l.sub.map((item) => (
@@ -252,7 +265,10 @@ export default function Navbar() {
 
             <button
               className="burger"
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                setOpen(!open)
+                setExpanded(null) // the menu always opens with its dropdowns closed
+              }}
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
               aria-controls="site-menu"

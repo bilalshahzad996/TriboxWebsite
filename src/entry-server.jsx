@@ -6,7 +6,7 @@ import { careersPage } from './data/careers'
 import { servicePages } from './data/servicePages'
 import { company } from './data/site'
 
-const SITE = 'https://www.tribox365.com'
+const SITE = 'https://tribox365.com'
 
 // Used at build time by scripts/prerender.js to turn each page into static HTML.
 export function render(url) {

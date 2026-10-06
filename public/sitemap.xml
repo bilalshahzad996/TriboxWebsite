@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.tribox365.com/</loc>
+    <loc>https://tribox365.com/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/services/finance-operations/</loc>
+    <loc>https://tribox365.com/services/finance-operations/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/services/business-central/</loc>
+    <loc>https://tribox365.com/services/business-central/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/services/crm/</loc>
+    <loc>https://tribox365.com/services/crm/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/services/odoo/</loc>
+    <loc>https://tribox365.com/services/odoo/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/services/mobile-apps/</loc>
+    <loc>https://tribox365.com/services/mobile-apps/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/services/web-apps/</loc>
+    <loc>https://tribox365.com/services/web-apps/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/services/e-invoicing/</loc>
+    <loc>https://tribox365.com/services/e-invoicing/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.tribox365.com/careers/</loc>
+    <loc>https://tribox365.com/careers/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <!-- Privacy Policy hidden for now; uncomment to bring it back
   <url>
-    <loc>https://www.tribox365.com/privacy-policy</loc>
+    <loc>https://tribox365.com/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
