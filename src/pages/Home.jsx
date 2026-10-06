@@ -8,6 +8,7 @@ import Reveal from '../components/Reveal'
 import Magnetic from '../components/Magnetic'
 import TiltCard from '../components/TiltCard'
 import ParticleField from '../components/ParticleField'
+import ProcessSteps from '../components/ProcessSteps'
 import SectionHead from '../components/SectionHead'
 import ServiceMark from '../components/ServiceMark'
 
@@ -352,16 +353,7 @@ function Process() {
       <div className="container">
         <SectionHead num="05" label="How we work" title="Our working" accent="process" />
 
-        <Reveal className="process">
-          <div className="process-line"><span /></div>
-          {process.map((p, i) => (
-            <div key={p.title} className="process-step" style={{ '--i': i }}>
-              <span className="process-dot">{String(i + 1).padStart(2, '0')}</span>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-            </div>
-          ))}
-        </Reveal>
+        <ProcessSteps steps={process} />
       </div>
     </section>
   )

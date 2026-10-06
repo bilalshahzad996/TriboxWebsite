@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Contact from './Contact'
 import Icon from './Icon'
 import Magnetic from './Magnetic'
+import ProcessSteps from './ProcessSteps'
 import Reveal from './Reveal'
 import SectionHead from './SectionHead'
 import TechLogo from './TechLogo'
@@ -141,16 +142,7 @@ function Process({ page }) {
     <section className="section">
       <div className="container">
         <SectionHead num="04" label="Process" title={title} accent={accent} />
-        <Reveal className="process process-4">
-          <div className="process-line"><span /></div>
-          {page.process.map((p, i) => (
-            <div key={p.title} className="process-step" style={{ '--i': i }}>
-              <span className="process-dot">{num(i)}</span>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-            </div>
-          ))}
-        </Reveal>
+        <ProcessSteps steps={page.process} className="process-4" />
       </div>
     </section>
   )

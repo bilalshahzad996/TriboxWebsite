@@ -3,6 +3,7 @@ import { careersPage as page } from '../data/careers'
 import { company } from '../data/site'
 import Icon from '../components/Icon'
 import Magnetic from '../components/Magnetic'
+import ProcessSteps from '../components/ProcessSteps'
 import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
 
@@ -106,16 +107,7 @@ function Hiring() {
     <section className="section">
       <div className="container">
         <SectionHead num="03" label="How we hire" title="Our hiring" accent="process" />
-        <Reveal className="process process-4">
-          <div className="process-line"><span /></div>
-          {page.hiring.map((p, i) => (
-            <div key={p.title} className="process-step" style={{ '--i': i }}>
-              <span className="process-dot">{num(i)}</span>
-              <h3>{p.title}</h3>
-              <p>{p.text}</p>
-            </div>
-          ))}
-        </Reveal>
+        <ProcessSteps steps={page.hiring} className="process-4" />
       </div>
     </section>
   )

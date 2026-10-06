@@ -153,7 +153,7 @@ export const clients = [
 ]
 
 export const process = [
-  { title: 'Drop us an email', text: 'Tell us about your business and the challenge you want to solve.' },
-  { title: 'Meet our professionals', text: 'Our consultants review your processes and systems with your team.' },
-  { title: 'Tailor-made solution', text: 'A dedicated tribe designs, delivers and supports your solution.' },
+  { icon: 'mail', title: 'Drop us an email', text: 'Tell us about your business and the challenge you want to solve.' },
+  { icon: 'users', title: 'Meet our professionals', text: 'Our consultants review your processes and systems with your team.' },
+  { icon: 'check', title: 'Tailor-made solution', text: 'A dedicated tribe designs, delivers and supports your solution.' },
 ]
