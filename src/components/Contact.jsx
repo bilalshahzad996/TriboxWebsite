@@ -1,6 +1,4 @@
 import { useState } from 'react'
-// Privacy Policy hidden for now; uncomment to bring it back (see the form note below)
-// import { Link } from 'react-router-dom'
 import { company, mapsUrl, services } from '../data/site'
 import Icon from './Icon'
 import Magnetic from './Magnetic'
@@ -158,11 +156,9 @@ export default function Contact({ num = '06', options = services.map((s) => s.ti
               value={form.botcheck}
               onChange={update}
             />
-            {/* Privacy Policy hidden for now; uncomment to bring it back
             <p className="form-note">
-              By sending this form you agree to our <Link to="/privacy-policy">Privacy Policy</Link>.
+              By sending this form you agree to our <a href="/privacy-policy/">Privacy Policy</a>.
             </p>
-            */}
             <Magnetic strength={0.2}>
               <button type="submit" className="btn btn-primary" disabled={sending}>
                 {sending ? 'Sending…' : 'Send message'} <Icon name="arrow" size={18} />

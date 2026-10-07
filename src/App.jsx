@@ -5,8 +5,7 @@ import Careers from './pages/Careers'
 import ServicePage from './components/ServicePage'
 import { servicePages } from './data/servicePages'
 import { productPages } from './data/productPages'
-// Privacy Policy hidden for now; uncomment to bring it back (and add it to src/entry-server.jsx)
-// import PrivacyPolicy from './pages/PrivacyPolicy'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 import NotFound from './pages/NotFound'
 
 // Shared by the browser (App) and the build-time prerender (entry-server.jsx)
@@ -20,8 +19,7 @@ export function AppRoutes() {
           <Route key={p.path} path={p.path.replace(/\/$/, '')} element={<ServicePage page={p} />} />
         ))}
         <Route path="/careers" element={<Careers />} />
-        {/* Privacy Policy hidden for now; uncomment to bring it back */}
-        {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} /> */}
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

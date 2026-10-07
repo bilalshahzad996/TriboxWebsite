@@ -63,7 +63,6 @@ function serviceHead(p) {
 
 // Every page the build writes out. `head` overrides the title, description and address
 // from index.html, and adds structured data for search engines.
-// Pages to add when they come back: '/privacy-policy'
 export const pages = [
   { url: '/', file: 'index.html' },
   // e.g. /services/odoo/ -> services/odoo/index.html
@@ -72,6 +71,15 @@ export const pages = [
     url: careersPage.path,
     file: 'careers/index.html',
     head: { title: careersPage.meta.title, description: careersPage.meta.description, url: SITE + careersPage.path },
+  },
+  {
+    url: '/privacy-policy/',
+    file: 'privacy-policy/index.html',
+    head: {
+      title: `Privacy Policy — ${company.name}`,
+      description: `How ${company.legalName} collects, uses and protects personal information shared through this website, by email and in job applications.`,
+      url: `${SITE}/privacy-policy/`,
+    },
   },
   // Hosts serve this for unknown addresses, with a real 404 status
   { url: '/404', file: '404.html', head: { title: `Page not found — ${company.name}`, noindex: true } },

@@ -65,11 +65,9 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <!-- Privacy Policy hidden for now; uncomment to bring it back
   <url>
-    <loc>https://tribox365.com/privacy-policy</loc>
+    <loc>https://tribox365.com/privacy-policy/</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  -->
 </urlset>

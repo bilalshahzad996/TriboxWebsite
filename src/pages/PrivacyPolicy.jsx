@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
+import { careersPage } from '../data/careers'
 import { company, mapsUrl } from '../data/site'
 
-const LAST_UPDATED = '25 September 2026'
+const LAST_UPDATED = '7 October 2026'
 
 export default function PrivacyPolicy() {
   useEffect(() => {
@@ -9,7 +10,7 @@ export default function PrivacyPolicy() {
     const canonical = document.querySelector('link[rel="canonical"]')
     const previousCanonical = canonical?.getAttribute('href')
     document.title = `Privacy Policy — ${company.name}`
-    canonical?.setAttribute('href', 'https://tribox365.com/privacy-policy')
+    canonical?.setAttribute('href', 'https://tribox365.com/privacy-policy/')
     return () => {
       document.title = previous
       if (previousCanonical) canonical.setAttribute('href', previousCanonical)
@@ -44,6 +45,10 @@ export default function PrivacyPolicy() {
             phone number, the service you are interested in and your message.
           </li>
           <li>
+            <strong>Job applications:</strong> your CV and any details you include when you apply by email to{' '}
+            <a href={`mailto:${careersPage.email}`}>{careersPage.email}</a>.
+          </li>
+          <li>
             <strong>Emails and calls:</strong> the details you share when you contact us directly.
           </li>
           <li>
@@ -56,6 +61,7 @@ export default function PrivacyPolicy() {
         <ul>
           <li>To reply to your enquiry and discuss our services with you.</li>
           <li>To prepare proposals and deliver the services you ask for.</li>
+          <li>To consider job applications and contact applicants about suitable roles.</li>
           <li>To keep our website secure and prevent spam and abuse.</li>
           <li>To meet our legal and regulatory obligations.</li>
         </ul>
@@ -88,7 +94,9 @@ export default function PrivacyPolicy() {
         <h2>7. How long we keep it</h2>
         <p>
           We keep enquiry details for as long as needed to respond and to manage any resulting business
-          relationship, and then only as long as required for legal, accounting or reporting purposes.
+          relationship, and then only as long as required for legal, accounting or reporting purposes. We keep job
+          applications for as long as needed to consider them for suitable roles; you can ask us to delete yours at
+          any time.
         </p>
 
         <h2>8. Your rights</h2>
@@ -108,9 +116,10 @@ export default function PrivacyPolicy() {
         <h2>9. Cookies and local storage</h2>
         <p>
           Our website does not use cookies, analytics or advertising trackers, and our fonts are served from our own
-          website rather than a third party. We store a single setting in your browser’s session storage
-          (<code>tribox-intro</code>) so the opening animation plays only once per visit; it contains no personal
-          information and is deleted when you close your browser.
+          website rather than a third party. We store two settings in your browser, neither of which contains
+          personal information: <code>tribox-intro</code> in session storage, so the opening animation plays only
+          once per visit (deleted when you close your browser), and <code>theme</code> in local storage, to remember
+          whether you chose the light or dark theme.
         </p>
 
         <h2>10. Security</h2>
