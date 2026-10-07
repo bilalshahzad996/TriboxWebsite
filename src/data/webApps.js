@@ -169,7 +169,6 @@ export const webAppsPage = {
     // Platforms and hosting
     { name: 'WordPress', logo: 'wordpress' },
     { name: 'Microsoft Azure', logo: 'azure' },
-    { name: 'Power Pages', logo: 'powerPages' },
   ],
 
   industries: [
