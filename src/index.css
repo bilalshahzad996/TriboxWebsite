@@ -1534,7 +1534,7 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
   pointer-events: none;
 }
 .footer .container { position: relative; }
-.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+.footer-top { display: grid; grid-template-columns: 1.25fr 1fr 0.8fr 0.55fr 1fr; gap: 36px; margin-bottom: 60px; }
 .footer-text { max-width: 360px; margin-top: 16px; }
 .footer-platforms { margin-top: 26px; }
 .footer-platforms-label { display: block; margin-bottom: 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }

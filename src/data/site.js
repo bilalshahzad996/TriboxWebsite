@@ -120,6 +120,15 @@ export const services = [
   },
 ]
 
+// Tribox's own products, each with a page (data/productPages.js). Used by the header's Products
+// menu and the footer. `logo` names come from components/TechLogo.jsx.
+export const products = [
+  { title: 'POS for Business Central', text: 'Point of sale for stores', page: '/products/pos-business-central/', logo: 'pos' },
+  { title: 'POS for Finance & Operations', text: 'Point of sale for retail chains', page: '/products/pos-finance-operations/', logo: 'pos' },
+  { title: 'SIS App', text: 'Many locations, one store', page: '/products/sis-app/', logo: 'sis' },
+  { title: 'HRMS App', text: 'HR & employees', page: '/products/hrms-app/', logo: 'hr' },
+]
+
 // Technology & partner ecosystem. `logo` names come from components/TechLogo.jsx.
 export const technologies = [
   { name: 'Microsoft', logo: 'microsoft' },

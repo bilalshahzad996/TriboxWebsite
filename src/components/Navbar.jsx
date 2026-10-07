@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { useLocation } from 'react-router-dom'
-import { company, services } from '../data/site'
+import { company, products, services } from '../data/site'
 import Icon from './Icon'
 import Logo from './Logo'
 import Magnetic from './Magnetic'
@@ -30,12 +30,7 @@ const links = [
   {
     // No page or section of its own, so no href: it just opens the dropdown of product pages
     label: 'Products',
-    sub: [
-      { href: '/products/pos-business-central/', label: 'POS for Business Central', text: 'Point of sale for stores', mark: <TechLogo name="pos" className="mark" /> },
-      { href: '/products/pos-finance-operations/', label: 'POS for Finance & Operations', text: 'Point of sale for retail chains', mark: <TechLogo name="pos" className="mark" /> },
-      { href: '/products/sis-app/', label: 'SIS App', text: 'Many locations, one store', mark: <TechLogo name="sis" className="mark" /> },
-      { href: '/products/hrms-app/', label: 'HRMS App', text: 'HR & employees', mark: <TechLogo name="hr" className="mark" /> },
-    ],
+    sub: products.map((p) => ({ href: p.page, label: p.title, text: p.text, mark: <TechLogo name={p.logo} className="mark" /> })),
   },
   { href: '/#clients', label: 'Clients' },
   { href: '/#process', label: 'Process' },

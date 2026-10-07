@@ -1,4 +1,4 @@
-import { company, mapsUrl, services } from '../data/site'
+import { company, mapsUrl, products, services } from '../data/site'
 import { useSyncExternalStore } from 'react'
 import Logo from './Logo'
 import TechLogo from './TechLogo'
@@ -21,9 +21,9 @@ export default function Footer() {
               <Logo />
             </a>
             <p className="footer-text">{company.statement.replaceAll('*', '')}</p>
-            {/* "Platforms we work with", not "partners": partner status is a formal claim */}
+            {/* Tribox's partners */}
             <div className="footer-platforms">
-              <span className="footer-platforms-label">Platforms we work with</span>
+              <span className="footer-platforms-label">Partners</span>
               <div className="footer-platforms-logos">
                 <span className="footer-platform" title="Microsoft">
                   <TechLogo name="microsoft" className="footer-platform-mark" />
@@ -41,6 +41,21 @@ export default function Footer() {
               {services.map((s) => (
                 <li key={s.title}><a href={s.page ?? '/#services'}>{s.title}</a></li>
               ))}
+            </ul>
+          </div>
+          <div>
+            <h2>Products</h2>
+            <ul>
+              {products.map((p) => (
+                <li key={p.title}><a href={p.page}>{p.title}</a></li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2>Company</h2>
+            <ul>
+              <li><a href="/#about">About us</a></li>
+              <li><a href="/careers/">Careers</a></li>
             </ul>
           </div>
           <div>
