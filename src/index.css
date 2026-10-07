@@ -93,7 +93,7 @@ body {
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 main:focus { outline: none; }
 .field input:focus-visible,
-.field select:focus-visible,
+.field .select-button:focus-visible,
 .field textarea:focus-visible { outline: none; }
 
 .skip-link {
@@ -192,7 +192,8 @@ img { max-width: 100%; display: block; }
 body.has-cursor,
 body.has-cursor a,
 body.has-cursor button,
-body.has-cursor select { cursor: none; }
+body.has-cursor .select-button,
+body.has-cursor .select-option { cursor: none; }
 
 
 /* ---------- Preloader ---------- */
@@ -1400,7 +1401,7 @@ body.has-cursor select { cursor: none; }
 /* Floating-label fields */
 .field { position: relative; display: block; }
 .field input,
-.field select,
+.field .select-button,
 .field textarea {
   width: 100%;
   font: inherit;
@@ -1414,9 +1415,56 @@ body.has-cursor select { cursor: none; }
   resize: vertical;
   appearance: none;
 }
-.field select option { background: var(--surface); }
-/* Dropdown arrow (the browser's own arrow is removed by appearance: none) */
-.field-select select { padding-right: 46px; cursor: pointer; }
+/* Custom dropdown (components/SelectField.jsx) */
+.field .select-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+  padding-right: 46px;
+  text-align: left;
+  cursor: pointer;
+}
+.select-value { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.select-mark { display: grid; place-items: center; flex-shrink: 0; min-width: 22px; height: 22px; color: var(--accent); }
+.select-mark .mark { width: 20px; height: 20px; }
+.select-mark .mark-wide { width: 30px; height: auto; }
+.select-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: 0 30px 60px -24px var(--shadow-color), inset 0 1px 0 var(--highlight);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+  animation: selectIn 0.22s var(--ease);
+}
+.select-list[hidden] { display: none; }
+@keyframes selectIn { from { opacity: 0; transform: translateY(-6px); } }
+.select-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.select-option .select-label { flex: 1; }
+.select-option.is-active { background: rgb(var(--accent-rgb) / 0.08); color: var(--accent); }
+.select-option[aria-selected='true'] { font-weight: 600; }
+.select-option > svg { flex-shrink: 0; color: var(--accent); }
 .field-select::after {
   content: '';
   position: absolute;
@@ -1432,6 +1480,8 @@ body.has-cursor select { cursor: none; }
   transition: border-color 0.3s;
 }
 .field-select:focus-within::after { border-color: var(--accent); }
+.field-select.is-open::after { transform: rotate(-135deg); margin-top: -2px; }
+.field-select::after { transition: border-color 0.3s, transform 0.3s var(--ease), margin 0.3s var(--ease); }
 /* Message box: the border lives on the label, so the text scrolls in its own area
    below the floating label and never runs under it */
 .field-message {
@@ -1471,7 +1521,8 @@ body.has-cursor select { cursor: none; }
   transition: transform 0.3s var(--ease), color 0.3s;
 }
 .field input:focus,
-.field select:focus,
+.field .select-button:focus,
+.field-select.is-open .select-button,
 .field textarea:focus {
   outline: none;
   border-color: var(--accent);
@@ -1482,8 +1533,9 @@ body.has-cursor select { cursor: none; }
 .field input:not(:placeholder-shown) + span,
 .field textarea:focus + span,
 .field textarea:not(:placeholder-shown) + span,
-.field select:focus + span,
-.field select.filled + span {
+.field .select-button:focus + span,
+.field-select.is-open .select-button + span,
+.field .select-button.filled + span {
   transform: translateY(-10px) scale(0.78);
   color: var(--accent);
 }

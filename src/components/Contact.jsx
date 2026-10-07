@@ -3,6 +3,8 @@ import { company, mapsUrl, services } from '../data/site'
 import Icon from './Icon'
 import Magnetic from './Magnetic'
 import Reveal from './Reveal'
+import SelectField from './SelectField'
+import ServiceMark from './ServiceMark'
 
 // Contact form field limits (characters)
 const LIMITS = { name: 60, company: 80, email: 120, phone: 18, message: 1000, messageMin: 10 }
@@ -24,7 +26,15 @@ const statusMessages = {
 // `options` fills "What do you need help with?" (default: the services in data/site.js);
 // `topic` names the page the enquiry came from, e.g. 'Business Central', and is put in front
 // of the chosen option in the email.
-export default function Contact({ num = '06', options = services.map((s) => s.title), topic = '' }) {
+// Default choices for "What do you need help with?": every service, with its logo
+const serviceOptions = services.map((s) => ({ value: s.title, label: s.title, mark: <ServiceMark service={s} size={16} /> }))
+
+export default function Contact({ num = '06', options, topic = '' }) {
+  // A page can pass its own choices as plain text (see enquiry.options in its data file)
+  const choices = [
+    ...(options ? options.map((o) => ({ value: o, label: o })) : serviceOptions),
+    { value: 'Other', label: 'Something else' },
+  ]
   const [form, setForm] = useState(emptyForm)
   const [status, setStatus] = useState('idle')
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
@@ -124,14 +134,13 @@ export default function Contact({ num = '06', options = services.map((s) => s.ti
                 <span>Phone number</span>
               </label>
             </div>
-            <label className="field field-select">
-              <select name="service" value={form.service} onChange={update} className={form.service ? 'filled' : ''}>
-                <option value="" />
-                {options.map((o) => <option key={o} value={o}>{o}</option>)}
-                <option value="Other">Something else</option>
-              </select>
-              <span>What do you need help with?</span>
-            </label>
+            <SelectField
+              name="service"
+              label="What do you need help with?"
+              value={form.service}
+              options={choices}
+              onChange={update}
+            />
             <label className="field field-message">
               <textarea
                 name="message"
