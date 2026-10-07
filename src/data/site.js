@@ -56,7 +56,8 @@ export const highlights = [
 ]
 
 // `techLogo` is a full-colour product logo from components/TechLogo.jsx; otherwise `logo` is a
-// single-colour logo from components/BrandLogo.jsx, or `icon` an icon from components/Icon.jsx.
+// single-colour logo from components/BrandLogo.jsx, or `icon` an icon from components/Icon.jsx shown
+// on a `tile` of two gradient colours, like an app icon.
 // `page` links the service to its own page (otherwise its card links to the contact form).
 // `short` is the name used in the header's Services menu.
 export const services = [
@@ -99,6 +100,7 @@ export const services = [
     short: 'Mobile apps',
     page: '/services/mobile-apps/',
     icon: 'mobile',
+    tile: ['#8B5CF6', '#3B6EF5'],
     text: 'Native and cross-platform mobile applications for iOS and Android, designed around your users.',
     tags: ['iOS', 'Android', 'Cross-platform'],
   },
@@ -107,6 +109,7 @@ export const services = [
     short: 'Web apps',
     page: '/services/web-apps/',
     icon: 'globe',
+    tile: ['#14B8A6', '#0284C7'],
     text: 'Websites, web applications and e-commerce platforms built for performance and growth.',
     tags: ['Websites', 'Web apps', 'E-commerce'],
   },
@@ -115,6 +118,7 @@ export const services = [
     short: 'E-Invoicing',
     page: '/services/e-invoicing/',
     icon: 'invoice',
+    tile: ['#FB923C', '#E11D48'],
     text: 'Get ready for e-invoicing mandates — we connect your ERP to an Accredited Service Provider (ASP) and keep every invoice compliant.',
     tags: ['ASP onboarding', 'ERP integration', 'Compliance'],
   },

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { careersPage as page } from '../data/careers'
-import { company } from '../data/site'
+import { company, mapsUrl } from '../data/site'
 import Icon from '../components/Icon'
 import Magnetic from '../components/Magnetic'
 import ProcessSteps from '../components/ProcessSteps'
@@ -46,8 +46,10 @@ function Hero() {
           <ul className="offices-list">
             {company.offices.map((o) => (
               <li key={o.city}>
-                <strong>{o.city}</strong>
-                <small>{o.address}</small>
+                <a href={mapsUrl(o.address)} target="_blank" rel="noreferrer" title="Open in Google Maps">
+                  <strong>{o.city} <span aria-hidden="true">↗</span></strong>
+                  <small>{o.address}</small>
+                </a>
               </li>
             ))}
           </ul>
