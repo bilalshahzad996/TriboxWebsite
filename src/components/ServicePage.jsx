@@ -8,10 +8,10 @@ import SectionHead from './SectionHead'
 import TechLogo from './TechLogo'
 import TiltCard from './TiltCard'
 
-// Layout shared by every service page (e.g. /services/business-central/, /services/odoo/).
+// Layout shared by every service and product page (e.g. /services/odoo/, /products/sis-app/).
 // All wording comes from the page's data file in src/data/ (listed in data/servicePages.js).
 
-const num = (i) => String(i + 1).padStart(2, '0')
+const twoDigits = (i) => String(i + 1).padStart(2, '0')
 
 function Hero({ page }) {
   const { hero, panel } = page
@@ -60,12 +60,12 @@ function Hero({ page }) {
   )
 }
 
-function Challenges({ page }) {
+function Challenges({ page, num }) {
   const { title, accent } = page.headings.challenges
   return (
     <section className="section">
       <div className="container">
-        <SectionHead num="01" label="Key challenges" title={title} accent={accent} />
+        <SectionHead num={num} label="Key challenges" title={title} accent={accent} />
         <div className="card-grid cols-4">
           {page.challenges.map((c, i) => (
             <Reveal key={c.title} delay={i * 90} className="card">
@@ -80,13 +80,13 @@ function Challenges({ page }) {
   )
 }
 
-function Approach({ page }) {
+function Approach({ page, num }) {
   const { approach } = page
   return (
     <section className="section">
       <div className="container approach">
         <div>
-          <Reveal as="span" className="label"><b>02</b> {approach.label}</Reveal>
+          <Reveal as="span" className="label"><b>{num}</b> {approach.label}</Reveal>
           <Reveal as="h2" variant="mask" className="section-title">
             {approach.title} <span className="gradient-text">{approach.accent}</span>
           </Reveal>
@@ -106,19 +106,19 @@ function Approach({ page }) {
   )
 }
 
-function Capabilities({ page }) {
+function Capabilities({ page, num }) {
   const { title, accent, intro } = page.headings.capabilities
   return (
     <section id="capabilities" className="section">
       <div className="container">
-        <SectionHead num="03" label="Capabilities" title={title} accent={accent} intro={intro} />
+        <SectionHead num={num} label="Capabilities" title={title} accent={accent} intro={intro} />
         <div className="bento">
           {page.capabilities.map((c, i) => (
             <Reveal key={c.title} delay={(i % 3) * 110}>
               <TiltCard className="svc">
                 <div className="svc-top">
                   <span className="svc-logo"><Icon name={c.icon} size={26} /></span>
-                  <span className="svc-num">{num(i)}</span>
+                  <span className="svc-num">{twoDigits(i)}</span>
                 </div>
                 <h3>{c.title}</h3>
                 <p>{c.text}</p>
@@ -136,24 +136,24 @@ function Capabilities({ page }) {
   )
 }
 
-function Process({ page }) {
+function Process({ page, num }) {
   const { title, accent } = page.headings.process
   return (
     <section className="section">
       <div className="container">
-        <SectionHead num="04" label="Process" title={title} accent={accent} />
+        <SectionHead num={num} label="Process" title={title} accent={accent} />
         <ProcessSteps steps={page.process} className="process-4" />
       </div>
     </section>
   )
 }
 
-function Tools({ page }) {
+function Tools({ page, num }) {
   const { title, accent } = page.headings.tools
   return (
     <section className="section section-tight">
       <div className="container">
-        <SectionHead num="05" label="Tools & technologies" title={title} accent={accent} />
+        <SectionHead num={num} label="Tools & technologies" title={title} accent={accent} />
         <Reveal as="ul" className="tool-grid">
           {page.tools.map((t) => (
             <li key={t.name} className="tech">
@@ -170,16 +170,16 @@ function Tools({ page }) {
   )
 }
 
-function Industries({ page }) {
+function Industries({ page, num }) {
   const { title, accent } = page.headings.industries
   return (
     <section className="section">
       <div className="container">
-        <SectionHead num="06" label="Industries" title={title} accent={accent} />
+        <SectionHead num={num} label="Industries" title={title} accent={accent} />
         <div className="card-grid cols-4">
           {page.industries.map((ind, i) => (
             <Reveal key={ind.title} delay={i * 90} className="card">
-              <span className="card-num">{num(i)}</span>
+              <span className="card-num">{twoDigits(i)}</span>
               <h3>{ind.title}</h3>
               <p>{ind.text}</p>
             </Reveal>
@@ -190,11 +190,11 @@ function Industries({ page }) {
   )
 }
 
-function Engagements({ page }) {
+function Engagements({ page, num }) {
   return (
     <section className="section">
       <div className="container">
-        <SectionHead num="07" label="Engagement models" title="Two ways to" accent="work with us" />
+        <SectionHead num={num} label="Engagement models" title="Two ways to" accent="work with us" />
         <div className="card-grid cols-2">
           {page.engagements.map((e, i) => (
             <Reveal key={e.title} delay={i * 110} className="card engage">
@@ -213,12 +213,12 @@ function Engagements({ page }) {
   )
 }
 
-function Faq({ page }) {
+function Faq({ page, num }) {
   return (
     <section className="section">
       <div className="container faq-grid">
         <div>
-          <Reveal as="span" className="label"><b>08</b> FAQs</Reveal>
+          <Reveal as="span" className="label"><b>{num}</b> FAQs</Reveal>
           <Reveal as="h2" variant="mask" className="section-title">
             Frequently asked <span className="gradient-text">questions</span>
           </Reveal>
@@ -240,7 +240,22 @@ function Faq({ page }) {
   )
 }
 
+// Sections in page order. A page leaves one out by not having its data (e.g. product pages
+// have no `tools`); the rest are numbered 01, 02… in order.
+const SECTIONS = [
+  { key: 'challenges', Section: Challenges },
+  { key: 'approach', Section: Approach },
+  { key: 'capabilities', Section: Capabilities },
+  { key: 'process', Section: Process },
+  { key: 'tools', Section: Tools },
+  { key: 'industries', Section: Industries },
+  { key: 'engagements', Section: Engagements },
+  { key: 'faqs', Section: Faq },
+]
+const pad = (i) => String(i + 1).padStart(2, '0')
+
 export default function ServicePage({ page }) {
+  const sections = SECTIONS.filter((s) => page[s.key]?.length ?? page[s.key])
   // The built page already has this title; this covers the development server.
   useEffect(() => {
     const previous = document.title
@@ -251,15 +266,8 @@ export default function ServicePage({ page }) {
   return (
     <>
       <Hero page={page} />
-      <Challenges page={page} />
-      <Approach page={page} />
-      <Capabilities page={page} />
-      <Process page={page} />
-      <Tools page={page} />
-      <Industries page={page} />
-      <Engagements page={page} />
-      <Faq page={page} />
-      <Contact num="09" topic={page.enquiry.topic} options={page.enquiry.options} />
+      {sections.map(({ key, Section }, i) => <Section key={key} page={page} num={pad(i)} />)}
+      <Contact num={pad(sections.length)} topic={page.enquiry.topic} options={page.enquiry.options} />
     </>
   )
 }

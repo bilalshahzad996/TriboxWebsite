@@ -1758,24 +1758,6 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
 }
 .card:hover .card-icon { background: var(--gradient); color: #fff; }
 
-.jobs { display: grid; gap: 14px; margin-bottom: 20px; }
-.job {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 26px 28px;
-  border-radius: var(--radius);
-  border: 1px solid var(--line);
-  background: linear-gradient(160deg, var(--surface) 0%, var(--bg-soft) 100%);
-  transition: border-color 0.4s;
-}
-.job:hover { border-color: rgb(var(--accent-rgb) / 0.35); }
-.job h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; }
-.job .tags { margin: 0 0 10px; padding: 0; }
-.job p { margin: 0; font-size: 0.95rem; }
-.job .btn { flex-shrink: 0; }
-
 .apply { flex-direction: row; align-items: center; gap: 24px; padding: 32px; }
 .apply .card-icon { flex-shrink: 0; margin: 0; }
 .apply > div { flex: 1; }
@@ -2013,9 +1995,7 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
   .modules-panel,
   .engage { padding: 24px; }
   .faq details p { padding-right: 0; }
-  .job,
   .apply { flex-direction: column; align-items: flex-start; padding: 24px; }
-  .job .btn,
   .apply .magnetic,
   .apply .btn { width: 100%; justify-content: center; }
   .nav-links { left: 18px; right: 18px; }

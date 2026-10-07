@@ -155,11 +155,15 @@ export const mobileAppsPage = {
   ],
 
   tools: [
+    // Platforms and their native languages
+    { name: 'iOS', logo: 'apple' },
+    { name: 'Android', logo: 'android' },
+    { name: 'Swift (iOS)', logo: 'swift' },
+    { name: 'Kotlin (Android)', logo: 'kotlin' },
+    // Cross-platform and back end
     { name: 'React Native', logo: 'react' },
-    { name: 'Swift (iOS)', icon: 'mobile' },
-    { name: 'Kotlin (Android)', icon: 'mobile' },
-    { name: '.NET', logo: 'dotnet' },
-    { name: 'Microsoft Azure', logo: 'azure' },
+    { name: 'Flutter', logo: 'flutter' },
+    { name: 'Firebase', logo: 'firebase' },
   ],
 
   industries: [

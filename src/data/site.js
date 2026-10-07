@@ -55,7 +55,8 @@ export const highlights = [
   { icon: 'support', title: '24/7 customer support', text: 'Proactive maintenance and support whenever your business needs it.' },
 ]
 
-// `logo` is a product logo from components/BrandLogo.jsx, otherwise an icon from components/Icon.jsx.
+// `techLogo` is a full-colour product logo from components/TechLogo.jsx; otherwise `logo` is a
+// single-colour logo from components/BrandLogo.jsx, or `icon` an icon from components/Icon.jsx.
 // `page` links the service to its own page (otherwise its card links to the contact form).
 // `short` is the name used in the header's Services menu.
 export const services = [
@@ -63,7 +64,7 @@ export const services = [
     title: 'Microsoft Dynamics 365 Finance & Operations',
     short: 'Dynamics 365 Finance & Operations',
     page: '/services/finance-operations/',
-    logo: 'dynamics365',
+    techLogo: 'financeOperations',
     wide: true,
     text: 'End-to-end implementation and support of Dynamics 365 Finance & Operations — finance, supply chain and operations on one enterprise ERP platform.',
     tags: ['Implementation', 'Upgrades & migration', 'Support'],
@@ -71,7 +72,7 @@ export const services = [
   {
     title: 'Microsoft Dynamics 365 Business Central',
     short: 'Dynamics 365 Business Central',
-    logo: 'dynamics365',
+    techLogo: 'businessCentral',
     page: '/services/business-central/',
     text: 'A complete business management solution for growing companies — financials, sales, purchasing and inventory, implemented and supported by our team.',
     tags: ['Implementation', 'Customisation', 'Support'],
@@ -80,7 +81,7 @@ export const services = [
     title: 'Microsoft Dynamics 365 Customer Experience / CRM',
     short: 'Dynamics 365 CRM',
     page: '/services/crm/',
-    logo: 'dynamics365',
+    techLogo: 'crm',
     text: 'Customer relationship management tailored to how you win, serve and keep customers — sales, customer service and marketing in one place.',
     tags: ['Sales', 'Customer service', 'Marketing'],
   },
@@ -88,7 +89,7 @@ export const services = [
     title: 'Odoo Implementation',
     short: 'Odoo',
     page: '/services/odoo/',
-    logo: 'odoo',
+    techLogo: 'odooWordmark',
     wide: true,
     text: 'Fast, modular Odoo ERP rollouts — from accounting, inventory and HR to CRM and e-commerce — configured and customised for your business.',
     tags: ['Setup & configuration', 'Custom modules', 'Data migration', 'Training'],

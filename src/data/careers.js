@@ -1,14 +1,13 @@
 // Content for the Careers page (/careers/). `icon` names come from components/Icon.jsx.
-import { company } from './site'
 
 export const careersPage = {
   path: '/careers/',
-  // Where applications go. Change this to a dedicated careers address if you have one.
-  email: company.email,
+  // Where applications go
+  email: 'hr@tribox365.com',
   meta: {
     title: 'Careers at Tribox — Join Our Team',
     description:
-      'Build your career at Tribox: work on Microsoft Dynamics 365, Odoo, and web and mobile projects with our teams in Dubai and Lahore. See open roles and how to apply.',
+      'Build your career at Tribox: work on Microsoft Dynamics 365, Odoo, and web and mobile projects with our teams in Dubai and Lahore. Send us your CV for any role.',
   },
 
   hero: {
@@ -16,8 +15,8 @@ export const careersPage = {
     title: 'Build what’s next with',
     accent: 'Tribox',
     text: 'We’re consultants and developers delivering Microsoft Dynamics 365, Odoo, and web and mobile solutions for growing businesses. If you enjoy solving real business problems with technology, we’d like to hear from you.',
-    primary: 'See open roles',
-    secondary: 'Send your CV',
+    primary: 'Send your CV',
+    secondary: 'Teams we hire for',
   },
 
   why: [
@@ -27,7 +26,7 @@ export const careersPage = {
     { icon: 'feedback', title: 'Feedback culture', text: 'We listen, iterate and improve — with our clients and with each other.' },
   ],
 
-  // Kinds of work we hire for (not open roles — those are in `openings` below)
+  // Kinds of work we hire for
   teams: [
     { title: 'ERP consultants', text: 'Functional consultants for Dynamics 365 Finance & Operations, Business Central, CRM and Odoo.' },
     { title: 'ERP developers', text: 'Developers who extend and integrate ERP systems — AL, X++, Python and Power Platform.' },
@@ -42,9 +41,11 @@ export const careersPage = {
     { title: 'Offer', text: 'If it’s a fit on both sides, we agree the details and welcome you aboard.' },
   ],
 
-  // Open roles. While this list is empty the page invites general applications instead.
-  // Example:
-  // { title: 'Business Central Developer', team: 'ERP developers', location: 'Lahore', type: 'Full-time',
-  //   summary: 'Build AL extensions and integrations for Business Central customers.' },
-  openings: [],
+  // Closing invitation: applications for any role, at any time, by email
+  apply: {
+    title: 'Send us',
+    accent: 'your CV',
+    heading: 'Interested in joining Tribox?',
+    text: 'We welcome applications for any role, at any time — consulting, development or delivery. Send us your CV and we’ll get in touch when there’s a fit.',
+  },
 }

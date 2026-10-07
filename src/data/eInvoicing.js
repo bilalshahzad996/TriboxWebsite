@@ -157,10 +157,8 @@ export const eInvoicingPage = {
   tools: [
     { name: 'Dynamics 365 Finance & Operations', logo: 'financeOperations' },
     { name: 'Dynamics 365 Business Central', logo: 'businessCentral' },
-    { name: 'Odoo', logo: 'odoo' },
     { name: 'Accredited Service Providers', icon: 'network' },
     { name: 'APIs & connectors', icon: 'code' },
-    { name: 'Microsoft Azure', logo: 'azure' },
   ],
 
   industries: [

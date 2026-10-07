@@ -25,12 +25,12 @@ function Hero() {
           <p className="page-lead intro" style={{ '--d': 3 }}>{hero.text}</p>
           <div className="page-actions intro" style={{ '--d': 4 }}>
             <Magnetic>
-              <a href="#openings" className="btn btn-primary">
+              <a href={applyLink('Job application')} className="btn btn-primary">
                 {hero.primary} <Icon name="arrow" size={18} />
               </a>
             </Magnetic>
             <Magnetic>
-              <a href={applyLink('General application')} className="btn btn-ghost">{hero.secondary}</a>
+              <a href="#teams" className="btn btn-ghost">{hero.secondary}</a>
             </Magnetic>
           </div>
         </div>
@@ -79,7 +79,7 @@ function Why() {
 
 function Teams() {
   return (
-    <section className="section">
+    <section id="teams" className="section">
       <div className="container">
         <SectionHead
           num="02"
@@ -113,43 +113,25 @@ function Hiring() {
   )
 }
 
-function Openings() {
-  const { openings } = page
+// Open invitation: no listed vacancies — anyone interested in any role can email their CV
+function Apply() {
+  const { apply } = page
   return (
-    <section id="openings" className="section">
+    <section id="apply" className="section">
       <div className="container">
-        <SectionHead num="04" label="Open roles" title="Current" accent="openings" />
-        {openings.length > 0 && (
-          <div className="jobs">
-            {openings.map((job, i) => (
-              <Reveal key={job.title} delay={i * 80} className="job">
-                <div>
-                  <h3>{job.title}</h3>
-                  <div className="tags">
-                    {[job.team, job.location, job.type].filter(Boolean).map((t) => <span key={t}>{t}</span>)}
-                  </div>
-                  {job.summary && <p>{job.summary}</p>}
-                </div>
-                <a href={applyLink(`Job application: ${job.title}`)} className="btn btn-primary">
-                  Apply <Icon name="arrow" size={18} />
-                </a>
-              </Reveal>
-            ))}
-          </div>
-        )}
-
+        <SectionHead num="04" label="Apply" title={apply.title} accent={apply.accent} />
         <Reveal className="card apply">
           <span className="card-icon"><Icon name="mail" size={22} /></span>
           <div>
-            <h3>{openings.length ? 'Don’t see your role?' : 'No open roles right now — but we’re always glad to meet good people'}</h3>
+            <h3>{apply.heading}</h3>
             <p>
-              Send your CV and a short note about the work you’d like to do to{' '}
-              <a href={applyLink('General application')} className="apply-email">{page.email}</a>, and we’ll be in touch when
-              a role fits.
+              {apply.text}{' '}
+              Email it to <a href={applyLink('Job application')} className="apply-email">{page.email}</a> and tell us
+              which role or team you’re interested in.
             </p>
           </div>
           <Magnetic>
-            <a href={applyLink('General application')} className="btn btn-primary">
+            <a href={applyLink('Job application')} className="btn btn-primary">
               Send your CV <Icon name="arrow" size={18} />
             </a>
           </Magnetic>
@@ -173,7 +155,7 @@ export default function Careers() {
       <Why />
       <Teams />
       <Hiring />
-      <Openings />
+      <Apply />
     </>
   )
 }

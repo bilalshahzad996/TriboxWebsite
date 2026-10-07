@@ -155,8 +155,18 @@ export const webAppsPage = {
   ],
 
   tools: [
+    // Front end
     { name: 'React', logo: 'react' },
+    { name: 'Next.js', logo: 'nextjs' },
+    { name: 'Angular', logo: 'angular' },
+    { name: 'Vue.js', logo: 'vue' },
+    // Back end and data
+    { name: 'Node.js', logo: 'nodejs' },
+    // MongoDB, Express, React and Node.js; MongoDB stands in for the stack as React and Node.js have their own tiles
+    { name: 'MERN Stack', logo: 'mongodb' },
     { name: '.NET', logo: 'dotnet' },
+    { name: 'PostgreSQL', logo: 'postgresql' },
+    // Platforms and hosting
     { name: 'WordPress', logo: 'wordpress' },
     { name: 'Microsoft Azure', logo: 'azure' },
     { name: 'Power Pages', logo: 'powerPages' },
@@ -195,7 +205,7 @@ export const webAppsPage = {
     },
     {
       q: 'Which technologies do you use?',
-      a: 'We choose the stack for the job: React for fast, interactive front ends, .NET for business applications and APIs, WordPress where your team wants to edit content easily, and Microsoft Azure for hosting.',
+      a: 'We choose the stack for the job: React, Next.js, Angular or Vue.js for fast, interactive front ends; Node.js (including the MERN stack) or .NET for business logic and APIs; PostgreSQL or MongoDB for data; WordPress where your team wants to edit content easily; and Microsoft Azure for hosting.',
     },
     {
       q: 'Can it connect to our ERP?',

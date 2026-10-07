@@ -28,14 +28,13 @@ const links = [
     sub: services.map((s) => ({ href: s.page ?? '/#services', label: s.short, mark: <ServiceMark service={s} size={18} /> })),
   },
   {
-    // No page or section of its own yet, so no href: it just opens the dropdown.
-    // The products link to the contact form until they have pages.
+    // No page or section of its own, so no href: it just opens the dropdown of product pages
     label: 'Products',
     sub: [
-      { href: '/#contact', label: 'POS for Business Central', text: 'Point of sale for Dynamics 365 Business Central', mark: <TechLogo name="pos" className="mark" /> },
-      { href: '/#contact', label: 'POS for Finance & Operations', text: 'Point of sale for Dynamics 365 Finance & Operations', mark: <TechLogo name="pos" className="mark" /> },
-      { href: '/#contact', label: 'SIS App', text: 'Shop in Shop application', mark: <TechLogo name="sis" className="mark" /> },
-      { href: '/#contact', label: 'HRMS App', text: 'Human resource management', mark: <TechLogo name="hr" className="mark" /> },
+      { href: '/products/pos-business-central/', label: 'POS for Business Central', text: 'Point of sale for stores', mark: <TechLogo name="pos" className="mark" /> },
+      { href: '/products/pos-finance-operations/', label: 'POS for Finance & Operations', text: 'Point of sale for retail chains', mark: <TechLogo name="pos" className="mark" /> },
+      { href: '/products/sis-app/', label: 'SIS App', text: 'Many locations, one store', mark: <TechLogo name="sis" className="mark" /> },
+      { href: '/products/hrms-app/', label: 'HRMS App', text: 'HR & employees', mark: <TechLogo name="hr" className="mark" /> },
     ],
   },
   { href: '/#clients', label: 'Clients' },
@@ -54,7 +53,7 @@ const links = [
 // The menu link for the page you're on (e.g. Company on /careers/), or null
 const isPage = (href, path) => Boolean(href) && !href.includes('#') && `${path.replace(/\/$/, '')}/` === href
 const linkForPage = (path) =>
-  links.find((l) => isPage(l.href, path) || l.sub?.some((item) => isPage(item.href, path)))?.href ?? null
+  (({ href, label } = {}) => href ?? label ?? null)(links.find((l) => isPage(l.href, path) || l.sub?.some((item) => isPage(item.href, path))))
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -191,8 +190,8 @@ export default function Navbar() {
                   data-key={key}
                   onClick={l.sub && mobile ? toggle : goTo}
                   onPointerEnter={() => setHovered(key)}
-                  className={`nav-link ${active === l.href || pageLink === l.href ? 'is-active' : ''}`}
-                  aria-current={pageLink === l.href ? 'page' : active === l.href ? 'true' : undefined}
+                  className={`nav-link ${active === l.href || pageLink === key ? 'is-active' : ''}`}
+                  aria-current={pageLink === key ? 'page' : active === l.href ? 'true' : undefined}
                   aria-expanded={l.sub && mobile ? isOpen : undefined}
                   style={{ '--i': i }}
                 >
@@ -205,7 +204,7 @@ export default function Navbar() {
                   data-key={key}
                   onClick={toggle}
                   onPointerEnter={() => setHovered(key)}
-                  className="nav-link"
+                  className={`nav-link ${pageLink === key ? 'is-active' : ''}`}
                   aria-expanded={mobile ? isOpen : undefined}
                   style={{ '--i': i }}
                 >

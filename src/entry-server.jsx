@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router-dom'
 import { AppRoutes } from './App.jsx'
 import { careersPage } from './data/careers'
 import { servicePages } from './data/servicePages'
+import { productPages } from './data/productPages'
 import { company } from './data/site'
 
 const SITE = 'https://tribox365.com'
@@ -27,15 +28,26 @@ function serviceHead(p) {
     description: p.meta.description,
     url,
     jsonLd: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Service',
-        name: p.serviceName,
-        serviceType: p.serviceType ?? 'ERP implementation',
-        description: p.meta.description,
-        url,
-        provider: { '@type': 'Organization', name: company.name, url: `${SITE}/` },
-      },
+      // Products are described as software; services as a service Tribox provides
+      p.product
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: p.serviceName,
+            applicationCategory: 'BusinessApplication',
+            description: p.meta.description,
+            url,
+            publisher: { '@type': 'Organization', name: company.name, url: `${SITE}/` },
+          }
+        : {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: p.serviceName,
+            serviceType: p.serviceType ?? 'ERP implementation',
+            description: p.meta.description,
+            url,
+            provider: { '@type': 'Organization', name: company.name, url: `${SITE}/` },
+          },
       {
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
@@ -55,7 +67,7 @@ function serviceHead(p) {
 export const pages = [
   { url: '/', file: 'index.html' },
   // e.g. /services/odoo/ -> services/odoo/index.html
-  ...servicePages.map((p) => ({ url: p.path, file: `${p.path.slice(1)}index.html`, head: serviceHead(p) })),
+  ...[...servicePages, ...productPages].map((p) => ({ url: p.path, file: `${p.path.slice(1)}index.html`, head: serviceHead(p) })),
   {
     url: careersPage.path,
     file: 'careers/index.html',
