@@ -1536,6 +1536,14 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
 .footer .container { position: relative; }
 .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
 .footer-text { max-width: 360px; margin-top: 16px; }
+.footer-platforms { margin-top: 26px; }
+.footer-platforms-label { display: block; margin-bottom: 12px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+/* Logos sit straight on the footer, no tiles */
+.footer-platforms-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 31px; }
+.footer-platform { display: inline-flex; align-items: center; gap: 10px; }
+.footer-platform-mark { width: 25px; height: 25px; }
+.footer-platform-name { font-family: 'Segoe UI', var(--font); font-size: 1.3rem; font-weight: 600; color: var(--muted); letter-spacing: -0.01em; }
+.footer-platform-wordmark { width: auto; height: 26px; }
 .footer h2 { font-size: 0.95rem; letter-spacing: -0.01em; margin-bottom: 18px; }
 .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--muted); font-size: 0.93rem; }
 .footer ul a { transition: color 0.3s; }

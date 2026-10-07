@@ -3,6 +3,7 @@
 import { company, mapsUrl, services } from '../data/site'
 import { useSyncExternalStore } from 'react'
 import Logo from './Logo'
+import TechLogo from './TechLogo'
 
 const noSubscribe = () => () => {}
 const thisYear = () => new Date().getFullYear()
@@ -22,6 +23,19 @@ export default function Footer() {
               <Logo />
             </a>
             <p className="footer-text">{company.statement.replaceAll('*', '')}</p>
+            {/* "Platforms we work with", not "partners": partner status is a formal claim */}
+            <div className="footer-platforms">
+              <span className="footer-platforms-label">Platforms we work with</span>
+              <div className="footer-platforms-logos">
+                <span className="footer-platform" title="Microsoft">
+                  <TechLogo name="microsoft" className="footer-platform-mark" />
+                  <span className="footer-platform-name">Microsoft</span>
+                </span>
+                <span className="footer-platform" title="Odoo">
+                  <TechLogo name="odooWordmark" className="footer-platform-wordmark" />
+                </span>
+              </div>
+            </div>
           </div>
           <div>
             <h2>Services</h2>
