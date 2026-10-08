@@ -2033,6 +2033,8 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
   .hero-inner { grid-template-columns: 1fr; gap: 60px; }
   .orbit { --size: min(440px, 86vw); margin: 0 auto; }
   .section { padding: 32px 0; }
+  /* Pages without a hero (Privacy Policy) still need room for the fixed menu bar */
+  .legal { padding-top: 120px; }
   .section-head { flex-direction: column; align-items: flex-start; gap: 20px; margin-bottom: 44px; }
   /* Steps stack: the track runs down the left through the badges, each card points left at its badge */
   .process { grid-template-columns: 1fr; gap: 18px; }
