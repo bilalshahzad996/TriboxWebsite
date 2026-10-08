@@ -125,12 +125,15 @@ export const services = [
 ]
 
 // Tribox's own products, each with a page (data/productPages.js). Used by the header's Products
-// menu and the footer. `logo` names come from components/TechLogo.jsx.
+// menu and the footer. `logo` names come from components/TechLogo.jsx; without one, `icon` and
+// `tile` draw an app-style icon (see components/ServiceMark.jsx).
 export const products = [
   { title: 'POS for Business Central', text: 'Point of sale for stores', page: '/products/pos-business-central/', logo: 'pos' },
   { title: 'POS for Finance & Operations', text: 'Point of sale for retail chains', page: '/products/pos-finance-operations/', logo: 'pos' },
   { title: 'SIS App', text: 'Many locations, one store', page: '/products/sis-app/', logo: 'sis' },
   { title: 'HRMS App', text: 'HR & employees', page: '/products/hrms-app/', logo: 'hr' },
+  // No logo file: shown as an app-style tile (icon on a gradient), like some services
+  { title: 'Fleet Track', text: 'Fleet & transport management', page: '/products/fleettrack/', icon: 'truck', tile: ['#0EA5E9', '#4F46E5'] },
 ]
 
 // Technology & partner ecosystem. `logo` names come from components/TechLogo.jsx.

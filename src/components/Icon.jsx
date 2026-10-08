@@ -24,6 +24,13 @@ const paths = {
     </>
   ),
   chart: <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />,
+  truck: (
+    <>
+      <path d="M2 6h12v10H2zM14 9h4l3 3.5V16h-7" />
+      <circle cx="6.5" cy="17.5" r="1.8" />
+      <circle cx="17" cy="17.5" r="1.8" />
+    </>
+  ),
   clock: (
     <>
       <circle cx="12" cy="12" r="9" />

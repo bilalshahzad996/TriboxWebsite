@@ -30,7 +30,7 @@ const links = [
   {
     // No page or section of its own, so no href: it just opens the dropdown of product pages
     label: 'Products',
-    sub: products.map((p) => ({ href: p.page, label: p.title, text: p.text, mark: <TechLogo name={p.logo} className="mark" /> })),
+    sub: products.map((p) => ({ href: p.page, label: p.title, text: p.text, mark: p.logo ? <TechLogo name={p.logo} className="mark" /> : <ServiceMark service={p} size={18} /> })),
   },
   { href: '/#clients', label: 'Clients' },
   { href: '/#process', label: 'Process' },

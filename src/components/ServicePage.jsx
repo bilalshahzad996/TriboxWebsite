@@ -43,7 +43,9 @@ function Hero({ page }) {
             {/* A product logo when there is one, otherwise a plain icon */}
             {panel.logo
               ? <TechLogo name={panel.logo} className="modules-logo" />
-              : <span className="modules-logo tech-icon"><Icon name={panel.icon} size={24} /></span>}
+              : panel.tile
+                ? <span className="modules-logo app-tile" style={{ '--tile-from': panel.tile[0], '--tile-to': panel.tile[1] }}><Icon name={panel.icon} size={24} /></span>
+                : <span className="modules-logo tech-icon"><Icon name={panel.icon} size={24} /></span>}
             <div>
               <strong>{panel.title}</strong>
               <small>{panel.subtitle}</small>
