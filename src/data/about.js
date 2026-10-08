@@ -11,8 +11,8 @@ export const aboutPage = {
 
   hero: {
     label: 'About Tribox',
-    title: 'We are',
-    accent: 'change agents',
+    title: 'The team behind your',
+    accent: 'digital transformation',
     text: 'A Dubai-based team of consultants and developers, with colleagues in Lahore — helping growing businesses run better on Microsoft Dynamics 365, Odoo, and custom web and mobile solutions.',
   },
 
