@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { company, marquee, highlights, services, technologies, clients, process } from '../data/site'
+import { company, marquee, highlights, services, technologies, process } from '../data/site'
+import ClientMarquee from '../components/ClientMarquee'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
 import TechLogo from '../components/TechLogo'
@@ -328,21 +329,12 @@ function Technologies() {
 }
 
 function Clients() {
-  const row = [...clients, ...clients, ...clients, ...clients]
   return (
     <section id="clients" className="section section-tight">
       <div className="container">
         <SectionHead num="04" label="Our clients" title="Trusted by" accent="growing businesses" />
       </div>
-      <Reveal className="logo-marquee">
-        <div className="logo-track">
-          {row.map((c, i) => (
-            <div key={i} className="client" aria-hidden={i >= clients.length}>
-              <img src={c.logo} alt={c.name} />
-            </div>
-          ))}
-        </div>
-      </Reveal>
+      <ClientMarquee />
     </section>
   )
 }

@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { aboutPage as page } from '../data/about'
-import { company, highlights, mapsUrl, products, services } from '../data/site'
+import { company, mapsUrl, products, services } from '../data/site'
 import BrandLogo from '../components/BrandLogo'
+import ClientMarquee from '../components/ClientMarquee'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
 import Magnetic from '../components/Magnetic'
@@ -98,37 +99,40 @@ function Story() {
   )
 }
 
-function Vision() {
-  const { vision } = page
+function Purpose() {
   return (
     <section className="section">
       <div className="container">
-        <Reveal className="vision">
-          <span className="label"><b>02</b> Our vision</span>
-          <span className="vision-mark" aria-hidden="true">“</span>
-          <p className="vision-statement"><Highlighted text={vision.statement} /></p>
-          <p className="vision-text">{vision.text}</p>
-        </Reveal>
+        <SectionHead num="02" label="Mission, vision & values" title="What drives" accent="us" />
+        <div className="card-grid cols-3">
+          {page.purpose.map((p, i) => (
+            <Reveal key={p.title} delay={i * 100} className="card purpose-card">
+              <span className="card-icon"><Icon name={p.icon} size={22} /></span>
+              <h3>{p.title}</h3>
+              {p.text && <p>{p.text}</p>}
+              {p.values && (
+                <ul className="purpose-values">
+                  {p.values.map((v) => {
+                    const [name, rest] = v.split(' — ')
+                    return <li key={v}><Icon name="check" size={16} /> <span><strong>{name}</strong> — {rest}</span></li>
+                  })}
+                </ul>
+              )}
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )
 }
 
-function Why() {
+function TrustedBy() {
   return (
-    <section className="section">
+    <section className="section section-tight">
       <div className="container">
-        <SectionHead num="03" label="Why Tribox" title="Why clients" accent="choose us" />
-        <div className="card-grid cols-4">
-          {highlights.map((h, i) => (
-            <Reveal key={h.title} delay={i * 90} className="card">
-              <span className="card-icon"><Icon name={h.icon} size={22} /></span>
-              <h3>{h.title}</h3>
-              <p>{h.text}</p>
-            </Reveal>
-          ))}
-        </div>
+        <SectionHead num="03" label="Our clients" title="Trusted by" accent="growing businesses" />
       </div>
+      <ClientMarquee />
     </section>
   )
 }
@@ -175,8 +179,8 @@ export default function About() {
     <>
       <Hero />
       <Story />
-      <Vision />
-      <Why />
+      <Purpose />
+      <TrustedBy />
       <Leadership />
       <Contact num="05" />
     </>

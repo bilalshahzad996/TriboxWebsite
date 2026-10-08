@@ -16,11 +16,24 @@ export const aboutPage = {
     text: 'A Dubai-based team of consultants and developers, with colleagues in Lahore — helping growing businesses run better on Microsoft Dynamics 365, Odoo, and custom web and mobile solutions.',
   },
 
-  // Draft wording: confirm with the founders before publishing
-  vision: {
-    statement: 'To be the partner growing businesses trust to turn the right technology into *lasting results*.',
-    text: 'We want every client to run on systems that fit the way they work — designed with their team, delivered by a dedicated tribe, and supported long after go‑live.',
-  },
+  // Mission, vision and values. Draft wording: confirm with the founders before publishing.
+  purpose: [
+    {
+      icon: 'check',
+      title: 'Our Mission',
+      text: 'To help growing businesses solve real business challenges through digital transformation — with the right platform, a dedicated team and support that lasts.',
+    },
+    {
+      icon: 'globe',
+      title: 'Our Vision',
+      text: 'To be the partner growing businesses trust to turn the right technology into lasting results.',
+    },
+    {
+      icon: 'users',
+      title: 'Our Values',
+      values: ['Partnership — we work as part of your team', 'Accountability — we stay with you after go‑live', 'Learning — we listen, iterate and improve', 'Care — support whenever your business needs it'],
+    },
+  ],
 
   // The founders. Photos live in public/team/.
   leadership: {

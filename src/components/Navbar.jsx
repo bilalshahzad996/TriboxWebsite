@@ -33,7 +33,6 @@ const links = [
     sub: products.map((p) => ({ href: p.page, label: p.title, text: p.text, mark: p.logo ? <TechLogo name={p.logo} className="mark" /> : <ServiceMark service={p} size={18} /> })),
   },
   { href: '/#clients', label: 'Clients' },
-  { href: '/#process', label: 'Process' },
   {
     href: '/about/',
     label: 'Company',
@@ -212,8 +211,8 @@ export default function Navbar() {
                   {link}
                   {/* Collapsed on mobile: hidden links can't be tabbed to */}
                   <div className="nav-sub" style={{ '--i': i }} inert={mobile && !isOpen ? true : undefined}>
-                    {/* Long lists (Services) get two columns */}
-                    <ul aria-label={l.label} className={l.sub.length > 4 ? 'is-grid' : undefined}>
+                    {/* Long lists (Services) get two columns; shorter ones stay in one */}
+                    <ul aria-label={l.label} className={l.sub.length > 5 ? 'is-grid' : undefined}>
                       {l.sub.map((item) => (
                         <li key={item.label}>
                           <a href={item.href} onClick={goTo}>
