@@ -11,9 +11,9 @@ export const aboutPage = {
 
   hero: {
     label: 'About Tribox',
-    title: 'The team behind your',
-    accent: 'digital transformation',
-    text: 'A Dubai-based team of consultants and developers, with colleagues in Lahore — helping growing businesses run better on Microsoft Dynamics 365, Odoo, and custom web and mobile solutions.',
+    title: 'Meet Tribox, your',
+    accent: 'digital transformation partner',
+    text: 'Tribox is a Dubai-based technology company with a team in Lahore, helping growing businesses run better on Microsoft Dynamics 365, Odoo, and custom web and mobile solutions.',
   },
 
   // Mission, vision and values. Draft wording: confirm with the founders before publishing.

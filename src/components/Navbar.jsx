@@ -30,6 +30,8 @@ const links = [
   {
     // No page or section of its own, so no href: it just opens the dropdown of product pages
     label: 'Products',
+    // Two columns, filled top to bottom: POS and SIS on the left, HRMS and Fleet Track on the right
+    split: 3,
     sub: products.map((p) => ({ href: p.page, label: p.title, text: p.text, mark: p.logo ? <TechLogo name={p.logo} className="mark" /> : <ServiceMark service={p} size={18} /> })),
   },
   { href: '/#clients', label: 'Clients' },
@@ -212,7 +214,11 @@ export default function Navbar() {
                   {/* Collapsed on mobile: hidden links can't be tabbed to */}
                   <div className="nav-sub" style={{ '--i': i }} inert={mobile && !isOpen ? true : undefined}>
                     {/* Long lists (Services) get two columns; shorter ones stay in one */}
-                    <ul aria-label={l.label} className={l.sub.length > 5 ? 'is-grid' : undefined}>
+                    <ul
+                      aria-label={l.label}
+                      className={l.split ? 'is-split' : l.sub.length > 5 ? 'is-grid' : undefined}
+                      style={l.split ? { '--rows': l.split } : undefined}
+                    >
                       {l.sub.map((item) => (
                         <li key={item.label}>
                           <a href={item.href} onClick={goTo}>

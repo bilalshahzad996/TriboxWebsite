@@ -2,7 +2,7 @@ import { useRef } from 'react'
 
 // Card that tilts in 3D towards the mouse and exposes the pointer position
 // as --mx / --my so CSS can draw a spotlight under it.
-export default function TiltCard({ className = '', children, max = 7 }) {
+export default function TiltCard({ className = '', style, children, max = 7 }) {
   const ref = useRef(null)
 
   const onMove = (e) => {
@@ -22,7 +22,7 @@ export default function TiltCard({ className = '', children, max = 7 }) {
   }
 
   return (
-    <div ref={ref} className={`tilt ${className}`} onPointerMove={onMove} onPointerLeave={onLeave}>
+    <div ref={ref} className={`tilt ${className}`} style={style} onPointerMove={onMove} onPointerLeave={onLeave}>
       {children}
     </div>
   )
