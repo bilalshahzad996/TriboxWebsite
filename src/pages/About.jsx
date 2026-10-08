@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { aboutPage as page } from '../data/about'
 import { company, highlights, mapsUrl, products, services } from '../data/site'
+import BrandLogo from '../components/BrandLogo'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
 import Magnetic from '../components/Magnetic'
 import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
-import ServiceMark from '../components/ServiceMark'
-import TechLogo from '../components/TechLogo'
 
 // Renders text where *asterisk-wrapped* phrases are highlighted.
 function Highlighted({ text }) {
@@ -48,7 +47,7 @@ function Hero() {
             </a>
           </Magnetic>
           <Magnetic>
-            <a href="#offer" className="btn btn-ghost">What we offer</a>
+            <a href="/#services" className="btn btn-ghost">What we offer</a>
           </Magnetic>
         </div>
 
@@ -99,47 +98,17 @@ function Story() {
   )
 }
 
-function Offer() {
+function Vision() {
+  const { vision } = page
   return (
-    <section id="offer" className="section">
+    <section className="section">
       <div className="container">
-        <SectionHead
-          num="02"
-          label="What we offer"
-          title="Services and products for"
-          accent="every part of your business"
-          intro={company.tagline}
-        />
-
-        <h3 className="offer-heading">Services</h3>
-        <div className="offer-grid">
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 4) * 70} as="a" href={s.page ?? '/#services'} className="offer-card">
-              <span className="offer-mark"><ServiceMark service={s} size={22} /></span>
-              <span className="offer-text">
-                <strong>{s.short}</strong>
-                <small>{s.tags.join(' · ')}</small>
-              </span>
-              <span className="offer-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
-            </Reveal>
-          ))}
-        </div>
-
-        <h3 className="offer-heading">Products</h3>
-        <div className="offer-grid">
-          {products.map((p, i) => (
-            <Reveal key={p.title} delay={(i % 4) * 70} as="a" href={p.page} className="offer-card">
-              <span className="offer-mark">
-                {p.logo ? <TechLogo name={p.logo} className="mark" /> : <ServiceMark service={p} size={22} />}
-              </span>
-              <span className="offer-text">
-                <strong>{p.title}</strong>
-                <small>{p.text}</small>
-              </span>
-              <span className="offer-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="vision">
+          <span className="label"><b>02</b> Our vision</span>
+          <span className="vision-mark" aria-hidden="true">“</span>
+          <p className="vision-statement"><Highlighted text={vision.statement} /></p>
+          <p className="vision-text">{vision.text}</p>
+        </Reveal>
       </div>
     </section>
   )
@@ -178,6 +147,14 @@ function Leadership() {
               </div>
               <h3>{p.name}</h3>
               <p>{p.role}</p>
+              <div className="team-links">
+                <a href={`mailto:${p.email}`} aria-label={`Email ${p.name}`} title={p.email}>
+                  <Icon name="mail" size={18} />
+                </a>
+                <a href={p.linkedin} target="_blank" rel="noreferrer" aria-label={`${p.name} on LinkedIn`} title="LinkedIn">
+                  <BrandLogo name="linkedin" className="team-linkedin" />
+                </a>
+              </div>
             </Reveal>
           ))}
         </div>
@@ -198,7 +175,7 @@ export default function About() {
     <>
       <Hero />
       <Story />
-      <Offer />
+      <Vision />
       <Why />
       <Leadership />
       <Contact num="05" />
