@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
+import About from './pages/About'
 import Careers from './pages/Careers'
 import ServicePage from './components/ServicePage'
 import { servicePages } from './data/servicePages'
@@ -18,6 +19,7 @@ export function AppRoutes() {
         {[...servicePages, ...productPages].map((p) => (
           <Route key={p.path} path={p.path.replace(/\/$/, '')} element={<ServicePage page={p} />} />
         ))}
+        <Route path="/about" element={<About />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />

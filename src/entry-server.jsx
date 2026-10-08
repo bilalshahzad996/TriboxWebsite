@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { AppRoutes } from './App.jsx'
+import { aboutPage } from './data/about'
 import { careersPage } from './data/careers'
 import { servicePages } from './data/servicePages'
 import { productPages } from './data/productPages'
@@ -67,6 +68,29 @@ export const pages = [
   { url: '/', file: 'index.html' },
   // e.g. /services/odoo/ -> services/odoo/index.html
   ...[...servicePages, ...productPages].map((p) => ({ url: p.path, file: `${p.path.slice(1)}index.html`, head: serviceHead(p) })),
+  {
+    url: aboutPage.path,
+    file: 'about/index.html',
+    head: {
+      title: aboutPage.meta.title,
+      description: aboutPage.meta.description,
+      url: SITE + aboutPage.path,
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'AboutPage',
+          url: SITE + aboutPage.path,
+          mainEntity: {
+            '@type': 'Organization',
+            name: company.name,
+            legalName: company.legalName,
+            url: `${SITE}/`,
+            founder: aboutPage.leadership.people.map((p) => ({ '@type': 'Person', name: p.name, jobTitle: p.role, image: SITE + p.photo })),
+          },
+        },
+      ],
+    },
+  },
   {
     url: careersPage.path,
     file: 'careers/index.html',

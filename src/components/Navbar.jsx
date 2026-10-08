@@ -35,10 +35,10 @@ const links = [
   { href: '/#clients', label: 'Clients' },
   { href: '/#process', label: 'Process' },
   {
-    href: '/#about',
+    href: '/about/',
     label: 'Company',
     sub: [
-      { href: '/#about', label: 'About us', text: 'Who we are and how we work', mark: <Icon name="globe" size={18} /> },
+      { href: '/about/', label: 'About us', text: 'Who we are and how we work', mark: <Icon name="globe" size={18} /> },
       { href: '/careers/', label: 'Careers', text: 'Join our team', mark: <Icon name="users" size={18} /> },
     ],
   },
