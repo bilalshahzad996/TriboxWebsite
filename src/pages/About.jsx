@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 import { aboutPage as page } from '../data/about'
-import { company, highlights, mapsUrl, process, products, services } from '../data/site'
+import { company, highlights, mapsUrl, products, services } from '../data/site'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
 import Magnetic from '../components/Magnetic'
-import ProcessSteps from '../components/ProcessSteps'
 import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
 import ServiceMark from '../components/ServiceMark'
@@ -16,37 +15,71 @@ function Highlighted({ text }) {
 }
 
 function Hero() {
-  const { hero } = page
+  const { hero, leadership } = page
+  // "At a glance" figures, counted from the site's data so they stay true
+  const stats = [
+    { value: services.length, label: 'Services' },
+    { value: products.length, label: 'Products' },
+    { value: company.offices.length, label: 'Offices' },
+    { value: leadership.people.length, label: 'Co-founders' },
+  ]
   return (
-    <section className="page-hero">
+    <section className="page-hero about-hero">
       <div className="orb orb-1" />
       <div className="orb orb-2" />
-      <div className="container page-hero-inner">
-        <div>
-          <p className="label intro" style={{ '--d': 1 }}>{hero.label}</p>
-          <h1 className="page-title intro" style={{ '--d': 2 }}>
-            {hero.title} <span className="gradient-text animated">{hero.accent}</span>
-          </h1>
-          <p className="page-lead intro" style={{ '--d': 3 }}><Highlighted text={company.statement} /></p>
-          <p className="page-lead about-text intro" style={{ '--d': 3 }}>{company.about}</p>
-          <div className="page-actions intro" style={{ '--d': 4 }}>
-            <Magnetic>
-              <a href="#contact" className="btn btn-primary">
-                Talk to our team <Icon name="arrow" size={18} />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a href="#offer" className="btn btn-ghost">What we offer</a>
-            </Magnetic>
-          </div>
+      <div className="container about-hero-inner">
+        <p className="label intro" style={{ '--d': 1 }}>{hero.label}</p>
+        <h1 className="page-title intro" style={{ '--d': 2 }}>
+          {hero.title} <span className="gradient-text animated">{hero.accent}</span>
+        </h1>
+        <p className="page-lead intro" style={{ '--d': 3 }}>{hero.text}</p>
+
+        <div className="founder-row intro" style={{ '--d': 4 }}>
+          <span className="founder-stack">
+            {leadership.people.map((p) => <img key={p.name} src={p.photo} alt="" />)}
+          </span>
+          <span>Led by our <a href="#leadership">three co-founders</a></span>
         </div>
 
-        <div className="modules-panel intro" style={{ '--d': 3 }}>
+        <div className="page-actions intro" style={{ '--d': 5 }}>
+          <Magnetic>
+            <a href="#contact" className="btn btn-primary">
+              Talk to our team <Icon name="arrow" size={18} />
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a href="#offer" className="btn btn-ghost">What we offer</a>
+          </Magnetic>
+        </div>
+
+        <dl className="about-stats intro" style={{ '--d': 6 }}>
+          {stats.map((st) => (
+            <div key={st.label}>
+              <dt>{st.label}</dt>
+              <dd className="gradient-text">{st.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  )
+}
+
+function Story() {
+  return (
+    <section className="section">
+      <div className="container approach">
+        <div>
+          <Reveal as="span" className="label"><b>01</b> Who we are</Reveal>
+          <Reveal as="p" delay={80} className="story-lead"><Highlighted text={company.statement} /></Reveal>
+          <Reveal as="p" delay={140}>{company.about}</Reveal>
+        </div>
+        <Reveal variant="right" delay={150} className="modules-panel">
           <div className="modules-head">
             <span className="deliver-icon"><Icon name="pin" size={18} /></span>
             <div>
               <strong>{company.legalName}</strong>
-              <small>{company.kicker}</small>
+              <small>Where we work</small>
             </div>
           </div>
           <ul className="offices-list">
@@ -60,7 +93,7 @@ function Hero() {
             ))}
           </ul>
           <p className="panel-note"><Icon name="clock" size={16} /> {company.hours}</p>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -71,7 +104,7 @@ function Offer() {
     <section id="offer" className="section">
       <div className="container">
         <SectionHead
-          num="01"
+          num="02"
           label="What we offer"
           title="Services and products for"
           accent="every part of your business"
@@ -116,7 +149,7 @@ function Why() {
   return (
     <section className="section">
       <div className="container">
-        <SectionHead num="02" label="Why Tribox" title="Why clients" accent="choose us" />
+        <SectionHead num="03" label="Why Tribox" title="Why clients" accent="choose us" />
         <div className="card-grid cols-4">
           {highlights.map((h, i) => (
             <Reveal key={h.title} delay={i * 90} className="card">
@@ -134,9 +167,9 @@ function Why() {
 function Leadership() {
   const { leadership } = page
   return (
-    <section className="section">
+    <section id="leadership" className="section">
       <div className="container">
-        <SectionHead num="03" label="Leadership" title={leadership.title} accent={leadership.accent} intro={leadership.intro} />
+        <SectionHead num="04" label="Leadership" title={leadership.title} accent={leadership.accent} intro={leadership.intro} />
         <div className="team-grid">
           {leadership.people.map((p, i) => (
             <Reveal key={p.name} delay={i * 110} className="team-card">
@@ -153,17 +186,6 @@ function Leadership() {
   )
 }
 
-function HowWeWork() {
-  return (
-    <section className="section">
-      <div className="container">
-        <SectionHead num="04" label="How we work" title="Our working" accent="process" />
-        <ProcessSteps steps={process} />
-      </div>
-    </section>
-  )
-}
-
 export default function About() {
   // The built page already has this title; this covers the development server.
   useEffect(() => {
@@ -175,10 +197,10 @@ export default function About() {
   return (
     <>
       <Hero />
+      <Story />
       <Offer />
       <Why />
       <Leadership />
-      <HowWeWork />
       <Contact num="05" />
     </>
   )
