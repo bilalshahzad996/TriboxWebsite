@@ -220,9 +220,28 @@ export const clients = [
   { name: '4Matic', logo: '/logos/clients/4matic.jpg' },
   { name: 'KEZAD Group', logo: '/logos/clients/kezad-group.png' },
   { name: 'Maryaz Studio', logo: '/logos/clients/maryaz-studio.png' },
-  { name: 'Holborn European Marketing Company Limited', logo: '/logos/clients/holborn-european-marketing.png' },
+  { name: 'Holborn Investment Company Limited', logo: '/logos/clients/holborn-investment.png' },
   { name: 'Aniqle', logo: '/logos/clients/aniqle.png' },
 ]
+
+// Licences Tribox resells, shown under "How we work" on the home page. `logo` names come from
+// components/TechLogo.jsx, `icon` names from components/Icon.jsx.
+export const licences = {
+  title: 'Licenses &',
+  accent: 'partner authority',
+  intro: 'Microsoft Partner Designation level. Odoo Partner and authorised reseller. Tribox FZCO has end-to-end authority over the licences, the delivery and the run.',
+  badge: 'Authorised reseller',
+  items: [
+    { name: 'Microsoft 365', text: 'Productivity cloud for the whole enterprise.', logo: 'microsoft' },
+    { name: 'Office 365', text: 'Word, Excel, PowerPoint, Outlook suites.', icon: 'invoice' },
+    { name: 'Microsoft Teams', text: 'Meetings, chat, voice and rooms.', icon: 'users' },
+    { name: 'Microsoft Azure', text: 'Compute, networking, AI and data platform.', logo: 'azure' },
+    { name: 'Microsoft Dynamics 365', text: 'Finance, Supply Chain, Sales, Customer Service, Business Central.', logo: 'dynamics365' },
+    { name: 'Microsoft Power Platform', text: 'Power Apps, Power Automate, Power Pages and Copilot Studio.', logo: 'powerPages' },
+    { name: 'Microsoft Power BI', text: 'Enterprise analytics and AI insights.', logo: 'powerBi' },
+    { name: 'Odoo', text: 'Open Source ERP for finance, sales, inventory, manufacturing, HR and CRM.', logo: 'odooWordmark' },
+  ],
+}
 
 export const process = [
   { icon: 'mail', title: 'Drop us an email', text: 'Tell us about your business and the challenge you want to solve.' },

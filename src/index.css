@@ -1745,10 +1745,10 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
 .dg-stop-a { stop-color: var(--accent); }
 .dg-stop-b { stop-color: var(--primary); }
 .dg-stop-c { stop-color: var(--violet); }
-.dg-mid { fill: color-mix(in srgb, var(--primary) 22%, #050a1c); }
-.dg-mid-text { fill: #fff; font: 700 10.5px var(--display); letter-spacing: 0.04em; }
-.dg-pill { fill: var(--surface); stroke: rgb(var(--accent-rgb) / 0.6); }
-.dg-pill-text { fill: var(--text); font: 700 9.5px var(--font); letter-spacing: 0.03em; }
+.dg-secure { fill: var(--surface); stroke: rgb(var(--accent-rgb) / 0.55); stroke-width: 1.2; filter: drop-shadow(0 6px 10px rgb(0 0 0 / 0.18)); }
+.dg-go path { fill: none; stroke: var(--on-gradient); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.dg-secure-text { fill: var(--text); font: 700 9px var(--display); letter-spacing: 0.05em; }
+.dg-lock { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .dg-card { fill: var(--surface); stroke: var(--line-strong); }
 .dg-tax { fill: rgb(var(--accent-rgb) / 0.08); stroke: rgb(var(--accent-rgb) / 0.35); }
 .dg-tax-title { fill: var(--accent); font: 800 22px var(--display); letter-spacing: 0.01em; }
@@ -1876,6 +1876,20 @@ a.info-card:hover { transform: translateX(8px); border-color: rgb(var(--accent-r
 @media (max-width: 900px) {
   .lens { grid-template-columns: 1fr; }
 }
+/* Licences & partner authority, under "How we work" on the home page */
+.licences { margin-top: 72px; }
+.licences-title { font-size: clamp(1.6rem, 3vw, 2.3rem); }
+.licences-intro { margin-top: 10px; max-width: 760px; color: var(--muted); }
+.licences-grid { list-style: none; padding: 0; margin-top: 28px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.licence { display: flex; flex-direction: column; gap: 8px; padding: 22px 20px 16px; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); transition: border-color 0.3s, translate 0.4s var(--ease); }
+.licence:hover { border-color: rgb(var(--accent-rgb) / 0.45); translate: 0 -4px; }
+.licence-logo { height: 34px; width: auto; max-width: 120px; margin-bottom: 6px; align-self: flex-start; }
+.licence-icon { display: grid; place-items: center; width: 34px; color: var(--accent); }
+.licence strong { font: 700 1rem var(--display); }
+.licence > span:not(.licence-logo) { font-size: 0.86rem; color: var(--muted); }
+.licence em { margin-top: auto; padding-top: 10px; align-self: flex-end; font-style: normal; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+@media (max-width: 1080px) { .licences-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .licences { margin-top: 48px; } .licences-grid { grid-template-columns: 1fr; } }
 .approach-lead { font-size: 1.1rem; color: var(--text); }
 .deliver {
   padding: 32px;

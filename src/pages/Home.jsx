@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { advisory, company, marquee, highlights, services, technologies, process } from '../data/site'
+import { advisory, company, licences, marquee, highlights, services, technologies, process } from '../data/site'
 import ClientMarquee from '../components/ClientMarquee'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
@@ -368,6 +368,23 @@ function Process() {
         <SectionHead num="06" label="How we work" title="Our working" accent="process" />
 
         <ProcessSteps steps={process} />
+
+        <div className="licences">
+          <Reveal as="h3" className="licences-title">{licences.title} <span className="gradient-text">{licences.accent}</span></Reveal>
+          <Reveal as="p" delay={80} className="licences-intro">{licences.intro}</Reveal>
+          <ul className="licences-grid">
+            {licences.items.map((l, i) => (
+              <Reveal as="li" key={l.name} delay={(i % 4) * 80} className="licence">
+                {l.logo
+                  ? <TechLogo name={l.logo} className="licence-logo" />
+                  : <span className="licence-logo licence-icon"><Icon name={l.icon} size={26} /></span>}
+                <strong>{l.name}</strong>
+                <span>{l.text}</span>
+                <em>{licences.badge}</em>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   )

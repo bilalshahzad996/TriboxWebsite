@@ -24,63 +24,70 @@ function Badge({ x, y, n }) {
   )
 }
 
-// Small line icons, drawn in a 56 x 56 box.
+// Line icons, drawn in a 56 x 56 box.
 const icons = {
   building: (
     <>
-      <path d="M14 48V16l16-8 16 8v32" /><path d="M14 48h32" /><path d="M22 20h4M22 28h4M22 36h4M34 20h4M34 28h4M34 36h4" />
+      <rect x="13" y="6" width="30" height="44" rx="3" /><path d="M20 16h4M32 16h4M20 25h4M32 25h4M20 34h4M32 34h4" /><path d="M24 50v-9h8v9" />
     </>
   ),
   invoice: (
     <>
-      <path d="M14 6h20l10 10v34H14z" /><path d="M34 6v10h10" /><path d="M20 26h18M20 33h18M20 40h12" />
+      <path d="M14 5h21l9 9v37H14z" /><path d="M35 5v9h9" /><path d="M20 26h18M20 33h18M20 40h11" />
     </>
   ),
   server: (
     <>
-      <rect x="10" y="6" width="36" height="14" rx="3" /><rect x="10" y="22" width="36" height="14" rx="3" /><rect x="10" y="38" width="36" height="14" rx="3" />
-      <path d="M16 13h6M16 29h6M16 45h6" />
-    </>
-  ),
-  shield: (
-    <>
-      <path d="M28 6l18 6v14c0 12-8 20-18 24C18 46 10 38 10 26V12z" /><path d="M20 28l6 6 10-12" />
+      <rect x="9" y="6" width="38" height="14" rx="4" /><rect x="9" y="21" width="38" height="14" rx="4" /><rect x="9" y="36" width="38" height="14" rx="4" />
+      <path d="M16 13h7M16 28h7M16 43h7M38 13h2M38 28h2M38 43h2" />
     </>
   ),
   idcard: (
     <>
-      <rect x="8" y="12" width="40" height="32" rx="5" /><circle cx="22" cy="26" r="5" /><path d="M14 38c1-5 4-7 8-7s7 2 8 7M34 24h8M34 31h8" />
+      <rect x="6" y="12" width="44" height="32" rx="6" /><circle cx="21" cy="26" r="5" /><path d="M12 38c1.5-5 4.5-7 9-7s7.500 2 9 7M34 24h9M34 31h9" />
     </>
   ),
   database: (
     <>
-      <ellipse cx="28" cy="13" rx="16" ry="6" /><path d="M12 13v30c0 3 7 6 16 6s16-3 16-6V13" /><path d="M12 28c0 3 7 6 16 6s16-3 16-6" />
+      <ellipse cx="28" cy="12" rx="16" ry="6" /><path d="M12 12v32c0 3.300 7.200 6 16 6s16-2.700 16-6V12" /><path d="M12 28c0 3.300 7.200 6 16 6s16-2.700 16-6" />
     </>
   ),
   truck: (
     <>
-      <path d="M6 14h28v26H6zM34 22h10l6 8v10H34z" /><circle cx="17" cy="42" r="5" /><circle cx="42" cy="42" r="5" />
+      <path d="M5 15h27v26H5zM32 23h11l8 9v9H32z" /><circle cx="16" cy="43" r="5" /><circle cx="42" cy="43" r="5" />
     </>
   ),
   desk: (
     <>
-      <rect x="22" y="6" width="28" height="20" rx="3" /><path d="M36 26v6M30 32h12" /><circle cx="14" cy="18" r="5" /><path d="M6 44c0-8 4-12 8-12s6 2 8 4M4 50h48M10 50v-8" />
+      <rect x="8" y="8" width="40" height="28" rx="4" /><circle cx="28" cy="19" r="4.500" /><path d="M20 31c1-4 4-5.500 8-5.500s7 1.500 8 5.500" /><path d="M28 36v8M18 46h20" />
     </>
   ),
   bank: (
     <>
-      <path d="M6 22L28 8l22 14z" /><path d="M12 26v18M24 26v18M32 26v18M44 26v18M8 48h40" />
+      <path d="M5 21L28 7l23 14z" /><path d="M11 26v18M22 26v18M34 26v18M45 26v18M7 49h42" />
     </>
   ),
   cloud: (
     <>
-      <path d="M16 42a10 10 0 010-20 14 14 0 0127-4 11 11 0 011 24z" /><path d="M22 32h12M22 38h12" />
+      <path d="M16 43a10 10 0 010-20 14 14 0 0127-4 11 11 0 011 24z" /><path d="M22 31h12M22 37h12" />
     </>
   ),
 }
 
-function Icon({ name, x, y, scale = 1 }) {
-  return <g className="dg-ico" transform={`translate(${x} ${y}) scale(${scale})`}>{icons[name]}</g>
+// An icon centred on (cx, cy), `size` px wide.
+function Icon({ name, cx, cy, size = 52 }) {
+  const k = size / 56
+  return <g className="dg-ico" transform={`translate(${cx - 28 * k} ${cy - 28 * k}) scale(${k})`}>{icons[name]}</g>
+}
+
+// An icon with its text, the text block centred on the icon's height.
+function Row({ x, cy, icon, size, lines }) {
+  return (
+    <g>
+      <Icon name={icon} cx={x + 38} cy={cy} size={size} />
+      <T x={x + 90} y={cy - ((lines.length - 1) * 16) / 2 + 4.500} lines={lines} cls="dg-text" />
+    </g>
+  )
 }
 
 // A corner card: its header, then whatever is drawn inside it.
@@ -88,10 +95,10 @@ function Card({ x, y, w = 300, h = 212, corner, title, role, children }) {
   return (
     <g>
       <rect className="dg-card" x={x} y={y} width={w} height={h} rx="18" />
-      <text x={x + 22} y={y + 34} className="dg-head">
+      <text x={x + 24} y={y + 34} className="dg-head">
         <tspan className="dg-corner">{corner} | </tspan>{title}
       </text>
-      {role && <text x={x + 22} y={y + 54} className="dg-head">{role}</text>}
+      {role && <text x={x + 24} y={y + 54} className="dg-head">{role}</text>}
       {children}
     </g>
   )
@@ -107,81 +114,78 @@ export default function EInvoicingFlow({ alt }) {
           <linearGradient id={g('frame')} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" className="dg-stop-a" /><stop offset="0.55" className="dg-stop-b" /><stop offset="1" className="dg-stop-c" />
           </linearGradient>
-          <linearGradient id={g('text')} x1="0" y1="0" x2="1" y2="0">
+          <linearGradient id={g('go')} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" className="dg-stop-a" /><stop offset="1" className="dg-stop-c" />
           </linearGradient>
-          <marker id={g('arrow')} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M1 1l8 4-8 4z" className="dg-arrow-head" />
+          <marker id={g('arrow')} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0 1l10 4-10 4z" className="dg-arrow-head" />
           </marker>
         </defs>
 
         {/* Central frame holding the two service providers */}
         <rect className="dg-frame" x="350" y="0" width="330" height="500" rx="26" fill={`url(#${g('frame')})`} />
-        <rect className="dg-mid" x="364" y="222" width="302" height="56" />
-        <T x="378" y="246" lines={['SECURE DATA', 'NETWORK TRANSFER']} cls="dg-mid-text" step={14} />
-        <rect className="dg-pill" x="540" y="238" width="112" height="26" rx="13" />
-        <text x="596" y="255" className="dg-pill-text" textAnchor="middle">SECURE TRANSMIT →</text>
+        {/* The secure transfer between the two providers: a label pill centred between them */}
+        <rect className="dg-secure" x="385" y="239" width="264" height="26" rx="13" />
+        <g className="dg-lock" transform="translate(401 245)">
+          <rect x="0" y="6" width="12" height="9" rx="2.500" /><path d="M2.500 6V4.500a3.500 3.500 0 017 0V6" />
+        </g>
+        <text x="421" y="256" className="dg-secure-text">SECURE DATA NETWORK TRANSFER</text>
+        {/* Direction of travel: from provider A down to provider B */}
+        <g className="dg-go" transform="translate(627 252)">
+          <circle r="10" fill={`url(#${g('go')})`} /><path d="M0 -4.500V4M-3.500 1l3.500 3.500 3.500-3.500" />
+        </g>
 
         {/* Corner 1: Supplier */}
         <Card x={10} y={14} corner="CORNER 1" title="SUPPLIER" role="(SUBMITTER)">
-          <Icon name="building" x={32} y={76} scale={1.05} />
-          <T x={112} y={96} lines={['Generates', 'standardised', 'e-invoice data.']} cls="dg-text" />
-          <Icon name="invoice" x={36} y={148} scale={0.8} />
-          <T x={112} y={168} lines={['Transmits data to', 'first Service Provider.']} cls="dg-text" />
+          <Row x={10} cy={114} icon="building" lines={['Generates', 'standardised', 'e-invoice data.']} />
+          <Row x={10} cy={178} icon="invoice" size={44} lines={['Transmits data to', 'first Service Provider.']} />
         </Card>
 
         {/* Corner 2: Service Provider A */}
         <Card x={364} y={14} w={302} corner="CORNER 2" title="SERVICE PROVIDER A" role="(VALIDATOR)">
-          <Icon name="server" x={380} y={74} scale={0.95} />
-          <T x={440} y={90} lines={['Data is validated against', "standards. Receiving party's", 'identity is verified.']} cls="dg-text" />
-          <rect className="dg-check" x={380} y={148} width={270} height={52} rx="12" />
-          <Icon name="idcard" x={390} y={156} scale={0.65} />
-          <text x={436} y={170} className="dg-check-title">IDENTITY DIRECTORY CHECK</text>
-          <text x={436} y={188} className="dg-text">Check recipient ID.</text>
+          <Row x={364} cy={108} icon="server" lines={['Data is validated against', "standards. Receiving party's", 'identity is verified.']} />
+          <rect className="dg-check" x={388} y={150} width={254} height={52} rx="12" />
+          <Icon name="idcard" cx={414} cy={176} size={30} />
+          <text x={440} y={172} className="dg-check-title">IDENTITY DIRECTORY CHECK</text>
+          <text x={440} y={190} className="dg-text">Check recipient ID.</text>
         </Card>
 
         {/* Corner 3: Service Provider B */}
         <Card x={364} y={278} w={302} corner="CORNER 3" title="SERVICE PROVIDER B" role="(DELIVERER)">
-          <Icon name="database" x={380} y={340} scale={0.95} />
-          <T x={440} y={356} lines={['Receives and prepares', 'e-invoice for delivery.']} cls="dg-text" />
-          <Icon name="truck" x={380} y={414} scale={0.7} />
-          <T x={440} y={434} lines={['Delivers data to the Buyer.']} cls="dg-text" />
+          <Row x={364} cy={372} icon="database" lines={['Receives and prepares', 'e-invoice for delivery.']} />
+          <Row x={364} cy={434} icon="truck" size={44} lines={['Delivers data to the Buyer.']} />
         </Card>
 
         {/* Corner 4: Receiver */}
         <Card x={10} y={278} corner="CORNER 4" title="RECEIVER" role="(BUYER)">
-          <Icon name="desk" x={30} y={340} scale={1.05} />
-          <T x={112} y={358} lines={["Buyer's business", 'systems populated', 'with received', 'e-invoice.']} cls="dg-text" />
-          <T x={112} y={430} lines={['Automatic updates', 'and processing.']} cls="dg-text" />
+          <Row x={10} cy={378} icon="desk" lines={["Buyer's business", 'systems populated', 'with received', 'e-invoice.']} />
+          <T x={100} y={440} lines={['Automatic updates', 'and processing.']} cls="dg-text" />
         </Card>
 
         {/* Central tax authority */}
-        <rect className="dg-tax" x="722" y="14" width="268" height="472" rx="24" />
-        <T x={856} y={64} lines={['CENTRAL TAX', 'AUTHORITY', 'INTEGRATION']} cls="dg-tax-title" step={26} anchor="middle" />
-        <rect className="dg-card" x="738" y="156" width="236" height="316" rx="16" />
-        <text x="756" y="190" className="dg-head">TAX DATA</text>
-        <text x="756" y="208" className="dg-head">SUBMISSION</text>
-        <T x={756} y={232} lines={['Accredited providers', 'transmit required tax', 'data extracts.']} cls="dg-text" />
-        <Icon name="bank" x={760} y={304} scale={1.05} />
-        <Icon name="cloud" x={846} y={304} scale={1.05} />
-        <text x="756" y="400" className="dg-head">CENTRAL TAX</text>
-        <text x="756" y="418" className="dg-head">PLATFORM</text>
-        <T x={756} y={440} lines={['Collects, processes, and', 'stores tax data.']} cls="dg-text" />
+        <rect className="dg-tax" x="770" y="14" width="220" height="472" rx="24" />
+        <T x={880} y={62} lines={['CENTRAL TAX', 'AUTHORITY', 'INTEGRATION']} cls="dg-tax-title" step={25} anchor="middle" />
+        <rect className="dg-card" x="784" y="150" width="192" height="322" rx="16" />
+        <T x={802} y={186} lines={['TAX DATA', 'SUBMISSION']} cls="dg-head" step={18} />
+        <T x={802} y={226} lines={['Accredited providers', 'transmit required tax', 'data extracts.']} cls="dg-text" />
+        <Icon name="bank" cx={832} cy={332} size={48} />
+        <Icon name="cloud" cx={920} cy={337} size={48} />
+        <T x={802} y={396} lines={['CENTRAL TAX', 'PLATFORM']} cls="dg-head" step={18} />
+        <T x={802} y={436} lines={['Collects, processes, and', 'stores tax data.']} cls="dg-text" />
 
-        {/* Connectors */}
+        {/* Connectors: 1 supplier to A, 2 and 3 to the tax authority, 4 provider B to the buyer */}
         <g className="dg-line" markerEnd={`url(#${g('arrow')})`}>
-          <path d="M310 120H364" />
-          <path d="M666 120H690a14 14 0 0114 14V196a14 14 0 0014 14H738" />
-          <path d="M666 384H738" />
-          <path d="M364 384H310" />
+          <path d="M310 120H350" />
+          <path d="M680 120H724q12 0 12 12V198q0 12 12 12H784" />
+          <path d="M680 318H724q12 0 12 12V396q0 12 12 12H784" />
+          <path d="M350 384H310" />
         </g>
-        <path className="dg-line" d="M515 226V278" markerEnd={`url(#${g('arrow')})`} />
-        <Badge x={337} y={120} n={1} />
-        <Badge x={690} y={120} n={2} />
-        <Badge x={716} y={210} n={5} />
-        <Badge x={690} y={384} n={3} />
-        <Badge x={716} y={384} n={5} />
-        <Badge x={337} y={384} n={4} />
+        <Badge x={330} y={120} n={1} />
+        <Badge x={704} y={120} n={2} />
+        <Badge x={762} y={210} n={5} />
+        <Badge x={704} y={318} n={3} />
+        <Badge x={762} y={408} n={5} />
+        <Badge x={330} y={384} n={4} />
       </svg>
     </Reveal>
   )
