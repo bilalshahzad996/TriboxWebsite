@@ -5,7 +5,7 @@ import BrandLogo from '../components/BrandLogo'
 import ClientMarquee from '../components/ClientMarquee'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
-import MeetingRoom from '../components/MeetingRoom'
+import GlobalPresence from '../components/GlobalPresence'
 import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
 import TiltCard from '../components/TiltCard'
@@ -46,7 +46,7 @@ function Hero() {
 
         </div>
 
-        <MeetingRoom className="intro" />
+        <GlobalPresence className="intro" />
 
         <dl className="about-stats intro" style={{ '--d': 6 }}>
           {stats.map((st) => (

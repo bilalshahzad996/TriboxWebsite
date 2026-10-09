@@ -61,6 +61,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://tribox365.com/services/licensing/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://tribox365.com/products/pos-business-central/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

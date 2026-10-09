@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Contact from './Contact'
 import EInvoicingFlow from './EInvoicingFlow'
+import LicenceGrid from './LicenceGrid'
 import Icon from './Icon'
 import Magnetic from './Magnetic'
 import ProcessSteps from './ProcessSteps'
@@ -222,6 +223,58 @@ function Licensing({ page, num }) {
   )
 }
 
+function Licences({ page, num }) {
+  const { label, title, accent } = page.licences
+  return (
+    <section id="licences" className="section">
+      <div className="container">
+        <SectionHead num={num} label={label} title={title} accent={accent} />
+        <LicenceGrid />
+      </div>
+    </section>
+  )
+}
+
+function Gallery({ page, num }) {
+  const { label, title, accent, intro, url, shots } = page.gallery
+  const [current, setCurrent] = useState(0)
+  const shot = shots[current]
+  return (
+    <section id="tour" className="section">
+      <div className="container">
+        <SectionHead num={num} label={label} title={title} accent={accent} intro={intro} />
+        <Reveal className="tour">
+          <div className="tour-stage" key={shot.id}>
+            <div className="tour-bar" aria-hidden="true">
+              <span /><span /><span />
+              <em>{url}</em>
+            </div>
+            <div className="tour-view" style={{ aspectRatio: Math.max(1.6, shot.width / shot.height) }}>
+              <img src={`/products/fleettrack/${shot.id}.webp`} width={shot.width} height={shot.height} alt={`${shot.title}: ${shot.text}`} loading="lazy" />
+            </div>
+          </div>
+          <div className="tour-tabs" role="tablist" aria-label="Fleet Track screens">
+            {shots.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                role="tab"
+                aria-selected={i === current}
+                className={i === current ? 'is-active' : ''}
+                onClick={() => setCurrent(i)}
+              >
+                <b>{twoDigits(i)}</b>
+                <strong>{s.title}</strong>
+                <span>{s.text}</span>
+              </button>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 function Challenges({ page, num }) {
   const { title, accent } = page.headings.challenges
   return (
@@ -418,10 +471,12 @@ function Faq({ page, num }) {
 // have no `tools`); the rest are numbered 01, 02… in order.
 const SECTIONS = [
   { key: 'overview', Section: Overview },
+  { key: 'licences', Section: Licences },
   { key: 'stack', Section: Stack },
   { key: 'lists', Section: Lists },
   { key: 'challenges', Section: Challenges },
   { key: 'approach', Section: Approach },
+  { key: 'gallery', Section: Gallery },
   { key: 'lens', Section: Lens },
   { key: 'diagram', Section: Diagram },
   { key: 'capabilities', Section: Capabilities },

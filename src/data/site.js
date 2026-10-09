@@ -63,7 +63,7 @@ export const highlights = [
 export const services = [
   {
     title: 'Microsoft Dynamics 365 Finance & Operations',
-    short: 'Dynamics 365 Finance & Operations',
+    short: 'Dynamics 365 Finance\n& Operations',
     page: '/services/finance-operations/',
     techLogo: 'financeOperations',
     wide: true,
@@ -72,7 +72,7 @@ export const services = [
   },
   {
     title: 'Microsoft Dynamics 365 Business Central',
-    short: 'Dynamics 365 Business Central',
+    short: 'Dynamics 365\nBusiness Central',
     techLogo: 'businessCentral',
     page: '/services/business-central/',
     text: 'A complete business management solution for growing companies — financials, sales, purchasing and inventory, implemented and supported by our team.',
@@ -80,7 +80,7 @@ export const services = [
   },
   {
     title: 'Microsoft Dynamics 365 Customer Experience / CRM',
-    short: 'Dynamics 365 CRM',
+    short: 'Dynamics 365 Customer\nRelationship Management',
     page: '/services/crm/',
     techLogo: 'crm',
     text: 'Customer relationship management tailored to how you win, serve and keep customers — sales, customer service and marketing in one place.',
@@ -142,7 +142,7 @@ export const services = [
   },
   {
     title: 'Program, Project & Portfolio Management',
-    short: 'Program & Project Management',
+    short: 'Program & Project\nManagement',
     page: '/services/program-management/',
     icon: 'chart',
     tile: ['#14B8A6', '#2563EB'],
@@ -156,6 +156,15 @@ export const services = [
     techLogo: 'azure',
     text: 'Build the foundation for enterprise AI on Microsoft Azure — strategy, architecture, platform and AI readiness, plus Copilot, agents and RAG solutions.',
     tags: ['AI strategy', 'Azure', 'Copilot & agents', 'AI governance'],
+  },
+  {
+    title: 'Licenses & Partner Authority',
+    short: 'Licenses & partners',
+    page: '/services/licensing/',
+    icon: 'shield',
+    tile: ['#0EA5E9', '#7C3AED'],
+    text: 'Microsoft and Odoo licences from an authorised reseller, with end-to-end authority over the licences, the delivery and the run.',
+    tags: ['Microsoft 365', 'Dynamics 365', 'Azure', 'Odoo'],
   },
 ]
 

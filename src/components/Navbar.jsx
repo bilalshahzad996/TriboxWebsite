@@ -21,11 +21,26 @@ const notMobile = () => false
 
 // `sub`: items shown in a dropdown (on hover or keyboard focus; listed inline on mobile).
 // Links without a # are pages of their own, highlighted while you're on them.
+// The Services menu is a two-column grid read row by row, so the pairs below sit side by side
+// (the page grid and footer keep the order in data/site.js). Services not listed follow at the end.
+const MENU_ORDER = [
+  '/services/finance-operations/', '/services/business-central/',
+  '/services/crm/', '/services/program-management/',
+  '/services/odoo/', '/services/enterprise-ai/',
+  '/services/mobile-apps/', '/services/web-apps/',
+  '/services/e-invoicing/', '/services/resource-outsourcing/',
+  '/services/financial-consultancy/', '/services/licensing/',
+]
+const menuServices = [...services].sort((a, b) => {
+  const rank = (s) => { const i = MENU_ORDER.indexOf(s.page); return i < 0 ? MENU_ORDER.length : i }
+  return rank(a) - rank(b)
+})
+
 const links = [
   {
     href: '/#services',
     label: 'Services',
-    sub: services.map((s) => ({ href: s.page ?? '/#services', label: s.short, mark: <ServiceMark service={s} size={18} /> })),
+    sub: menuServices.map((s) => ({ href: s.page ?? '/#services', label: s.short, mark: <ServiceMark service={s} size={18} /> })),
   },
   {
     // No page or section of its own, so no href: it just opens the dropdown of product pages

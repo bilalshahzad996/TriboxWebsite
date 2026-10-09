@@ -3,6 +3,7 @@ import { advisory, company, licences, marquee, highlights, services, technologie
 import ClientMarquee from '../components/ClientMarquee'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
+import LicenceGrid from '../components/LicenceGrid'
 import TechLogo from '../components/TechLogo'
 import { BrandBars } from '../components/Logo'
 import Reveal from '../components/Reveal'
@@ -372,18 +373,7 @@ function Process() {
         <div className="licences">
           <Reveal as="h3" className="licences-title">{licences.title} <span className="gradient-text">{licences.accent}</span></Reveal>
           <Reveal as="p" delay={80} className="licences-intro">{licences.intro}</Reveal>
-          <ul className="licences-grid">
-            {licences.items.map((l, i) => (
-              <Reveal as="li" key={l.name} delay={(i % 4) * 80} className="licence">
-                {l.logo
-                  ? <TechLogo name={l.logo} className="licence-logo" />
-                  : <span className="licence-logo licence-icon"><Icon name={l.icon} size={26} /></span>}
-                <strong>{l.name}</strong>
-                <span>{l.text}</span>
-                <em>{licences.badge}</em>
-              </Reveal>
-            ))}
-          </ul>
+          <LicenceGrid />
         </div>
       </div>
     </section>

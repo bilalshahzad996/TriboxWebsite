@@ -28,6 +28,22 @@ export const fleettrackPage = {
 
   panel: { icon: 'truck', tile: ['#0EA5E9', '#4F46E5'], title: 'Fleet Track', subtitle: 'Transport operations & fleet management' },
 
+  // Product screenshots shown as a browser-window showcase (see Gallery in components/ServicePage.jsx).
+  // The pictures are in public/products/fleettrack/. Hovering a window slowly scrolls through the page.
+  gallery: {
+    label: 'Product tour',
+    title: 'See Fleet Track',
+    accent: 'in action',
+    intro: 'Real screens from the system: the operations workspace, fleet control, the dispatcher\'s action centre and security roles.',
+    url: 'fleettrack.tribox365.com',
+    shots: [
+      { id: 'operations-workspace', title: 'Operations workspace', text: 'Journeys today, fleet schedule, status and volume at a glance.', width: 1910, height: 1993 },
+      { id: 'fleet-control', title: 'Fleet control', text: 'Live operations, commitments, customer issues and contract coverage.', width: 1910, height: 1590 },
+      { id: 'operations-action-center', title: 'Operations action center', text: 'The dispatcher\'s live queue: trucks going out and coming back.', width: 1910, height: 1548 },
+      { id: 'security-roles', title: 'Security roles', text: 'Role-based access, with users and profiles for every role.', width: 1910, height: 915 },
+    ],
+  },
+
   headings: {
     challenges: { title: 'Where transport operations', accent: 'lose time and money' },
     capabilities: {
