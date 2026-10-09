@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { company, marquee, highlights, services, technologies, process } from '../data/site'
+import { advisory, company, marquee, highlights, services, technologies, process } from '../data/site'
 import ClientMarquee from '../components/ClientMarquee'
 import Contact from '../components/Contact'
 import Icon from '../components/Icon'
@@ -124,9 +124,9 @@ function Hero() {
             <span className="pulse" /> {company.kicker}
           </p>
 
-          <h1 className="hero-title" aria-label={`Your digital partner for ${company.rotating.join(', ')}`}>
-            <span className="line" aria-hidden="true"><span className="intro" style={{ '--d': 1 }}>Your digital</span></span>
-            <span className="line" aria-hidden="true"><span className="intro" style={{ '--d': 2 }}>partner for</span></span>
+          <h1 className="hero-title" aria-label={`Your AI-powered digital partner for ${company.rotating.join(', ')}`}>
+            <span className="line" aria-hidden="true"><span className="intro" style={{ '--d': 1 }}>Your AI-powered</span></span>
+            <span className="line" aria-hidden="true"><span className="intro" style={{ '--d': 2 }}>digital partner for</span></span>
             <span className="line" aria-hidden="true"><span className="intro" style={{ '--d': 3 }}><RotatingWord words={company.rotating} /></span></span>
           </h1>
 
@@ -263,6 +263,28 @@ function Services() {
   )
 }
 
+function Advisory() {
+  return (
+    <section id="advisory" className="section section-tight">
+      <div className="container">
+        <SectionHead num="03" label={advisory.label} title={advisory.title} accent={advisory.accent} />
+        <div className="adv">
+          <Reveal className="adv-root"><span>{advisory.root}</span></Reveal>
+          <ul className="adv-areas">
+            {advisory.areas.map((a, i) => (
+              <Reveal as="li" key={a.title} delay={i * 80} className="adv-area">
+                <span className="adv-icon"><Icon name={a.icon} size={20} /></span>
+                <strong>{a.title}</strong>
+                <span>{a.text}</span>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // Two rows of platform cards that glide in opposite directions; scrolling nudges them further.
 const techRows = [technologies.slice(0, Math.ceil(technologies.length / 2)), technologies.slice(Math.ceil(technologies.length / 2))]
 
@@ -295,7 +317,7 @@ function Technologies() {
     <section id="technologies" className="section section-tight">
       <div className="container">
         <SectionHead
-          num="03"
+          num="05"
           label="Ecosystem"
           title="Technology &"
           accent="Business Platforms"
@@ -343,7 +365,7 @@ function Process() {
   return (
     <section id="process" className="section">
       <div className="container">
-        <SectionHead num="05" label="How we work" title="Our working" accent="process" />
+        <SectionHead num="06" label="How we work" title="Our working" accent="process" />
 
         <ProcessSteps steps={process} />
       </div>
@@ -358,10 +380,11 @@ export default function Home() {
       {SHOW_MARQUEE && <Marquee />}
       <About />
       <Services />
-      <Technologies />
+      <Advisory />
       <Clients />
+      <Technologies />
       <Process />
-      <Contact />
+      <Contact num="07" />
     </>
   )
 }

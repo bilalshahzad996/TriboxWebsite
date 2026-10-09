@@ -39,7 +39,7 @@ export default function Footer() {
             <h2>Services</h2>
             <ul>
               {services.map((s) => (
-                <li key={s.title}><a href={s.page ?? '/#services'}>{s.title}</a></li>
+                <li key={s.short ?? s.title}><a href={s.page ?? '/#services'}>{s.short ?? s.title}</a></li>
               ))}
             </ul>
           </div>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import Contact from './Contact'
+import EInvoicingFlow from './EInvoicingFlow'
 import Icon from './Icon'
 import Magnetic from './Magnetic'
 import ProcessSteps from './ProcessSteps'
@@ -33,7 +34,7 @@ function Hero({ page }) {
               </a>
             </Magnetic>
             <Magnetic>
-              <a href="#capabilities" className="btn btn-ghost">{hero.secondary}</a>
+              <a href={hero.secondaryHref ?? '#capabilities'} className="btn btn-ghost">{hero.secondary}</a>
             </Magnetic>
           </div>
         </div>
@@ -57,6 +58,165 @@ function Hero({ page }) {
             ))}
           </ul>
         </div>
+      </div>
+    </section>
+  )
+}
+
+function Overview({ page, num }) {
+  const { label, title, accent, subtitle, text, pillsLabel, pills, items, bestFit } = page.overview
+  return (
+    <section id="overview" className="section">
+      <div className="container">
+        <SectionHead num={num} label={label} title={title} accent={accent} intro={subtitle} />
+        <div className={`overview ${bestFit ? '' : 'no-fit'}`}>
+          <Reveal className="overview-lead">
+            <p>{text}</p>
+            {pills && pillsLabel && <strong className="overview-pills-label">{pillsLabel}</strong>}
+            {pills && (
+              <ul className="tags">
+                {pills.map((p) => <li key={p}><span>{p}</span></li>)}
+              </ul>
+            )}
+          </Reveal>
+          {bestFit && <Reveal variant="right" delay={100} className="overview-fit">
+            {bestFit.kicker && <small className="overview-kicker">{bestFit.kicker}</small>}
+            <h3>{bestFit.title}</h3>
+            {bestFit.text && <p>{bestFit.text}</p>}
+            {bestFit.list && (
+              <ul>
+                {bestFit.list.map((b) => <li key={b}><Icon name="check" size={16} /> {b}</li>)}
+              </ul>
+            )}
+            {bestFit.note && <p className="overview-note">{bestFit.note}</p>}
+            {bestFit.outcome && <p className="overview-outcome">{bestFit.outcome}</p>}
+          </Reveal>}
+          <ul className="overview-items">
+            {items.map((it, i) => (
+              <Reveal as="li" key={it.title} delay={(i % 2) * 90} className={`overview-item ${it.start ? 'is-start' : ''}`}>
+                <span className={`overview-num ${it.tag ? 'is-tag' : ''}`}>{it.tag ?? twoDigits(i)}</span>
+                <div>
+                  {it.start && <small className="overview-kicker">{it.start}</small>}
+                  <strong>{it.title}</strong>
+                  <span>{it.text}</span>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Stack({ page, num }) {
+  const { label, title, accent, intro, layers } = page.stack
+  return (
+    <section id="stack" className="section">
+      <div className="container">
+        <SectionHead num={num} label={label} title={title} accent={accent} intro={intro} />
+        <ol className="stack">
+          {layers.map((l, i) => (
+            <Reveal as="li" key={l.title} delay={i * 90} className="stack-layer" style={{ '--i': i }}>
+              <span className="stack-side">
+                <b>{twoDigits(i)}</b>
+                <small>{l.tag}</small>
+              </span>
+              <div className="stack-body">
+                <small className="stack-title">{l.title}</small>
+                <strong>{l.lead}</strong>
+                <ul>
+                  {l.details.map((d) => <li key={d}>{d}</li>)}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
+    </section>
+  )
+}
+
+function Lists({ page, num }) {
+  const { label, title, accent, panels } = page.lists
+  return (
+    <section className="section">
+      <div className="container">
+        <SectionHead num={num} label={label} title={title} accent={accent} />
+        <div className="lists">
+          {panels.map((p, i) => (
+            <Reveal key={p.title} delay={i * 110} className="lists-panel">
+              <h3>{p.title}</h3>
+              <ol>
+                {p.items.map((it, j) => (
+                  <li key={it}><b>{twoDigits(j)}</b> {it}</li>
+                ))}
+              </ol>
+              <p className="lists-note">{p.note}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Lens({ page, num }) {
+  const { accent, tag, lead, when, features, example, edge, why, value, rule, shortcuts, current } = page.lens
+  return (
+    <section className="section">
+      <div className="container">
+        <SectionHead num={num} label="Platform fit" title="When to choose" accent={accent} />
+        <div className="lens">
+          <Reveal className="lens-card">
+            <small className="lens-tag">{tag}</small>
+            <h3>Choose when</h3>
+            <p className="lens-lead">{lead}</p>
+            <p>{when}</p>
+            <ul>
+              {features.map((f) => <li key={f}><Icon name="check" size={16} /> {f}</li>)}
+            </ul>
+            <p className="lens-example"><b>Example fit:</b> {example}</p>
+          </Reveal>
+          <Reveal variant="right" delay={100} className="lens-card lens-wins">
+            <small className="lens-tag">Why it wins</small>
+            <h3>{accent}</h3>
+            <dl>
+              <div><dt>Feature edge</dt><dd>{edge}</dd></div>
+              <div><dt>Why it wins</dt><dd>{why}</dd></div>
+              <div><dt>Business value</dt><dd>{value}</dd></div>
+            </dl>
+          </Reveal>
+        </div>
+        {rule && <Reveal as="p" className="lens-rule"><b>Decision rule:</b> {rule}</Reveal>}
+        <Reveal as="ul" className="lens-shortcut" aria-label="Executive shortcut">
+          {shortcuts.map((s, i) => (
+            <li key={s.to} className={i === current ? 'is-current' : ''}>{s.need} <span aria-hidden="true">→</span> <strong>{s.to}</strong></li>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Licensing({ page, num }) {
+  const { title = 'Licensing', accent = 'categories', subtitle, intro, categories, logic, source } = page.licensing
+  return (
+    <section className="section">
+      <div className="container">
+        <SectionHead num={num} label="Licensing" title={title} accent={accent} intro={intro} />
+        {subtitle && <p className="licensing-sub">{subtitle}</p>}
+        <div className="card-grid cols-4">
+          {categories.map((c, i) => (
+            <Reveal key={c.title} delay={i * 90} className="card">
+              <span className="card-num">{twoDigits(i)}</span>
+              <h3>{c.title}</h3>
+              <p>{c.text}</p>
+            </Reveal>
+          ))}
+        </div>
+        {logic && <Reveal as="p" className="licensing-logic"><b>Licensing decision logic:</b> {logic}</Reveal>}
+        {source && <p className="licensing-source">{source}</p>}
       </div>
     </section>
   )
@@ -103,6 +263,18 @@ function Approach({ page, num }) {
             ))}
           </ul>
         </Reveal>
+      </div>
+    </section>
+  )
+}
+
+function Diagram({ page, num }) {
+  const { label, title, accent, intro, alt } = page.diagram
+  return (
+    <section className="section">
+      <div className="container">
+        <SectionHead num={num} label={label} title={title} accent={accent} intro={intro} />
+        <EInvoicingFlow alt={alt} />
       </div>
     </section>
   )
@@ -173,11 +345,11 @@ function Tools({ page, num }) {
 }
 
 function Industries({ page, num }) {
-  const { title, accent } = page.headings.industries
+  const { label = 'Industries', title, accent } = page.headings.industries
   return (
-    <section className="section">
+    <section id="industries" className="section">
       <div className="container">
-        <SectionHead num={num} label="Industries" title={title} accent={accent} />
+        <SectionHead num={num} label={label} title={title} accent={accent} />
         <div className="card-grid cols-4">
           {page.industries.map((ind, i) => (
             <Reveal key={ind.title} delay={i * 90} className="card">
@@ -245,11 +417,17 @@ function Faq({ page, num }) {
 // Sections in page order. A page leaves one out by not having its data (e.g. product pages
 // have no `tools`); the rest are numbered 01, 02… in order.
 const SECTIONS = [
+  { key: 'overview', Section: Overview },
+  { key: 'stack', Section: Stack },
+  { key: 'lists', Section: Lists },
   { key: 'challenges', Section: Challenges },
   { key: 'approach', Section: Approach },
+  { key: 'lens', Section: Lens },
+  { key: 'diagram', Section: Diagram },
   { key: 'capabilities', Section: Capabilities },
   { key: 'process', Section: Process },
   { key: 'tools', Section: Tools },
+  { key: 'licensing', Section: Licensing },
   { key: 'industries', Section: Industries },
   { key: 'engagements', Section: Engagements },
   { key: 'faqs', Section: Faq },

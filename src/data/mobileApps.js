@@ -3,6 +3,23 @@
 // components/TechLogo.jsx.
 
 export const mobileAppsPage = {
+  // Overview section shown first on the page (see Overview in components/ServicePage.jsx)
+  overview: {
+    label: 'Mobile app development',
+    title: 'From business need to',
+    accent: 'scalable mobile experience',
+    subtitle: 'Custom mobile apps connected to your portals and enterprise systems.',
+    text: 'Tribox designs and develops custom mobile applications that connect users, processes and core business systems. We cover UI/UX, front-end, back-end, integrations, testing, deployment and ongoing support.',
+    pills: ['AI-augmented UX', 'Secure architecture', 'ERP-ready integrations'],
+    items: [
+      { title: 'UI/UX Design', text: 'Wireframes, prototypes and user journeys' },
+      { title: 'Mobile Apps', text: 'Native and cross-platform mobile delivery' },
+      { title: 'API & Integration', text: 'ERP, payment and third-party integrations' },
+      { title: 'Testing & Release', text: 'Functional testing and deployment readiness' },
+      { title: 'Support', text: 'Maintenance, enhancements and optimization' },
+    ],
+    bestFit: { title: 'Best fit for', list: ['Field service apps', 'B2B workflows', 'Self-service platforms'] },
+  },
   path: '/services/mobile-apps/',
   // Name and type of the service in search engines' structured data
   serviceName: 'Mobile application development for iOS and Android',

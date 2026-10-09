@@ -60,6 +60,15 @@ export const eInvoicingPage = {
     { tag: 'Manual workarounds', title: 'Uploading invoices by hand', text: 'Re-keying or uploading invoices one at a time doesn’t scale and invites errors.' },
   ],
 
+  // Five-corner flow shown after the approach section (see components/EInvoicingFlow.jsx).
+  diagram: {
+    label: 'How it works',
+    title: 'The 5-corner',
+    accent: 'e‑invoicing flow',
+    intro: 'A modern ecosystem for standardised data exchange: the supplier, two service providers, the buyer and the tax authority.',
+    alt: "Five-corner e-invoicing flow: the supplier (corner 1) sends the invoice to Service Provider A (corner 2), which validates it and checks the receiving party's identity. It passes over a secure network to Service Provider B (corner 3), which delivers it to the buyer (corner 4). Accredited providers also send tax data to the central tax authority.",
+  },
+
   approach: {
     label: 'How we deliver e-invoicing',
     title: 'One team from',
@@ -157,6 +166,7 @@ export const eInvoicingPage = {
   tools: [
     { name: 'Dynamics 365 Finance & Operations', logo: 'financeOperations' },
     { name: 'Dynamics 365 Business Central', logo: 'businessCentral' },
+    { name: 'Odoo', logo: 'odooWordmark' },
     { name: 'Accredited Service Providers', icon: 'network' },
     { name: 'APIs & connectors', icon: 'code' },
   ],

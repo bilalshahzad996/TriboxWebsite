@@ -2,6 +2,8 @@
 // components/ServicePage.jsx. `icon` names come from components/Icon.jsx, `logo` names from
 // components/TechLogo.jsx.
 
+import { executiveShortcut } from './platformLens'
+
 export const crmPage = {
   path: '/services/crm/',
   // Name and type of the service in search engines' structured data
@@ -40,6 +42,34 @@ export const crmPage = {
 
   // Box beside the hero headline (an icon, as there is no CRM product logo here)
   panel: { icon: 'users', title: 'Dynamics 365 CRM', subtitle: 'Sales, service and marketing' },
+
+  // "When to choose it / why it wins" (Lens) and licensing categories: see components/ServicePage.jsx
+  lens: {
+    accent: "Dynamics 365 CRM",
+    tag: "Revenue & experience",
+    rule: "CRM complements ERP; it does not replace core finance and operations.",
+    lead: "Customer engagement platform for growth.",
+    when: "Growth depends on better lead conversion, customer service and relationship visibility.",
+    features: ["Lead, opportunity, account and pipeline management", "Sales forecasting, customer service and case management", "Marketing, service and engagement workflows integrated with ERP"],
+    example: "Sales-led, service-led and customer-facing organizations.",
+    edge: "Pipeline, forecasting, case management, customer journeys, insights, automation and AI.",
+    why: "Stronger than ERPs for front-office revenue, engagement, retention and service excellence.",
+    value: "Best when revenue growth, service quality, customer retention and sales visibility are the priority.",
+    shortcuts: executiveShortcut,
+    current: 2,
+  },
+  licensing: {
+    subtitle: "Sales, service and engagement",
+    source: "Based on the Microsoft Dynamics 365 and Business Central licensing guides. Final pricing and use-rights must be confirmed against your tenant, geography and agreement type.",
+    logic: "Full users for daily transaction owners • Light users for approvers and readers • Device licences for shared terminals • Capacity and tenant add-ons for data, integrations, portals and specialised services",
+    intro: "High-level categories only. Validate SKU and pricing during quotation.",
+    categories: [
+      {"title": "Full app users", "text": "Sales, Customer Service, Field Service and Contact Center users."},
+      {"title": "Professional / Enterprise / Premium", "text": "Tiered capability levels based on automation, AI and process depth."},
+      {"title": "Team Members", "text": "Lightweight access through designated Sales, Service and Project apps."},
+      {"title": "Device + capacity add-ons", "text": "Shared device options, Dataverse storage and app-specific capacities."},
+    ],
+  },
 
   headings: {
     challenges: { title: 'Where customer relationships', accent: 'slip through the cracks' },

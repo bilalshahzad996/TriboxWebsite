@@ -55,7 +55,7 @@ function Hero() {
               <span className="about-stat-icon"><Icon name={st.icon} size={20} /></span>
               <dt>{st.label}</dt>
               <dd>
-                <span className="about-stat-value"><CountUp value={st.value} delay={900} /></span>
+                <span className="about-stat-value"><CountUp value={st.value} /></span>
                 <span className="about-stat-text">{st.text}</span>
               </dd>
             </TiltCard>
@@ -127,11 +127,36 @@ function Purpose() {
   )
 }
 
+function Engage() {
+  const { engage } = page
+  return (
+    <section className="section">
+      <div className="container">
+        <SectionHead num="03" label="Engagement models" title="4 ways to" accent="engage" intro={engage.note} />
+        {/* Hovering or focusing a card highlights it */}
+        <Reveal className="engage-ways">
+          {engage.ways.map((w, i) => (
+            <a key={w.title} href="#contact" className="engage-way" style={{ '--i': i }}>
+              <span className="engage-way-top">
+                <span className="engage-way-num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="engage-way-icon"><Icon name={w.icon} size={20} /></span>
+              </span>
+              <strong>{w.title}</strong>
+              <span className="engage-way-text">{w.text}</span>
+              <span className="engage-way-arrow" aria-hidden="true"><Icon name="arrow" size={18} /></span>
+            </a>
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 function TrustedBy() {
   return (
     <section className="section section-tight">
       <div className="container">
-        <SectionHead num="03" label="Our clients" title="Trusted by" accent="growing businesses" />
+        <SectionHead num="04" label="Our clients" title="Trusted by" accent="growing businesses" />
       </div>
       <ClientMarquee />
     </section>
@@ -143,7 +168,7 @@ function Leadership() {
   return (
     <section id="leadership" className="section">
       <div className="container">
-        <SectionHead num="04" label="Leadership" title={leadership.title} accent={leadership.accent} intro={leadership.intro} />
+        <SectionHead num="05" label="Leadership" title={leadership.title} accent={leadership.accent} intro={leadership.intro} />
         <div className="team-grid">
           {leadership.people.map((p, i) => (
             <Reveal key={p.name} delay={i * 110} className="team-card">
@@ -181,9 +206,10 @@ export default function About() {
       <Hero />
       <Story />
       <Purpose />
+      <Engage />
       <TrustedBy />
       <Leadership />
-      <Contact num="05" />
+      <Contact num="06" />
     </>
   )
 }

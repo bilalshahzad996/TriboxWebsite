@@ -3,6 +3,23 @@
 // components/TechLogo.jsx.
 
 export const webAppsPage = {
+  // Overview section shown first on the page (see Overview in components/ServicePage.jsx)
+  overview: {
+    label: 'Web development',
+    title: 'From business need to',
+    accent: 'scalable web experience',
+    subtitle: 'Custom digital products for web, portals and enterprise integrations.',
+    text: 'Tribox designs and develops custom web applications that connect users, processes and core business systems. We cover UI/UX, front-end, back-end, integrations, testing, deployment and ongoing support.',
+    pills: ['AI-augmented UX', 'Secure architecture', 'ERP-ready integrations'],
+    items: [
+      { title: 'UI/UX Design', text: 'Wireframes, prototypes and user journeys' },
+      { title: 'Web Development', text: 'Responsive portals and enterprise web apps' },
+      { title: 'API & Integration', text: 'ERP, payment and third-party integrations' },
+      { title: 'Testing & Release', text: 'Functional testing and deployment readiness' },
+      { title: 'Support', text: 'Maintenance, enhancements and optimization' },
+    ],
+    bestFit: { title: 'Best fit for', list: ['Customer portals', 'B2B workflows', 'Self-service platforms'] },
+  },
   path: '/services/web-apps/',
   // Name and type of the service in search engines' structured data
   serviceName: 'Website and web application development',
@@ -31,7 +48,7 @@ export const webAppsPage = {
     label: 'Web Application Development',
     title: 'Websites and web apps',
     accent: 'built to grow with you',
-    text: 'We design and build websites, web applications and online stores for growing businesses — fast, secure, easy to find in search, and connected to the systems you already run.',
+    text: 'Tribox designs and develops custom web and mobile applications that connect users, processes and core business systems. We cover UI/UX, front-end, backend, integrations, testing, deployment and ongoing support.',
     primary: 'Book a free consultation',
     secondary: 'See what we deliver',
     modules: ['Websites', 'Web apps', 'E-commerce', 'Customer portals', 'Dashboards', 'APIs & integrations', 'Content management', 'SEO & speed', 'Hosting & support'],

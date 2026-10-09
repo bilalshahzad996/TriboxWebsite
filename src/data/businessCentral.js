@@ -2,6 +2,8 @@
 // components/ServicePage.jsx. `icon` names come from components/Icon.jsx, `logo` names from
 // components/TechLogo.jsx.
 
+import { executiveShortcut } from './platformLens'
+
 export const bcPage = {
   path: '/services/business-central/',
   // Name of the service in search engines' structured data
@@ -39,6 +41,33 @@ export const bcPage = {
 
   // Box beside the hero headline
   panel: { logo: 'businessCentral', title: 'Dynamics 365 Business Central', subtitle: 'One system, every team' },
+
+  // "When to choose it / why it wins" (Lens) and licensing categories: see components/ServicePage.jsx
+  lens: {
+    accent: "Business Central",
+    tag: "Simplicity & value",
+    lead: "Mid-market ERP on the Microsoft stack.",
+    when: "The business needs ERP discipline without enterprise-level complexity and cost.",
+    features: ["Finance, sales, service, purchase and inventory in one practical system", "Faster rollout with lower complexity and lower total cost", "Good for subsidiaries and growing businesses"],
+    example: "Trading, services, light distribution and small manufacturing.",
+    edge: "Finance, purchasing, sales, inventory, jobs and reporting in one cloud ERP.",
+    why: "Stronger than Finance & Operations on speed and implementation effort; stronger than CRM for finance and operations.",
+    value: "Best when you need ERP maturity without the weight of an enterprise programme.",
+    shortcuts: executiveShortcut,
+    current: 1,
+  },
+  licensing: {
+    subtitle: "SMB / mid-market cloud ERP",
+    source: "Based on the Microsoft Dynamics 365 and Business Central licensing guides. Final pricing and use-rights must be confirmed against your tenant, geography and agreement type.",
+    logic: "Full users for daily transaction owners • Light users for approvers and readers • Device licences for shared terminals • Capacity and tenant add-ons for data, integrations, portals and specialised services",
+    intro: "High-level categories only. Validate SKU and pricing during quotation.",
+    categories: [
+      {"title": "Essentials", "text": "Core finance, sales, purchase, inventory, projects and reporting."},
+      {"title": "Premium", "text": "Essentials plus manufacturing and service management capabilities."},
+      {"title": "Team Members", "text": "Read data, approve workflows and update selected information."},
+      {"title": "Special / device access", "text": "External Accountant, M365 read-only access and Business Central Device licensing."},
+    ],
+  },
 
   headings: {
     challenges: { title: 'Where growing businesses', accent: 'outgrow their systems' },

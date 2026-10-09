@@ -2,6 +2,8 @@
 // components/ServicePage.jsx. `icon` names come from components/Icon.jsx, `logo` names from
 // components/TechLogo.jsx.
 
+import { executiveShortcut } from './platformLens'
+
 export const financeOperationsPage = {
   path: '/services/finance-operations/',
   // Name of the service in search engines' structured data
@@ -39,6 +41,33 @@ export const financeOperationsPage = {
 
   // Box beside the hero headline
   panel: { logo: 'financeOperations', title: 'Dynamics 365 Finance & Operations', subtitle: 'Built for complex organisations' },
+
+  // "When to choose it / why it wins" (Lens) and licensing categories: see components/ServicePage.jsx
+  lens: {
+    accent: "Finance & Operations",
+    tag: "Control & scale",
+    lead: "Enterprise ERP for complex operations.",
+    when: "Enterprise operations require scalability, compliance and end-to-end process control.",
+    features: ["Multi-entity, multi-country governance", "Advanced finance, supply chain, warehouse, manufacturing or retail", "Strong controls, workflows, auditability and scalability"],
+    example: "Regional manufacturing, distribution, retail or project-heavy groups.",
+    edge: "Deep finance, supply chain, manufacturing, WMS, projects, assets and controls.",
+    why: "Stronger than Business Central or Odoo for multi-entity, high-volume and complex operational depth.",
+    value: "Best when standardization, governance and enterprise depth matter more than a quick, lightweight rollout.",
+    shortcuts: executiveShortcut,
+    current: 0,
+  },
+  licensing: {
+    subtitle: "Enterprise ERP / complex operations",
+    source: "Based on the Microsoft Dynamics 365 and Business Central licensing guides. Final pricing and use-rights must be confirmed against your tenant, geography and agreement type.",
+    logic: "Full users for daily transaction owners • Light users for approvers and readers • Device licences for shared terminals • Capacity and tenant add-ons for data, integrations, portals and specialised services",
+    intro: "High-level categories only. Validate SKU and pricing during quotation.",
+    categories: [
+      {"title": "Full application users", "text": "Finance, SCM, Commerce, Project Operations, HR; base + attach model."},
+      {"title": "Limited users", "text": "Operations–Activity and Team Members for approvals, read and light tasks."},
+      {"title": "Shared device users", "text": "Operations–Device for POS, warehouse, shop floor or store manager use."},
+      {"title": "Tenant / capacity add-ons", "text": "Database, file capacity, sandboxes and specialised tenant services."},
+    ],
+  },
 
   headings: {
     challenges: { title: 'Where complex organisations', accent: 'lose control' },

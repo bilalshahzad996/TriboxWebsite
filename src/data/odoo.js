@@ -1,6 +1,8 @@
 // Content for the Odoo service page (/services/odoo/), laid out by components/ServicePage.jsx.
 // `icon` names come from components/Icon.jsx, `logo` names from components/TechLogo.jsx.
 
+import { executiveShortcut } from './platformLens'
+
 export const odooPage = {
   path: '/services/odoo/',
   // Name of the service in search engines' structured data
@@ -38,6 +40,32 @@ export const odooPage = {
 
   // Box beside the hero headline
   panel: { logo: 'odoo', title: 'Odoo ERP', subtitle: 'Modular apps, one database' },
+
+  // "When to choose it / why it wins" (Lens) and licensing categories: see components/ServicePage.jsx
+  lens: {
+    accent: "Odoo",
+    tag: "Speed & modularity",
+    lead: "Flexible all-in-one modular business suite.",
+    when: "A practical all-in-one platform is required for startup, SMB, trading or retail operations.",
+    features: ["Broad app coverage: CRM, eCommerce, accounting, inventory, POS and projects", "Quick modular adoption with high customization flexibility", "Strong fit for cost-sensitive and agile business models"],
+    example: "Startups, retail / eCommerce, services and growing SMEs.",
+    edge: "Broad apps: CRM, accounting, inventory, POS, eCommerce, website, project and manufacturing.",
+    why: "Stronger when app breadth, affordability and flexible adoption matter more than enterprise depth.",
+    value: "Best when you want fast adoption, flexibility and wide functional coverage in one suite.",
+    shortcuts: executiveShortcut,
+    current: 3,
+  },
+  licensing: {
+    subtitle: "Modular all-in-one business suite",
+    source: "Based on Odoo pricing. Final pricing and use-rights must be confirmed against your agreement type.",
+    intro: "High-level categories only. Validate SKU and pricing during quotation.",
+    categories: [
+      {"title": "One App Free", "text": "One application, hosted by Odoo, generally for single-process adoption."},
+      {"title": "Standard", "text": "All apps on Odoo Online for standard processes without custom code."},
+      {"title": "Custom", "text": "All apps plus Studio, API, multi-company, Odoo.sh or on-premise options."},
+      {"title": "Community / services", "text": "Open-source route; hosting, implementation and support scoped separately."},
+    ],
+  },
 
   headings: {
     challenges: { title: 'Where growing businesses', accent: 'get stuck' },

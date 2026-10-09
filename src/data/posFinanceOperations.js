@@ -23,10 +23,22 @@ export const posFinanceOperationsPage = {
     text: 'A point of sale that works with Microsoft Dynamics 365 Finance & Operations — built for retailers with many stores, selling from your Finance & Operations products and prices and posting every sale back to it.',
     primary: 'Book a demo',
     secondary: 'See the features',
-    modules: ['Fast checkout', 'Products & prices from F&O', 'Payments', 'Returns', 'Receipts', 'Shifts & cash', 'Many stores', 'Stock sync', 'Sales reports'],
+    modules: ['Fast checkout', 'Products & prices from F&O', 'Payments', 'Returns', 'Receipts', 'Shifts & cash', 'Many stores', 'Stock sync', 'Sales reports', 'Suspend & recall', 'Approval-governed voids', 'Automated reconciliation'],
   },
 
   panel: { logo: 'pos', title: 'Tribox POS', subtitle: 'For Dynamics 365 Finance & Operations' },
+
+  // Licensing models (see Licensing in components/ServicePage.jsx)
+  licensing: {
+    title: 'Flexible',
+    accent: 'licensing',
+    intro: 'Choose the licensing model that fits how you trade.',
+    categories: [
+      { title: 'Per store', text: 'Licence the POS by the number of stores you run.' },
+      { title: 'Per user', text: 'Licence the POS by the number of users.' },
+      { title: 'Shop in Shop', text: 'A Shop in Shop variation is also available.' },
+    ],
+  },
 
   headings: {
     challenges: { title: 'Where multi-store retail', accent: 'loses control' },
@@ -93,6 +105,18 @@ export const posFinanceOperationsPage = {
       text: 'Sales by store, region, item and payment method — in Finance & Operations and Power BI.',
       points: ['Daily sales by store', 'Group-wide sales views', 'Payment method totals', 'Power BI dashboards'],
     },
+    {
+      icon: 'shield',
+      title: 'Suspend, recall & void controls',
+      text: 'Hold a sale and come back to it, and keep voids under control.',
+      points: ['Suspend and recall sales', 'Approval-governed voids', 'Role-based access and authorization', 'Shift and cashier management'],
+    },
+    {
+      icon: 'check',
+      title: 'Settlement & reconciliation',
+      text: 'Front-counter activity flows to the back office and the ledger.',
+      points: ['Back-office synchronization', 'Automated reconciliation', 'Financial posting', 'End-to-end traceability'],
+    },
   ],
 
   process: [
@@ -120,6 +144,8 @@ export const posFinanceOperationsPage = {
     { q: 'Is it suited to many stores?', a: 'Yes. Stores and tills are set up centrally, and sales from every store flow back to Finance & Operations.' },
     { q: 'Which payment methods does it support?', a: 'Cash and card payments, including split payments. We confirm your payment terminals and providers during setup.' },
     { q: 'How is it rolled out?', a: 'Usually with a pilot in selected stores first, then store by store, with training and support at each step.' },
+    { q: 'Can staff suspend, recall or void a sale?', a: 'Yes. Sales can be suspended and recalled, and voids are governed by approval, with role-based access so only authorised staff can approve them.' },
+    { q: 'How is the POS licensed?', a: 'With flexible licensing models, per store or per user. A Shop in Shop variation is also available.' },
     { q: 'Can we see a demo?', a: 'Yes — book a demo using the form below and we’ll walk you through it.' },
   ],
 }

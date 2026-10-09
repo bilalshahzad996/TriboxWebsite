@@ -4,10 +4,14 @@
 import { bcPage } from './businessCentral'
 import { crmPage } from './crm'
 import { eInvoicingPage } from './eInvoicing'
+import { enterpriseAiPage } from './enterpriseAi'
 import { financeOperationsPage } from './financeOperations'
+import { financialConsultancyPage } from './financialConsultancy'
 import { mobileAppsPage } from './mobileApps'
 import { odooPage } from './odoo'
+import { programManagementPage } from './programManagement'
+import { resourceOutsourcingPage } from './resourceOutsourcing'
 import { webAppsPage } from './webApps'
 
 // Same order as the services in data/site.js
-export const servicePages = [financeOperationsPage, bcPage, crmPage, odooPage, mobileAppsPage, webAppsPage, eInvoicingPage]
+export const servicePages = [financeOperationsPage, bcPage, crmPage, odooPage, mobileAppsPage, webAppsPage, eInvoicingPage, resourceOutsourcingPage, financialConsultancyPage, programManagementPage, enterpriseAiPage]

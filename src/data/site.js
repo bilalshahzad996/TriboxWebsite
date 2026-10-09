@@ -122,6 +122,41 @@ export const services = [
     text: 'Get ready for e-invoicing mandates — we connect your ERP to an Accredited Service Provider (ASP) and keep every invoice compliant.',
     tags: ['ASP onboarding', 'ERP integration', 'Compliance'],
   },
+  {
+    title: 'Resource Outsourcing & Augmentation',
+    short: 'Resource outsourcing',
+    page: '/services/resource-outsourcing/',
+    icon: 'users',
+    tile: ['#6366F1', '#0EA5E9'],
+    text: 'Skilled specialists and delivery governance for software development, project management, finance and IT support — faster delivery, lower risk, controlled cost.',
+    tags: ['Software development', 'PMO', 'Finance', 'IT help desk'],
+  },
+  {
+    title: 'Financial Consultancy',
+    short: 'Financial consultancy',
+    page: '/services/financial-consultancy/',
+    icon: 'savings',
+    tile: ['#F59E0B', '#EA580C'],
+    text: 'Finance leadership for your business — operations, reporting, controls, process transformation and advisory, overseen and delivered by our finance team.',
+    tags: ['Finance operations', 'Reporting', 'Controls', 'Advisory'],
+  },
+  {
+    title: 'Program, Project & Portfolio Management',
+    short: 'Program & Project Management',
+    page: '/services/program-management/',
+    icon: 'chart',
+    tile: ['#14B8A6', '#2563EB'],
+    text: 'Turning digital transformation ambition into delivered value — PMO design, delivery oversight, governance and reporting, handover and continuous improvement.',
+    tags: ['PMO', 'Delivery oversight', 'Governance', 'Aftercare'],
+  },
+  {
+    title: 'Enterprise AI Foundations',
+    short: 'Data & AI',
+    page: '/services/enterprise-ai/',
+    techLogo: 'azure',
+    text: 'Build the foundation for enterprise AI on Microsoft Azure — strategy, architecture, platform and AI readiness, plus Copilot, agents and RAG solutions.',
+    tags: ['AI strategy', 'Azure', 'Copilot & agents', 'AI governance'],
+  },
 ]
 
 // Tribox's own products, each with a page (data/productPages.js). Used by the header's Products
@@ -135,6 +170,23 @@ export const products = [
   // No logo file: shown as an app-style tile (icon on a gradient), like some services
   { title: 'Fleet Track', text: 'Fleet & transport management', page: '/products/fleettrack/', icon: 'truck', tile: ['#0EA5E9', '#4F46E5'] },
 ]
+
+// Technology & Advisory: one "Information Services" offer with six areas, shown as a tree on
+// the home page. `icon` names come from components/Icon.jsx.
+export const advisory = {
+  label: 'Technology & Advisory',
+  title: 'Technology &',
+  accent: 'Advisory',
+  root: 'Information Services',
+  areas: [
+    { icon: 'server', title: 'IT Infrastructure', text: 'Servers, networks, cloud & data center operations' },
+    { icon: 'shield', title: 'Security Operations', text: 'Threat monitoring, IAM, and incident response' },
+    { icon: 'chart', title: 'Platforms & Business Intelligence', text: 'Application platforms, analytics & reporting' },
+    { icon: 'code', title: 'Agentic AI & Automation', text: 'Intelligent agents, workflow & process automation' },
+    { icon: 'check', title: 'Governance, Risk & Compliance', text: 'Policy, risk management & regulatory compliance' },
+    { icon: 'cloud', title: 'Digital Transformation', text: 'Modernization strategy & change enablement' },
+  ],
+}
 
 // Technology & partner ecosystem. `logo` names come from components/TechLogo.jsx.
 export const technologies = [
@@ -167,6 +219,9 @@ export const clients = [
   { name: 'Velocity Next', logo: '/logos/clients/velocity-next.png' },
   { name: '4Matic', logo: '/logos/clients/4matic.jpg' },
   { name: 'KEZAD Group', logo: '/logos/clients/kezad-group.png' },
+  { name: 'Maryaz Studio', logo: '/logos/clients/maryaz-studio.png' },
+  { name: 'Holborn European Marketing Company Limited', logo: '/logos/clients/holborn-european-marketing.png' },
+  { name: 'Aniqle', logo: '/logos/clients/aniqle.png' },
 ]
 
 export const process = [

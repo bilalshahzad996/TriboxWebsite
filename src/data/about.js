@@ -12,8 +12,8 @@ export const aboutPage = {
   hero: {
     label: 'About Tribox',
     title: 'Meet Tribox, your',
-    accent: 'digital transformation partner',
-    text: 'Tribox is a Dubai-based technology company with a team in Lahore, helping growing businesses run better on Microsoft Dynamics 365, Odoo, and custom web and mobile solutions.',
+    accent: 'digital partner',
+    text: 'Established in 2021 in Pakistan, and registered in 2023 in UAE, Tribox specializes in software consulting and digital transformation services. As a Microsoft Partner and Odoo Partner, we qualify as a trusted partner in the evolving digital landscape. At Tribox, we design tailored solutions to meet clients unique needs, ensuring their success through a customer-centric approach.',
   },
 
   // Mission, vision and values. Draft wording: confirm with the founders before publishing.
@@ -34,6 +34,17 @@ export const aboutPage = {
       values: ['Partnership — we work as part of your team', 'Accountability — we stay with you after go‑live', 'Learning — we listen, iterate and improve', 'Care — support whenever your business needs it'],
     },
   ],
+
+  // How clients can work with Tribox. `icon` names come from components/Icon.jsx.
+  engage: {
+    note: 'Mix & match as the engagement matures.',
+    ways: [
+      { icon: 'check', title: 'Project', text: 'Fixed-scope delivery' },
+      { icon: 'support', title: 'Managed IT', text: 'Run, support & govern' },
+      { icon: 'users', title: 'Resources', text: 'Embedded capacity' },
+      { icon: 'shield', title: 'Licences', text: 'Procure, renew, optimise' },
+    ],
+  },
 
   // The founders. Photos live in public/team/.
   leadership: {
